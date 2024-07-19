@@ -4,6 +4,7 @@ __pycache__/
 build/
 dist/
 node_modules/
+.idea/
 *.http
 *.pyc
 *.egg-info
