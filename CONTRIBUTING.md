@@ -4,9 +4,9 @@ Thank you for your interest in contributing to **mcptool**! Below are some ways 
 
 ## Report problems or suggestions
 
-If you find a bug or have a suggestion to improve the project, please open an [issue](https://github.com/wrrulos/mcptool/issues) on GitHub.
+If you find a bug or have a suggestion to improve the project, please open an [issue](https://github.com/pedroagustinvega/mcptool/issues) on GitHub.
 
-If you have an idea for a new feature, open an [issue](https://github.com/wrrulos/mcptool/issues) and tag it "feature request". Describe in detail how you would like the new functionality to work.
+If you have an idea for a new feature, open an [issue](https://github.com/pedroagustinvega/mcptool/issues) and tag it "feature request". Describe in detail how you would like the new functionality to work.
 
 ## Pull requests
 
@@ -30,7 +30,7 @@ If you have an idea for a new feature, open an [issue](https://github.com/wrrulo
 5. **Sync your fork with the original repository** - If the original repository has had changes since you forked it, it is good practice to sync your fork before uploading the changes.
 
     ```sh
-    git remote add upstream https://github.com/wrrulos/mcptool.git
+    git remote add upstream https://github.com/pedroagustinvega/mcptool.git
     git fetch upstream
     git merge upstream/main
     ```

@@ -8,7 +8,7 @@ from mccolors import mcwrite
 
 class Updater:
     def __init__(self) -> None:
-        self.download_url: str = 'https://github.com/wrrulos/MCPTool/releases/latest/download/MCPTool-win64.msi'
+        self.download_url: str = 'https://github.com/pedroagustinvega/mcptool/releases/latest/download/MCPTool-win64.msi'
 
     def windows_update(self) -> None:
         """

@@ -213,7 +213,7 @@ class MCPToolPath:
             },
             # Jar plugins for the proxies
             'mcptool_velocity_plugin': {
-                'url': 'https://github.com/wrrulos/mcptool-velocity/releases/download/v1.1/MCPTool-1.1-SNAPSHOT.jar',
+                'url': 'https://github.com/pedroagustinvega/mcptool-velocity/releases/download/v1.1/MCPTool-1.1-SNAPSHOT.jar',
                 'path': os.path.abspath(os.path.join(self.get(), 'proxies', 'velocity', 'plugins', 'MCPTool-1.1-SNAPSHOT.jar'))
             },
             'mcptool_fakeproxy_plugin': {
