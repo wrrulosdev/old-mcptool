@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "MCPTool"
+name = "mcptool-py"
 description = "A tool for Minecraft pentesting"
 version = "1.0.4"
 readme = "README.md"
@@ -21,7 +21,8 @@ dependencies = [
     "loguru",
     "pypresence",
     "plyer",
-    "nbtlib"
+    "nbtlib",
+    "bs4"
 ]
 classifiers = [
   "Programming Language :: Python :: 3",
