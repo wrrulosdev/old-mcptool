@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.6"
 keywords = ["minecraft", "pentesting", "tool", "security"]
 authors = [
-  {name = "Pedro Agustin Vega (wrrulos)", email = "vegapedroagustin2004@gmail.com"}
+  {name = "Pedro Agustin Vega (wrrulos)", email = "pedroagustinvega04@gmail.com"}
 ]
 dependencies = [
     "easyjsonpy",
