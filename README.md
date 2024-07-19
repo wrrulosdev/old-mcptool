@@ -1,4 +1,4 @@
-<h1 align="center"> 🧨 MCPTool v1.0.4
+<h1 align="center"> 🧨 MCPTool v1.0.5
 <h3 align="center"> Pentesting tool for Minecraft </h2>
 <img align="center" src="https://i.imgur.com/GqkwN7v.png" alt="MCPTool" title="MCPTool" style="max-width: 100%; height: auto;">
 
@@ -37,7 +37,7 @@
 
 - **EN**
 - **TR**
-- **ES** (Coming soon)
+- **ES**
 - **FR** (Coming soon)
 - **SK** (Coming soon)
 - **DE** (Coming soon)

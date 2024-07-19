@@ -214,7 +214,7 @@ class MCPToolPath:
             # Jar plugins for the proxies
             'mcptool_velocity_plugin': {
                 'url': 'https://github.com/pedroagustinvega/mcptool-velocity/releases/download/1.0.0/MCPTool-Velocity.jar',
-                'path': os.path.abspath(os.path.join(self.get(), 'proxies', 'velocity', 'plugins', 'MCPTool-1.1-SNAPSHOT.jar'))
+                'path': os.path.abspath(os.path.join(self.get(), 'proxies', 'velocity', 'plugins', 'MCPTool-Velocity.jar'))
             },
             'mcptool_fakeproxy_plugin': {
                 'url': f'{GITHUB_REPOSITORY}jar/RPoisoner-1.1-SNAPSHOT.jar',
@@ -222,7 +222,7 @@ class MCPToolPath:
             },
             'mcptool_waterfall_plugin': {
                 'url': 'https://github.com/pedroagustinvega/rbungeeexploit/releases/download/1.0.0/RBungeeExploit-1.0.0.jar',
-                'path': os.path.abspath(os.path.join(self.get(), 'proxies', 'waterfall', 'plugins', 'RBungeeExploit-1.0.jar'))
+                'path': os.path.abspath(os.path.join(self.get(), 'proxies', 'waterfall', 'plugins', 'RBungeeExploit-1.0.0.jar'))
             },
             # Imgs
             'server-icon': {
