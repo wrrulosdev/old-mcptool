@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "mcptool-py"
 description = "A tool for Minecraft pentesting"
-version = "1.0.5"
+version = "1.0.6"
 readme = "README.md"
 requires-python = ">=3.6"
 keywords = ["minecraft", "pentesting", "tool", "security"]
