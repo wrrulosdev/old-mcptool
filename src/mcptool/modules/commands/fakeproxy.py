@@ -33,8 +33,10 @@ class Command:
         if not ValidateArgument.validate_arguments_length(command_name=self.name, command_arguments=self.arguments, user_arguments=arguments):
             return False
 
-        if not ValidateArgument.is_ip_and_port(arguments[0]):
-            mcwrite(LM.get('errors.invalidIpAndPort'))
+        server = arguments[0]
+
+        if not ValidateArgument.is_domain(domain=server) and not ValidateArgument.is_ip_and_port(ip=server) and not ValidateArgument.is_domain_and_port(domain=server):
+            mcwrite(LM.get('errors.invalidServerFormat'))
             return False
 
         if not ValidateArgument.is_velocity_forwading_mode(arguments[1]):
