@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcptool-py"
+description = "A tool for Minecraft pentesting"
+version = "1.0.7"
+readme = "README.md"
+requires-python = ">=3.6"
+keywords = ["minecraft", "pentesting", "tool", "security"]
+authors = [
+    {name = "Pedro Agustin Vega (wrrulos)", email = "pedroagustinvega04@gmail.com"}
+]
+dependencies = [
+    "ezjsonpy",
+    "mccolors",
+    "mcstatus",
+    "mcrcon",
+    "requests",
+    "loguru",
+    "pypresence",
+    "plyer",
+    "nbtlib",
+    "bs4"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+license = {text = "MIT License"}
+
+[project.urls]
+homepage = "https://mcptool.net"
+documentation = "https://mcptool.net/docs"
+repository = "https://github.com/pedroagustinvega/mcptool"
+
+[project.scripts]
+mcptool = "mcptool.__main__:main"
+
+[tool.setuptools]
+packages = ["mcptool"]
