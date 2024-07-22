@@ -188,6 +188,7 @@
             "chat": "\n%spaces%%prefix% &b&l%time% ✉️ &f&l%username% &8(&a&l%ipAddress%&8) &8&l▶ &f&l%message%",
             "command": "\n%spaces%%prefix% &b&l%time% 💣 &f&l%username% &8(&a&l%ipAddress%&8) &8&l▶ &f&lused the command &b&l%command%",
             "adminKey": "\n%spaces%%prefix% &b&l%time% 🔑 &f&lAdmin Key &8&l▶ &d&l%adminKey%",
+            "adminKeyHelp": "\n%spaces%%prefix% &b&l%time% 🔑 &f&lUse the &b&ladmin key &f&lto execute admin commands in the fakeproxy server",
             "adminKeyUsed": "\n%spaces%%prefix% &b&l%time% 🔑 &f&l%username% &8(&a&l%ipAddress%&8) &8&l▶ &f&lused the admin key",
             "messageSent": "\n%spaces%%prefix% &b&l%time% ⚔️ &f&lMessage sent to the player &a&l%target% &f&lsuccessfully (&b&l%message%&f&l). By &a&l%sender%"
         },

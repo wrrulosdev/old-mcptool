@@ -84,6 +84,12 @@ class StartProxy:
             if output == '':
                 continue
 
+            if ' INFO]: Listening on ' in output:
+                mcwrite(LM.get('commands.proxy.proxyStarted')
+                        .replace('%proxyIp%', '127.0.0.1')
+                        .replace('%proxyPort%', str(self.proxy_port))
+                        )
+
             if self.fakeproxy:
                 current_time: str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -136,6 +142,7 @@ class StartProxy:
                             )
 
                 if ' [RFakeProxy] [ADMINKEY] ' in output:
+                    mcwrite(LM.get('commands.fakeproxy.adminKeyHelp').replace('%time%', current_time))
                     output_split: list = output.split(' ')
                     admin_key: str = output_split[4]
                     mcwrite(LM.get('commands.fakeproxy.adminKey')
