@@ -7,6 +7,16 @@ from mccolors import mcwrite, mcreplace
 from ezjsonpy import load_languages, set_language, load_configurations, get_config_value
 from mcptool.path.mcptool_path import MCPToolPath
 
+# Remove the default logger
+logger.remove()
+
+# Set the logging configuration
+logger.add(os.path.join(MCPToolPath.get_path(), 'logs.log'),
+           level='INFO',
+           format='[{time} {level} - {file}, {line}] ⮞ <level>{message}</level>',
+           rotation="30 MB"
+           )
+
 mcptool_path: MCPToolPath = MCPToolPath()
 
 load_languages([

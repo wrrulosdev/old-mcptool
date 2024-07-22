@@ -4,6 +4,7 @@ from mcptool.commands.ipinfo import Command as IPInfoCommand
 from mcptool.commands.iphistory import Command as IPHistoryCommand
 from mcptool.commands.dnslookup import Command as DNSLookupCommand
 from mcptool.commands.checker import Command as CheckerCommand
+from mcptool.commands.password import Command as PasswordCommand
 from mcptool.commands.fakeproxy import Command as FakeProxyCommand
 
 
@@ -17,6 +18,7 @@ class CommandLoader:
             'iphistory': IPHistoryCommand(),
             'dnslookup': DNSLookupCommand(),
             'checker': CheckerCommand(),
+            'password': PasswordCommand(),
             'fakeproxy': FakeProxyCommand()
         }
         return commands

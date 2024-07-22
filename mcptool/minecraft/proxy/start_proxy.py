@@ -25,6 +25,7 @@ class StartProxy:
 
     def _configure_proxy(self) -> None:
         """Method to configure the proxy"""
+        mcwrite(LM.get('commands.proxy.configuringProxy'))
         mcptool_path: str = MCPToolPath.get_path()
 
         if self.fakeproxy:
@@ -59,7 +60,7 @@ class StartProxy:
             with open(forwarding_secret_path, 'w') as file:
                 file.write('CMsIjMYfQ27l')
 
-        print('Proxy configured successfully')
+        mcwrite(LM.get('commands.proxy.proxyConfigured'))
         process: subprocess.Popen = self._start_proxy()
 
         if process is None:
@@ -130,7 +131,7 @@ class StartProxy:
                     mcwrite(LM.get('commands.fakeproxy.command')
                             .replace('%username%', username)
                             .replace('%ipAddress%', ip_address)
-                            .replace('%command%', command)
+                            .replace('%command%', f'/{command}')
                             .replace('%time%', current_time)
                             )
 
@@ -168,6 +169,7 @@ class StartProxy:
 
     def _start_proxy(self) -> subprocess.Popen:
         """Method to start the proxy"""
+        mcwrite(LM.get('commands.proxy.startingProxy'))
         proxy_jar: str = 'fakeproxy' if self.fakeproxy else 'velocity'
         JarManager(
             jar_name=proxy_jar,

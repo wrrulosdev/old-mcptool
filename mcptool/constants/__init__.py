@@ -7,6 +7,7 @@ class URLS:
     RFAKEPROXY_JAR_URL: str = 'https://github.com/pedroagustinvega/rfakeproxy/releases/download/1.0.0/RFakeProxy.jar'
     DISCORD_SERVER: str = 'discord.gg/TWKs6BWkR2'
     MCPTOOL_WEBSITE: str = 'mcptool.net'
+    NORDIFY_DISCORD: str = 'https://discord.gg/ducks'
 
 
 class Emojis:

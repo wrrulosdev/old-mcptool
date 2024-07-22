@@ -61,7 +61,7 @@ class Command:
             mcwrite(LM.get('errors.javaNotInstalled'))
             return
 
-        mcwrite(LM.get(f'commands.{self.name}.gettingServerData'))
+        mcwrite(LM.get(f'commands.server.gettingServerData'))
         server_data: Union[JavaServerData, BedrockServerData, None] = ServerData(server).get_data()
 
         if server_data is None:

@@ -124,7 +124,7 @@
             "invalidCredentials": "\n%spaces%%prefix% &c&lInvalid credentials. &f&lCheck the username and password in the settings file and try again.",
             "invalidAuth": "\n%spaces%%prefix% &c&lInvalid authentication. &f&lCheck the username and password in the settings file and try again",
             "requestError": "\n%spaces%%prefix% &c&lRequest error. &f&lCheck the logs for more information.",
-            "nordifyInfo": "\n%spaces%%prefix% &b&lNordify &f&lis a service that allows you to search for Minecraft players and get information about them. To use this command, you need to have a Nordify account. If you don't have an account, you can buy one at &b&l%nordifyLink%&f&l.",
+            "nordifyInfo": "\n%spaces%%prefix% &b&lNordify &f&lis a service that allows you to search for Minecraft players and get information about them. To use this command, you need to have a Nordify account. If you don't have an account, you can buy one at &b&l%nordifyLink%&f&l",
             "passwordsFound": "\n%spaces%%prefix% &a&l%passwords% &f&lpasswords found for the entered username &8&l(&a&l%username%&8&l).",
             "data": {
                 "username": "\n%spaces%&4[&c&lUser&f&lname&4] &f&l%username%",
@@ -171,7 +171,7 @@
         },
         "proxy": {
             "arguments": ["ip:port", "proxy_type"],
-            "configuringProxy": "\n%spaces%%prefix% &f&lConfiguring the proxy server &8(&a&l%proxyType%&8)&f&l... ",
+            "configuringProxy": "\n%spaces%%prefix% &f&lConfiguring the proxy server... ",
             "proxyConfigured": "\n%spaces%%prefix% &f&lProxy server configured successfully.",
             "velocityForwardingMode": "\n%spaces%%prefix% &f&lWrite the velocity mode you want to use. &8(&a&lnone legacy bungeeguard modern&8) &8&l▶ &f&l",
             "downloadingJar": "\n%spaces%%prefix% &f&lDownloading the proxy jar file (%jarName%)...",
@@ -183,7 +183,6 @@
         },
         "fakeproxy": {
             "arguments": ["ip:port", "velocity_forwading_mode"],
-            "copyingTargetServerData": "\n%spaces%%prefix% &f&lCopying the target server data...",
             "connected": "\n%spaces%%prefix% &b&l%time% 🟢 &f&l%username% &8(&a&l%ipAddress%&8) &f&lconnected to the fakeproxy server",
             "disconnected": "\n%spaces%%prefix% &b&l%time% 🔴 &f&l%username% &8(&a&l%ipAddress%&8) &f&ldisconnected from the fakeproxy server",
             "chat": "\n%spaces%%prefix% &b&l%time% ✉️ &f&l%username% &8(&a&l%ipAddress%&8) &8&l▶ &f&l%message%",
