@@ -61,7 +61,11 @@ class MCPToolPath:
             MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/velocity.toml',
                 file_name='settings/velocity.toml'
-            )
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/languages/en.json',
+                file_name='languages/en.json'
+            ),
         ]
 
 
