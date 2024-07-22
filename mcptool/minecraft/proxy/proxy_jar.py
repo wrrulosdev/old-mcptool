@@ -74,7 +74,7 @@ class JarManager:
         """
         mcwrite(LM.get('commands.proxy.downloadingJar').replace('%jarName%', self.jar_name))
         mcptool_path: str = MCPToolPath.get_path()
-        jar_path: str = f'{mcptool_path}/jars/{self.jar_name}.jar'
+        jar_path: str = f'{mcptool_path}/{self.jar_name}.jar'
 
         if os.path.exists(jar_path):
             os.remove(jar_path)
@@ -107,7 +107,7 @@ class JarManager:
 
         try:
             os.replace(
-                src=f'{MCPToolPath.get_path()}/jars/{self.jar_name}.jar',
+                src=f'{MCPToolPath.get_path()}/{self.jar_name}.jar',
                 dst=f'{self.jar_path}/{self.jar_name}.jar'
             )
             mcwrite(LM.get('commands.proxy.jarReplaced'))

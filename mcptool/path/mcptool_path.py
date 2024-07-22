@@ -20,7 +20,7 @@ class MCPToolPath:
         Get the path to the MCPToolData folder
         :return: str: The path to the MCPToolData folder
         """
-        folder_name: str = 'MCPToolData'
+        folder_name: str = 'MCPToolFiles'
 
         if os.name == 'nt':
             path: str = os.path.abspath(os.path.join(os.getenv('APPDATA'), folder_name))
@@ -50,6 +50,7 @@ class MCPToolPath:
         """
 
         return [
+            # Settings
             MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/settings.json',
                 file_name='settings/settings.json'
@@ -62,9 +63,44 @@ class MCPToolPath:
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/velocity.toml',
                 file_name='settings/velocity.toml'
             ),
+            # Languages
             MCPToolFile(
-                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/languages/en.json',
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/files/languages/en.json',
                 file_name='languages/en.json'
+            ),
+            # Jars
+            MCPToolFile(
+                download_url=f'{URLS.RFAKEPROXY_JAR_URL}',
+                file_name='proxies/fakeproxy/plugins/RFakeProxy.jar'
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/files/scanners/qubo.jar',
+                file_name='scanners/qubo.jar'
+            ),
+            # Scripts (.mjs)
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/files/scripts/bot.mjs',
+                file_name='scripts/bot.mjs'
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/files/scripts/brute_auth.mjs',
+                file_name='scripts/brute_auth.mjs'
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/files/scripts/connect.mjs',
+                file_name='scripts/connect.mjs'
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/files/scripts/sendcmd.mjs',
+                file_name='scripts/sendcmd.mjs'
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/files/scripts/server_response.mjs',
+                file_name='scripts/server_response.mjs'
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/files/scripts/utilities.mjs',
+                file_name='scripts/utilities.mjs'
             ),
         ]
 

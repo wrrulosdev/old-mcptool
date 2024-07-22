@@ -1,6 +1,9 @@
 from mcptool.commands.server import Command as ServerCommand
 from mcptool.commands.uuid import Command as UUIDCommand
 from mcptool.commands.ipinfo import Command as IPInfoCommand
+from mcptool.commands.iphistory import Command as IPHistoryCommand
+from mcptool.commands.dnslookup import Command as DNSLookupCommand
+from mcptool.commands.checker import Command as CheckerCommand
 from mcptool.commands.fakeproxy import Command as FakeProxyCommand
 
 
@@ -11,6 +14,9 @@ class CommandLoader:
             'server': ServerCommand(),
             'uuid': UUIDCommand(),
             'ipinfo': IPInfoCommand(),
+            'iphistory': IPHistoryCommand(),
+            'dnslookup': DNSLookupCommand(),
+            'checker': CheckerCommand(),
             'fakeproxy': FakeProxyCommand()
         }
         return commands

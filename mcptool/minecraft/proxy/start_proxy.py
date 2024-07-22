@@ -1,3 +1,4 @@
+import datetime
 import os
 import subprocess
 
@@ -34,7 +35,7 @@ class StartProxy:
             self.proxy_path: str = f'{mcptool_path}/proxies/velocity'
             self.proxy_port: int = get_config_value('velocity.port', 'proxy')
 
-        original_proxy_settings_path: str = f'{mcptool_path}/txt/velocity.toml'
+        original_proxy_settings_path: str = f'{mcptool_path}/settings/velocity.toml'
         proxy_settings_path: str = f'{self.proxy_path}/velocity.toml'
 
         if not os.path.exists(original_proxy_settings_path):
@@ -45,21 +46,125 @@ class StartProxy:
         with open(original_proxy_settings_path, 'r') as file:
             proxy_settings: str = file.read()
 
-        for line in proxy_settings.split('\n'):
-            if 'bind = "' in line:
-                proxy_settings = proxy_settings.replace(line, f'bind = "0.0.0.0:{self.proxy_port}"')
-
-            if 'player-info-forwarding-mode = "' in line:
-                proxy_settings = proxy_settings.replace(line, f'player-info-forwarding-mode = "{self.forwarding_mode}"')
-
-            if 'lobby = "' in line:
-                proxy_settings = proxy_settings.replace(line, f'lobby = "{self.server}"')
+        proxy_settings = proxy_settings.replace('[[ADDRESS]]', self.server)
+        proxy_settings = proxy_settings.replace('[[PORT]]', str(self.proxy_port))
+        proxy_settings = proxy_settings.replace('[[MODE]]', self.forwarding_mode)
 
         with open(proxy_settings_path, 'w') as file:
             file.write(proxy_settings)
 
+        forwarding_secret_path: str = f'{self.proxy_path}/forwarding.secret'
+
+        if not os.path.exists(forwarding_secret_path):  # Default forwarding secret
+            with open(forwarding_secret_path, 'w') as file:
+                file.write('CMsIjMYfQ27l')
+
         print('Proxy configured successfully')
-        self._start_proxy()
+        process: subprocess.Popen = self._start_proxy()
+
+        if process is None:
+            return
+
+        self._read_output(process)
+
+    def _read_output(self, process: subprocess.Popen) -> None:
+        """
+        Method to read the output of the proxy
+        :param process: The proxy process
+        """
+
+        for line in process.stdout:
+            try:
+                output: str = line.decode('utf-8').strip()
+
+            except UnicodeDecodeError:
+                continue
+
+            if output == '':
+                continue
+
+            if self.fakeproxy:
+                current_time: str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+                if ' [RFakeProxy] [CONNECTING] ' in output:
+                    output_split: list = output.split(' ')
+                    username: str = output_split[4]
+                    ip_address: str = output_split[5]
+                    mcwrite(LM.get('commands.fakeproxy.connected')
+                            .replace('%username%', username)
+                            .replace('%ipAddress%', ip_address)
+                            .replace('%time%', current_time)
+                            )
+
+                if ' [RFakeProxy] [DISCONNECTING] ' in output:
+                    output_split: list = output.split(' ')
+                    username: str = output_split[4]
+                    ip_address: str = output_split[5]
+                    mcwrite(LM.get('commands.fakeproxy.disconnected')
+                            .replace('%username%', username)
+                            .replace('%ipAddress%', ip_address)
+                            .replace('%time%', current_time)
+                            )
+
+                if ' [RFakeProxy] [CHAT] ' in output:
+                    output_split: list = output.split(' ')
+                    username: str = output_split[4]
+                    ip_address: str = output_split[5]
+                    message: str = ' '.join(output_split[6:])
+
+                    if message.startswith('#send') or message.startswith('#help'):
+                        continue
+
+                    mcwrite(LM.get('commands.fakeproxy.chat')
+                            .replace('%username%', username)
+                            .replace('%ipAddress%', ip_address)
+                            .replace('%message%', message)
+                            .replace('%time%', current_time)
+                            )
+
+                if ' [RFakeProxy] [COMMAND] ' in output:
+                    output_split: list = output.split(' ')
+                    username: str = output_split[4]
+                    ip_address: str = output_split[5]
+                    command: str = ' '.join(output_split[6:])
+                    mcwrite(LM.get('commands.fakeproxy.command')
+                            .replace('%username%', username)
+                            .replace('%ipAddress%', ip_address)
+                            .replace('%command%', command)
+                            .replace('%time%', current_time)
+                            )
+
+                if ' [RFakeProxy] [ADMINKEY] ' in output:
+                    output_split: list = output.split(' ')
+                    admin_key: str = output_split[4]
+                    mcwrite(LM.get('commands.fakeproxy.adminKey')
+                            .replace('%adminKey%', admin_key)
+                            .replace('%time%', current_time)
+                            )
+
+                if ' [RFakeProxy] [ADMIN] ' in output:
+                    output_split: list = output.split(' ')
+                    username: str = output_split[4]
+                    ip_address: str = output_split[5]
+                    mcwrite(LM.get('commands.fakeproxy.adminKeyUsed')
+                            .replace('%username%', username)
+                            .replace('%ipAddress%', ip_address)
+                            .replace('%time%', current_time)
+                            )
+
+                if ' [RFakeProxy] [SEND] ' in output:
+                    output_split: list = output.split(' ')
+                    sender: str = output_split[4]
+                    ip_address: str = output_split[5]
+                    target: str = output_split[6]
+                    message: str = ' '.join(output_split[7:])
+                    mcwrite(LM.get('commands.fakeproxy.messageSent')
+                            .replace('%sender%', sender)
+                            .replace('%ipAddress%', ip_address)
+                            .replace('%target%', target)
+                            .replace('%message%', message)
+                            .replace('%time%', current_time)
+                            )
 
     def _start_proxy(self) -> subprocess.Popen:
         """Method to start the proxy"""
@@ -67,11 +172,12 @@ class StartProxy:
         JarManager(
             jar_name=proxy_jar,
             jar_path=self.proxy_path
-        )
-        command: str = f'cd {self.proxy_path} && java -jar velocity.jar'
+        ).check()
+        command: str = f'cd {self.proxy_path} && java -jar {proxy_jar}.jar'
 
         if MCPToolStrings.OS_NAME == 'windows':
             command = f'C: && {command}'
 
-        process: subprocess.Popen = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        process: subprocess.Popen = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE,
+                                                     stderr=subprocess.STDOUT)
         return process
