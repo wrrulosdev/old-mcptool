@@ -1,4 +1,3 @@
-import subprocess
 from typing import Union
 
 from loguru import logger
@@ -7,14 +6,14 @@ from mccolors import mcwrite
 from mcptool.commands.arguments.argument_validator import ValidateArgument
 from mcptool.minecraft.server import JavaServerData, BedrockServerData
 from mcptool.minecraft.server.server_data import ServerData
-from mcptool.minecraft.proxy.start_proxy import StartProxy
+from mcptool.minecraft.server.show_server import ShowMinecraftServer
 from mcptool.utilities.language.utilities import LanguageUtils as LM
 
 
 class Command:
     @logger.catch
     def __init__(self):
-        self.name: str = 'fakeproxy'
+        self.name: str = 'server'
         self.command_arguments: list = [i for i in LM.get(f'commands.{self.name}.arguments')]
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
@@ -26,19 +25,10 @@ class Command:
         :return: bool: True if the arguments are valid, False otherwise
         """
         if not ValidateArgument.validate_arguments_length(
-                command_name=self.name,
-                command_arguments=self.command_arguments,
-                user_arguments=user_arguments
+            command_name=self.name,
+            command_arguments=self.command_arguments,
+            user_arguments=user_arguments
         ):
-            return False
-
-        if not ValidateArgument.is_domain(domain=user_arguments[0]) and not ValidateArgument.is_ip_and_port(
-                ip=user_arguments[0]) and not ValidateArgument.is_domain_and_port(domain=user_arguments[0]):
-            mcwrite(LM.get('errors.invalidServerFormat'))
-            return False
-
-        if not ValidateArgument.is_velocity_forwading_mode(user_arguments[1]):
-            mcwrite(LM.get('errors.invalidVelocityMode'))
             return False
 
         return True
@@ -54,13 +44,7 @@ class Command:
 
         # Save user arguments
         server: str = user_arguments[0]
-        forwarding_mode: str = user_arguments[1]
-
         # Execute the command
-        if not subprocess.run(['java', '-version'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).returncode == 0:
-            mcwrite(LM.get('errors.javaNotInstalled'))
-            return
-
         mcwrite(LM.get(f'commands.{self.name}.gettingServerData'))
         server_data: Union[JavaServerData, BedrockServerData, None] = ServerData(server).get_data()
 
@@ -68,8 +52,4 @@ class Command:
             mcwrite(LM.get('errors.serverOffline'))
             return
 
-        if server_data.platform != 'Java':
-            mcwrite(LM.get('errors.notJavaServer'))
-            return
-
-        StartProxy(server=server, forwarding_mode=forwarding_mode, fakeproxy=True).start()
+        ShowMinecraftServer.show(server_data=server_data)

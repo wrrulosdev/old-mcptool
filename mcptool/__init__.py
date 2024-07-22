@@ -1,12 +1,28 @@
+import random
 import time
 import os
 
 from loguru import logger
-from mccolors import mcwrite
-from ezjsonpy import load_languages, set_language, load_configuration, get_config_value
-
+from mccolors import mcwrite, mcreplace
+from ezjsonpy import load_languages, set_language, load_configurations, get_config_value
 from mcptool.path.mcptool_path import MCPToolPath
+
+mcptool_path: MCPToolPath = MCPToolPath()
+
+load_languages([
+    {'name': 'en', 'path': os.path.join(mcptool_path.get_path(), 'languages', 'en.json')}
+])
+
+load_configurations([
+    {'name': 'default', 'path': os.path.join(mcptool_path.get_path(), 'settings', 'settings.json')},
+    {'name': 'proxy', 'path': os.path.join(mcptool_path.get_path(), 'settings', 'proxy.json')}
+])
+set_language(get_config_value('language'))
+
 from mcptool.commands.loader.command_loader import CommandLoader
+from mcptool.banners.show_banner import ShowBanner
+from mcptool.constants.banners import MCPToolBanners, LoadingBanners, InputBanners
+from mcptool.utilities.language.utilities import LanguageUtils as LM
 
 
 class MCPTool:
@@ -14,41 +30,30 @@ class MCPTool:
         self.commands: dict = {}
         self.active_command: str = ''
         self.version: str = '1.0.7'
-        self.mcptool_path: MCPToolPath = MCPToolPath()
+        self.mcptool_path: MCPToolPath = mcptool_path
         self.commands = CommandLoader.load_commands()
 
     @logger.catch
     def run(self):
         logger.info(f'Starting MCPTool v{self.version}')
-        # Load the settings and languages
-        self._load_settings()
-        self._load_languages()
-        set_language(get_config_value('language'))
+        # Show the loading banner
+        ShowBanner(
+            banner=LoadingBanners.LOADING_BANNER_1,
+            clear_screen=True
+        ).show()
+        time.sleep(0.5)
         # Run the command loop
         self._command_loop()
 
     @logger.catch
-    def _load_settings(self):
-        """Method to load the settings"""
-        load_configuration(
-            'default',
-            os.path.join(self.mcptool_path.get_path(), 'settings.json')
-        )
-
-    @logger.catch
-    def _load_languages(self):
-        """Method to load the languages"""
-        load_languages([
-            {'name': 'en', 'path': os.path.join(self.mcptool_path.get_path(), 'languages', 'en.json')}
-        ])
-
-    @logger.catch
     def _command_loop(self):
         """Method to run the command loop"""
+        banner: str = MCPToolBanners.BANNERS[random.randint(0, len(MCPToolBanners.BANNERS) - 1)]
+        ShowBanner(banner, clear_screen=True).show()
 
         while True:
             try:
-                arguments: list = input('mcptool ~ ').split()
+                arguments: list = input(mcreplace(InputBanners.INPUT_1)).split()
 
                 if len(arguments) == 0:
                     continue
@@ -59,6 +64,7 @@ class MCPTool:
                     break
 
                 if command not in self.commands:
+                    mcwrite(LM.get('commands.invalidCommand'))
                     continue
 
                 try:
@@ -69,7 +75,7 @@ class MCPTool:
                     command_instance.execute(arguments[1:])
 
                 except KeyboardInterrupt:
-                    mcwrite('Command interrupted')
+                    mcwrite(LM.get('commands.ctrlC'))
 
             except (RuntimeError, EOFError):
                 pass

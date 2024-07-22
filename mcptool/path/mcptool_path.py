@@ -51,8 +51,16 @@ class MCPToolPath:
 
         return [
             MCPToolFile(
-                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings.json',
-                file_name='settings.json'
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/settings.json',
+                file_name='settings/settings.json'
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/proxy.json',
+                file_name='settings/proxy.json'
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/velocity.toml',
+                file_name='settings/velocity.toml'
             )
         ]
 
