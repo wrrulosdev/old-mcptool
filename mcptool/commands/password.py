@@ -1,4 +1,5 @@
 import time
+from typing import Union
 
 from ezjsonpy import get_config_value
 from loguru import logger
@@ -13,6 +14,8 @@ from mcptool.constants import URLS
 class Command:
     @logger.catch
     def __init__(self):
+        self.api_username: Union[str, None] = None
+        self.api_password: Union[str, None] = None
         self.name: str = 'password'
         self.command_arguments: list = [i for i in LM.get(f'commands.{self.name}.arguments')]
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
@@ -42,28 +45,46 @@ class Command:
         if not self.validate_arguments(user_arguments):
             return
 
-        # Save user arguments
-        username: str = user_arguments[0]
-        api_username: str = get_config_value('nordifyAPI.username')
-        api_password: str = get_config_value('nordifyAPI.password')
+        # Get the first 10 arguments
+        user_arguments = user_arguments[:10]
 
-        if len(api_username) == 0 or len(api_password) == 0:
+        # Save user arguments
+        self.api_username: str = get_config_value('nordifyAPI.username')
+        self.api_password: str = get_config_value('nordifyAPI.password')
+
+        if len(self.api_username) == 0 or len(self.api_password) == 0:
             mcwrite(LM.get('commands.password.invalidCredentials'))
             mcwrite(LM.get('commands.password.nordifyInfo').replace('%nordifyLink%', URLS.NORDIFY_DISCORD))
             return
 
+        for username in user_arguments:
+            error: bool = self.search_user(username)
+
+            if error:
+                return
+
+    def search_user(self, username: str) -> bool:
+        """
+        Method to search for a user
+        :param username:
+        :return: True if there was an error, False otherwise
+        """
+
         data = NordifyFinder(
             username=username,
-            api_username=api_username,
-            api_password=api_password
+            api_username=self.api_username,
+            api_password=self.api_password
         ).get_user_data()
 
         if data is None:
-            return
+            return False
+
+        if isinstance(data, str) and data == 'error':
+            return True
 
         if len(data) == 0:
             mcwrite(LM.get('commands.password.noResults').replace('%username%', username))
-            return
+            return False
 
         users_valid_passwords: list = []
         users_encrypted_passwords: list = []
@@ -95,12 +116,14 @@ class Command:
 
         if passwords_found == 0:
             mcwrite(LM.get('commands.password.noResults').replace('%username%', username))
-            return
+            return False
 
         mcwrite(LM.get('commands.password.passwordsFound')
                 .replace('%passwords%', str(passwords_found))
                 .replace('%username%', username)
                 )
+
+        return False
 
     @staticmethod
     @logger.catch

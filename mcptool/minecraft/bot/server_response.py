@@ -3,7 +3,6 @@ import subprocess
 from subprocess import CompletedProcess
 from loguru import logger
 
-
 from mcptool.constants import MCPToolStrings
 from mcptool.utilities.minecraft.bot.utilities import BotUtilities
 from mcptool.utilities.text.utilities import TextUtilities
@@ -20,12 +19,7 @@ class BotServerResponse:
 
     @logger.catch
     def get_response(self) -> str:
-        """
-        Method to get the response
-
-        Returns:
-            str: The response from the server
-        """
+        """Get the response from the server"""
         # Send the command
         self._send_command()
 
@@ -38,9 +32,7 @@ class BotServerResponse:
 
     @logger.catch
     def _send_command(self) -> None:
-        """
-        Method to send the command to the server
-        """
+        """Send the command to the server"""
         response: CompletedProcess = subprocess.run(self._get_command(), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         # Check if there is an error
@@ -55,6 +47,10 @@ class BotServerResponse:
                 self._response = '&cNode.js is not installed on the system'
                 return
 
+            if 'Error [ERR_MODULE_NOT_FOUND]: Cannot find package' in error_message:
+                self._response = '&cNode.js modules are missing'
+                return
+
             logger.warning(f'Error sending command: {self._get_command()} -> {error_message}')
             self._response = '&cError (Check the logs)'
             return
@@ -65,9 +61,7 @@ class BotServerResponse:
     def _get_command(self) -> str:
         """
         Method to get the command to send to the server
-
-        Returns:
-            str: The command to send to the server
+        :return: The command to send to the server
         """
         path: str = MCPToolPath.get_path()
         command: str = f'cd {path} && node scripts/server_response.mjs {self.ip_address} {self.port} {self.username} {self.version}'

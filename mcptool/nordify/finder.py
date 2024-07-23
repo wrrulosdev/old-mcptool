@@ -15,9 +15,14 @@ class NordifyFinder:
         self.username: str = username
         self.api_username: str = api_username
         self.api_password: str = api_password
+        self.error: bool = False
 
-    def get_user_data(self):
+    def get_user_data(self) -> Union[dict, str, None]:
         response: Union[dict, None] = self.send_request()
+
+        if self.error:
+            return 'error'
+
         return response
 
     @logger.catch
@@ -42,6 +47,7 @@ class NordifyFinder:
         except (requests.exceptions.JSONDecodeError, requests.exceptions.ConnectionError) as e:
             mcwrite(LM.get('commands.password.requestError'))
             logger.error(f'Error sending request to Nordify API: {e}')
+            self.error = True
             return None
 
         # Check if the response was successful
@@ -52,6 +58,8 @@ class NordifyFinder:
                     return None
 
             if 'error' in json_response:
+                self.error = True
+
                 if 'Authentication required' in json_response['error']:
                     mcwrite(LM.get('commands.password.invalidCredentials'))
                     mcwrite(LM.get('commands.password.nordifyInfo').replace('%nordifyLink%', URLS.NORDIFY_DISCORD))

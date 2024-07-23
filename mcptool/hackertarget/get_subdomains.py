@@ -13,14 +13,9 @@ class GetSubdomains:
     def get_subdomains(self, domain: str) -> list:
         """
         Method to get the subdomains of a domain
-
-        Args:
-            domain (str): The domain to get the subdomains
-
-        Returns:
-            list: The subdomains of the domain
+        :param domain: The domain to get the subdomains
+        :return: The subdomains of the domain
         """
-
         self.endpoint += domain
         subdomains_found: list = []
 

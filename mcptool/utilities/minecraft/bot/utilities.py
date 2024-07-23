@@ -12,11 +12,8 @@ class BotUtilities:
     def get_bot_username() -> str:
         """
         Method to get the bot username
-
-        Returns:
-            str: The bot username
+        :return: Bot username
         """
-
         # Get the path of the MCPTool folder
         path: str = MCPToolPath.get_path()
 
@@ -33,15 +30,10 @@ class BotUtilities:
     @logger.catch
     def get_bot_color_response(response: str) -> str:
         """
-        Method to get the color response for the bot
-
-        Args:
-            response (str): The response to get the color for
-
-        Returns:
-            str: The color response for the bot
+        Method to get the bot color response
+        :param response: The response from the server
+        :return: The colored response
         """
-
         # If the bot connected to the server
         if response == 'Connected':
             return '&a&lConnected'
@@ -79,7 +71,6 @@ class BotUtilities:
         """
         Method to get the bot reconnect time
         """
-
         # Get the reconnect time from the settings
         time: int = get_config_value('bot_reconnect_time')
 
@@ -89,5 +80,3 @@ class BotUtilities:
 
         except ValueError:
             return 4
-
-

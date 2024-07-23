@@ -20,12 +20,9 @@ class PlayerUUID:
     @logger.catch
     def get_uuid(self) -> PlayerUUIDFormat:
         """
-        Method to get the online and offline UUID of the player
-
-        Returns:
-            PlayerUUIDFormat: The online and offline UUID of the player
+        Method to get the UUID of the player
+        :return: The UUID of the player
         """
-
         try:
             response: requests.Response = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{self.username}")
             response.raise_for_status()
@@ -40,10 +37,9 @@ class PlayerUUID:
     @logger.catch
     def get_uuid_color(self, original_uuid: str) -> str:
         """
-        Method to get the online and offline UUID of the player in color format
-
-        Returns:
-            str: The online and offline UUID of the player in color format
+        Method to get the color of the UUID
+        :param original_uuid: The original UUID
+        :return: The color of the UUID
         """
 
         player_uuid: PlayerUUIDFormat = self.get_uuid()
@@ -62,9 +58,6 @@ class PlayerUUID:
     def _get_offline_uuid(self) -> str:
         """
         Method to get the offline UUID of the player
-
-        Returns:
-            str: The offline UUID of the player
+        :return: The offline UUID of the player
         """
-
         return str(uuid.UUID(bytes=hashlib.md5(bytes(f'OfflinePlayer:{self.username}', 'utf-8')).digest()[:16], version=3)).replace('-', '')

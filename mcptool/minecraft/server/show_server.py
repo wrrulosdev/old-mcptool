@@ -15,14 +15,9 @@ class Messages:
     def get_server_message(server_data: Union[JavaServerData, BedrockServerData]) -> str:
         """
         Method to get the server message
-
-        Args:
-            server_data (Union[JavaServerData, BedrockServerData]): The server data
-
-        Returns:
-            str: The server message
+        :param server_data: The server data
+        :return: The server message
         """
-
         server_message: str = f'''
 {LM.get('commands.server.ip_and_port').replace('%ip%', server_data.ip_address).replace('%port%', str(server_data.port))}
 {LM.get('commands.server.motd').replace('%motd%', server_data.motd)}
@@ -69,10 +64,7 @@ class ShowMinecraftServer:
     def show(server_data: Union[JavaServerData, BedrockServerData]) -> None:
         """
         Method to show the server data
-
-        Args:
-            server_data (Union[JavaServerData, BedrockServerData]): The server data
+        :param server_data: The server data
         """
-
         server_message: str = Messages.get_server_message(server_data)
         mcwrite(server_message)

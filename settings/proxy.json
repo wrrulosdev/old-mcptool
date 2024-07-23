@@ -1,5 +1,8 @@
 {
   "velocityVersion": "",
+  "velocity": {
+    "port": "25580"
+  },
   "fakeproxy": {
     "port": "33330"
   }

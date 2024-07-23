@@ -86,8 +86,8 @@ class HelpBanners:
       &d► &f&lpassword [username]                                              &d  ⡏   &f&l⠙⣆       ⢀⣠⢶&d⡇  ⢰⡀     ⡇
       &d► &f&lscan [ip_address/ip_range] [port/port_range] [method]            &d  ⡏   &f&l⠙⣆       ⢀⣠⢶&d⡇  ⢰⡀     ⡇
       &d► &f&llistening [ip:port]                                              &d ⢰⠇⡄    &f&l⢣⣀⣀⣀⡤⠴⡞⠉ &d⢸   ⣿⡇     ⣧
-      &d► &f&lproxy [ip:port] [proxy_type]                                     &d ⣸ ⡇       &f&l   ⢹  &d⢸  ⢀⣿⠇   ⠁ ⢸
-      &d► &f&lfakeproxy [ip:port] [velocity_forwading_mode]                    &d ⣿ ⡇    &f&l ⢀⡤⠤⠶⠶⠾⠤⠄&d⢸ ⡀⠸⣿⣀     ⠈⣇
+      &d► &f&lproxy [ip:port/domain] [velocity_forwading_mode]                 &d ⣸ ⡇       &f&l   ⢹  &d⢸  ⢀⣿⠇   ⠁ ⢸
+      &d► &f&lfakeproxy [ip:port/domain] [velocity_forwading_mode]             &d ⣿ ⡇    &f&l ⢀⡤⠤⠶⠶⠾⠤⠄&d⢸ ⡀⠸⣿⣀     ⠈⣇
       &d► &f&lconnect [ip:port] [version] [username]                           &d ⡇ ⡇    &f&l⡴⠋       &d⠸⡌⣵⡀⢳⡇      ⢹⡀
       &d► &f&lsendcmd [ip:port] [version] [username] [commands_file]           &d ⡇ ⠇   &f&l⡸⠁         &d⠙⠮⢧⣀⣻⢂      ⢧
       &d► &f&lrcon [ip:port] [password]                                        &d ⣇ ⢠   &f&l⠇            &d  ⠈⡎⣆     ⠘

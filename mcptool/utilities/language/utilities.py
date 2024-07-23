@@ -9,15 +9,10 @@ class LanguageUtils:
     @staticmethod
     def get(key: str) -> Union[dict, list, str, int, float, None]:
         """
-        Method to get the language value
-
-        Args:
-            key (Union[list, str]): The key to get the value from
-
-        Returns:
-            Union[dict, list, str, int, float, None]: The value of the key
+        Method to get the value of a key from the language file
+        :param key: Key to get the value from
+        :return: The value of the key
         """
-
         value: Union[dict, list, str, int, float, None] = translate_message(key)
 
         if value is None or value == 'None':

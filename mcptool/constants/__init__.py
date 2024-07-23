@@ -4,6 +4,7 @@ from mcptool.utilities.constants_utilities import ConstantsUtilities
 class URLS:
     GITHUB_REPOSITORY: str = 'https://github.com/pedroagustinvega/development'
     RAW_GITHUB_REPOSITORY: str = 'https://raw.githubusercontent.com/pedroagustinvega/mcptool/development'
+    MCPTOOL_VELOCITY_JAR_URL: str = 'https://github.com/pedroagustinvega/mcptool-velocity/releases/download/1.0.0/MCPTool-Velocity.jar'
     RFAKEPROXY_JAR_URL: str = 'https://github.com/pedroagustinvega/rfakeproxy/releases/download/1.0.0/RFakeProxy.jar'
     DISCORD_SERVER: str = 'discord.gg/TWKs6BWkR2'
     MCPTOOL_WEBSITE: str = 'mcptool.net'

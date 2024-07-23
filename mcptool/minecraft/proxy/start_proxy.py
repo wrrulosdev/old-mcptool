@@ -175,7 +175,10 @@ class StartProxy:
                             )
 
     def _start_proxy(self) -> subprocess.Popen:
-        """Method to start the proxy"""
+        """
+        Method to start the proxy
+        :return: The proxy process
+        """
         mcwrite(LM.get('commands.proxy.startingProxy'))
         proxy_jar: str = 'fakeproxy' if self.fakeproxy else 'velocity'
         JarManager(
@@ -186,6 +189,8 @@ class StartProxy:
 
         if MCPToolStrings.OS_NAME == 'windows':
             command = f'C: && {command}'
+
+        print(command)
 
         process: subprocess.Popen = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE,
                                                      stderr=subprocess.STDOUT)

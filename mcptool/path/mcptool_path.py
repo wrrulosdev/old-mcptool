@@ -1,11 +1,12 @@
 import os
+import subprocess
 from typing import Union
 
 import requests
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.constants import URLS
+from mcptool.constants import URLS, MCPToolStrings
 
 
 class MCPToolPath:
@@ -42,6 +43,16 @@ class MCPToolPath:
                 logger.info(f'Downloading {file.file_path}')
                 file.download()
 
+        if not os.path.exists(os.path.join(self.get_path(), 'node_modules')):
+            logger.info('Installing node modules')
+            mcwrite('&8&l[&a&lINFO&8&l] &f&lInstalling node modules...')
+            command: str = f'cd {self.get_path()} && npm install'
+
+            if MCPToolStrings.OS_NAME == 'windows':
+                command = f'C: && {command}'
+
+            subprocess.run(command, shell=True)
+
     @logger.catch
     def _get_mcptool_files(self) -> list:
         """
@@ -74,6 +85,10 @@ class MCPToolPath:
                 file_name='proxies/fakeproxy/plugins/RFakeProxy.jar'
             ),
             MCPToolFile(
+                download_url=f'{URLS.MCPTOOL_VELOCITY_JAR_URL}',
+                file_name='proxies/velocity/plugins/MCPTool.jar'
+            ),
+            MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/files/scanners/qubo.jar',
                 file_name='scanners/qubo.jar'
             ),
@@ -101,6 +116,11 @@ class MCPToolPath:
             MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/files/scripts/utilities.mjs',
                 file_name='scripts/utilities.mjs'
+            ),
+            # Packages
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/package.json',
+                file_name='package.json'
             ),
         ]
 
