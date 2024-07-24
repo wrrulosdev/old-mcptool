@@ -224,9 +224,9 @@ class ValidateArgument:
     @logger.catch
     def is_scan_method(method: str) -> bool:
         """
-        Method to validate if a string is a scan method
-        :param method: The scan method
-        :return: True if the scan method is valid, False otherwise
+        Method to validate if a string is a scanner method
+        :param method: The scanner method
+        :return: True if the scanner method is valid, False otherwise
         """
         if method not in ['nmap', 'qubo', 'masscan', 'py']:
             return False

@@ -7,6 +7,7 @@ from mcptool.commands.checker import Command as CheckerCommand
 from mcptool.commands.password import Command as PasswordCommand
 from mcptool.commands.seeker import Command as SeekerCommand
 from mcptool.commands.websearch import Command as WebSearchCommand
+from mcptool.commands.scan import Command as ScanCommand
 from mcptool.commands.proxy import Command as ProxyCommand
 from mcptool.commands.fakeproxy import Command as FakeProxyCommand
 
@@ -24,6 +25,7 @@ class CommandLoader:
             'password': PasswordCommand(),
             'seeker': SeekerCommand(),
             'websearch': WebSearchCommand(),
+            'scan': ScanCommand(),
             'proxy': ProxyCommand(),
             'fakeproxy': FakeProxyCommand()
         }

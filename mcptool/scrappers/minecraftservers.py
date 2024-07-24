@@ -19,7 +19,7 @@ class MinecraftServerScrapper:
     @logger.catch
     def __init__(self) -> None:
         mcptool_path: str = MCPToolPath.get_path()
-        self.file: str = open(f'{mcptool_path}/mcserver-scrapper.json', 'r').read()
+        self.file: str = open(f'{mcptool_path}/settings/mcserver-scrapper.json', 'r').read()
         self.headers: dict = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
         self.cookies: dict = {'cookie_name': 'cookie_value'}
         self.servers: dict = json.loads(self.file)

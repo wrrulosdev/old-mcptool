@@ -71,8 +71,8 @@ class MCPToolPath:
                 file_name='settings/proxy.json'
             ),
             MCPToolFile(
-                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/mcserver-scrapper',
-                file_name='settings/mcserver-scrapper'
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/mcserver-scrapper.json',
+                file_name='settings/mcserver-scrapper.json'
             ),
             MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/velocity.toml',

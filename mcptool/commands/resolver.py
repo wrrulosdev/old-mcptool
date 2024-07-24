@@ -33,7 +33,7 @@ class Command:
             return False
 
         if not ValidateArgument.is_ip_address(user_arguments[0]):
-            mcwrite(LM.get('errors.invalidIpFormat'))
+            mcwrite(LM.get('errors.invalidIpFormat').replace('%ip%', user_arguments[0]))
             return False
 
         return True

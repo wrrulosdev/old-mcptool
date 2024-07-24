@@ -26,3 +26,4 @@ class MCPToolStrings:
     PREFIX: str = f'&c&l«{Emojis.PREFIX_EMOJI}&c&l»&r'
     SPACES: str = ' ' * 4
     OS_NAME: str = ConstantsUtilities.get_os_name()
+    BUUNGE_EXPLOIT_VULNERABLE_MESSAGE: str = '§cVulnerable to Bungee Exploit'
