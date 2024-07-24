@@ -108,6 +108,7 @@ class MinecraftServerScrapper:
         :param method: The method to extract the server
         """
         html_tags: element.ResultSet = page.find_all(server_page['find_all']['tag'], class_=server_page['find_all']['class'])
+        ip: Union[str, None] = None
 
         for server in html_tags:
             if self.stop_event.is_set():

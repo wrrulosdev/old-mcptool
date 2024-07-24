@@ -4,7 +4,7 @@ from typing import Union
 
 import requests
 from loguru import logger
-from mccolors import mcwrite
+from mccolors import mcwrite, mcreplace
 
 from mcptool.constants import URLS, MCPToolStrings
 
@@ -69,6 +69,10 @@ class MCPToolPath:
             MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/proxy.json',
                 file_name='settings/proxy.json'
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/mcserver-scrapper',
+                file_name='settings/mcserver-scrapper'
             ),
             MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/velocity.toml',
@@ -142,12 +146,14 @@ class MCPToolFile:
             if response.status_code != 200:
                 mcwrite(f'&8&l[&c&lERROR&8&l] &f&lError downloading file: {self.file_path} ({response.status_code})')
                 logger.error(f'Error downloading {self.download_url}')
+                input(mcreplace('&8&l[&c&lERROR&8&l] &f&lPress enter to continue...'))
                 return
 
             with open(self.file_path, 'wb') as file:
                 if response.content is None:
                     mcwrite(f'&8&l[&c&lERROR&8&l] &f&lError downloading file: {self.file_path} (No content)')
                     logger.error(f'Error downloading {self.download_url}')
+                    input(mcreplace('&8&l[&c&lERROR&8&l] &f&lPress enter to continue...'))
                     return
 
                 file.write(response.content)

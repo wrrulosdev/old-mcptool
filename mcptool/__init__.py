@@ -6,6 +6,7 @@ from loguru import logger
 from mccolors import mcwrite, mcreplace
 from ezjsonpy import load_languages, set_language, load_configurations, get_config_value
 from mcptool.path.mcptool_path import MCPToolPath
+from mcptool.scrappers.minecraftservers import MinecraftServerScrapper
 
 # Remove the default logger
 logger.remove()
@@ -42,6 +43,7 @@ class MCPTool:
         self.version: str = '1.0.7'
         self.mcptool_path: MCPToolPath = mcptool_path
         self.commands = CommandLoader.load_commands()
+        self.minecraft_scrapper: MinecraftServerScrapper = MinecraftServerScrapper()
 
     @logger.catch
     def run(self):
@@ -80,9 +82,13 @@ class MCPTool:
                 try:
                     # Start the command timer
                     start_time: float = time.time()
-
                     command_instance = self.commands[command]
-                    command_instance.execute(arguments[1:])
+
+                    if command == 'websearch':
+                        command_instance.execute(arguments[1:], scrapper=self.minecraft_scrapper)
+
+                    else:
+                        command_instance.execute(arguments[1:])
 
                 except KeyboardInterrupt:
                     mcwrite(LM.get('commands.ctrlC'))
