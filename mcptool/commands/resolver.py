@@ -6,7 +6,7 @@ from mccolors import mcwrite
 from mcptool.commands.arguments.argument_validator import ValidateArgument
 from mcptool.constants import MCPToolStrings
 from mcptool.ipv4.get_cloudflare_ip import GetCloudflareIps
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 from mcptool.hackertarget.get_subdomains import GetSubdomains as GetSubdomainsHackerTarget
 from mcptool.virustotal.get_subdomains import GetSubdomains as GetSubdomainsVirustotal
 
@@ -15,7 +15,7 @@ class Command:
     @logger.catch
     def __init__(self):
         self.name: str = 'ipinfo'
-        self.command_arguments: list = [i for i in LM.get(f'commands.{self.name}.arguments')]
+        self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
     @logger.catch
@@ -33,7 +33,7 @@ class Command:
             return False
 
         if not ValidateArgument.is_ip_address(user_arguments[0]):
-            mcwrite(LM.get('errors.invalidIpFormat').replace('%ip%', user_arguments[0]))
+            mcwrite(Lm.get('errors.invalidIpFormat').replace('%ip%', user_arguments[0]))
             return False
 
         return True
@@ -51,15 +51,15 @@ class Command:
         domain: str = user_arguments[0]
 
         # Execute the command
-        mcwrite(LM.get(f'commands.{self.name}.resolving').replace('%domain%', domain))
+        mcwrite(Lm.get(f'commands.{self.name}.resolving').replace('%domain%', domain))
         time.sleep(0.5)
 
         # Get the subdomains of the domain using VirusTotal API
-        mcwrite(LM.get(f'commands.{self.name}.gettingSubdomainsVirusTotal'))
+        mcwrite(Lm.get(f'commands.{self.name}.gettingSubdomainsVirusTotal'))
         subdomains_virustotal: list = GetSubdomainsVirustotal().get_subdomains(domain=domain)
 
         # Get the subdomains of the domain using HackerTarget API
-        mcwrite(LM.get(f'commands.{self.name}.gettingSubdomainsHackerTarget'))
+        mcwrite(Lm.get(f'commands.{self.name}.gettingSubdomainsHackerTarget'))
         subdomains_hackertarget: list = GetSubdomainsHackerTarget().get_subdomains(domain=domain)
 
         # Merge the subdomains
@@ -75,7 +75,7 @@ class Command:
         subdomains_list = list(temp_dict.values())
 
         if len(subdomains_list) == 0:
-            mcwrite(LM.get('errors.noSubdomainsFoundResolver'))
+            mcwrite(Lm.get('errors.noSubdomainsFoundResolver'))
             return
 
         # Get ips from the subdomains
@@ -95,7 +95,7 @@ class Command:
             if ip not in cloudflare_ips:
                 mcwrite(f'{MCPToolStrings.SPACES} &a&l• &f&l{ip} &8&l(&a&l{subdomain}&8&l)')
 
-        mcwrite(LM.get(f'commands.{self.name}.done')
+        mcwrite(Lm.get(f'commands.{self.name}.done')
                 .replace('%domain%', domain)
                 .replace('%subdomainsAmount%', str(len(subdomains_list))
                          ))

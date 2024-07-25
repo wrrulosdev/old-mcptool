@@ -7,7 +7,7 @@ from mccolors import mcwrite
 
 from mcptool import MCPToolPath
 from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.constants import MCPToolStrings, CLI
+from mcptool.constants import CLI, MCPToolStrings
 from mcptool.minecraft.server import JavaServerData, BedrockServerData
 from mcptool.minecraft.server.server_data import ServerData
 from mcptool.utilities.language.utilities import LanguageUtils as Lm
@@ -16,8 +16,9 @@ from mcptool.utilities.language.utilities import LanguageUtils as Lm
 class Command:
     @logger.catch
     def __init__(self):
-        self.name: str = 'sendcmd'
+        self.name: str = 'bruteauth'
         self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
+        self.passwords: list = []
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
     @logger.catch
@@ -39,6 +40,10 @@ class Command:
             mcwrite(Lm.get('errors.invalidServerFormat'))
             return False
 
+        if not os.path.exists(user_arguments[3]):
+            mcwrite(Lm.get('errors.invalidFile'))
+            return False
+
         return True
 
     @logger.catch
@@ -52,10 +57,14 @@ class Command:
 
         # Save user arguments
         original_target: str = user_arguments[0]
+        version: str = user_arguments[1]
+        username: str = user_arguments[2]
+        password_file: str = user_arguments[3]
 
         # Get the server data
         server_data: Union[JavaServerData, BedrockServerData, None] = ServerData(target=original_target,
                                                                                  bot=False).get_data()
+
         if server_data is None:
             mcwrite(Lm.get('errors.serverOffline'))
             return
@@ -72,37 +81,33 @@ class Command:
             ip_address: str = original_target
             port: str = str(server_data.port)
 
-        version: str = user_arguments[1]
-        username: str = user_arguments[2]
-        commands_file: str = user_arguments[3]
-
         # Execute the command
-        mcwrite(Lm.get(f'commands.{self.name}.gettingCommands').replace('%file%', commands_file))
+        mcwrite(Lm.get(f'commands.{self.name}.gettingPasswords').replace('%file%', password_file))
 
-        # Get absolute path of the commands file
-        commands_file = os.path.abspath(commands_file)
+        # Get absolute path of the password file
+        password_file = os.path.abspath(password_file)
 
-        # Check if the commands file is empty
-        with open(commands_file, 'r') as file:
-            commands = file.read().splitlines()
+        with open(password_file, 'r') as file:
+            self.passwords = file.read().splitlines()
 
-        if len(commands) == 0:
-            mcwrite(Lm.get('errors.commandsFileEmpty'))
+        # Check if the password file is empty
+        if len(self.passwords) == 0:
+            mcwrite(Lm.get('errors.passwordFileEmpty'))
             return
 
+        mcwrite(Lm.get(f'commands.{self.name}.bruteForcing')
+                .replace('%ip%', original_target)
+                .replace('%username%', username)
+                .replace('%passwordFile%', password_file)
+                .replace('%numberOfPasswords%', str(len(self.passwords)))
+                )
+
+        # Prepare and run the command
         path: str = MCPToolPath.get_path()
         spaces: str = '0' if CLI.value else MCPToolStrings.SPACES
-        command: str = f'cd {path} && node scripts/sendcmd.mjs {ip_address} {port} {username} {version} {commands_file} {spaces}'
+        command: str = f'cd {path} && node scripts/brute_auth.mjs {ip_address} {port} {username} {version} {password_file} {spaces}'
 
         if MCPToolStrings.OS_NAME == 'windows':
             command = f'C: && {command}'
-
-        # Start sending the commands to the server
-        mcwrite(Lm.get(f'commands.{self.name}.sendingCommands')
-                .replace('%ip%', f'{ip_address}:{port}')
-                .replace('%username%', username)
-                .replace('%commandsFile%', commands_file)
-                .replace('%commands%', str(len(commands)))
-                )
 
         subprocess.run(command, shell=True)

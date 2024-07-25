@@ -9,14 +9,14 @@ from mcptool.commands.arguments.argument_validator import ValidateArgument
 from mcptool.minecraft.server import JavaServerData, BedrockServerData
 from mcptool.minecraft.server.server_data import ServerData
 from mcptool.minecraft.server.show_server import ShowMinecraftServer
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:
     @logger.catch
     def __init__(self):
         self.name: str = 'checker'
-        self.command_arguments: list = [i for i in LM.get(f'commands.{self.name}.arguments')]
+        self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
         self.servers_found: int = 0
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
@@ -35,7 +35,7 @@ class Command:
             return False
 
         if not os.path.exists(user_arguments[0]):
-            mcwrite(LM.get('errors.invalidFile'))
+            mcwrite(Lm.get('errors.invalidFile'))
             return False
 
         return True
@@ -56,7 +56,7 @@ class Command:
         with open(file, 'r') as f:
             lines: list = f.readlines()
 
-        mcwrite(LM.get(f'commands.{self.name}.checking')
+        mcwrite(Lm.get(f'commands.{self.name}.checking')
                 .replace('%file%', file)
                 )
 
@@ -75,12 +75,12 @@ class Command:
                     self.servers_found += 1
 
         if self.servers_found == 0:
-            mcwrite(LM.get(f'commands.{self.name}.noServersFound')
+            mcwrite(Lm.get(f'commands.{self.name}.noServersFound')
                     .replace('%file%', file)
                     )
             return
 
-        mcwrite(LM.get(f'commands.{self.name}.serversFound')
+        mcwrite(Lm.get(f'commands.{self.name}.serversFound')
                 .replace('%servers%', str(self.servers_found))
                 .replace('%file%', file)
                 )

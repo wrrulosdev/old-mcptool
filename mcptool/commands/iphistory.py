@@ -5,7 +5,7 @@ from mccolors import mcwrite
 
 from mcptool.commands.arguments.argument_validator import ValidateArgument
 from mcptool.scrappers.iphistory import DomainIPHistory
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 from mcptool.constants import MCPToolStrings
 from mcptool.ipv4.get_cloudflare_ip import GetCloudflareIps
 
@@ -14,7 +14,7 @@ class Command:
     @logger.catch
     def __init__(self):
         self.name: str = 'iphistory'
-        self.command_arguments: list = [i for i in LM.get(f'commands.{self.name}.arguments')]
+        self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
     @logger.catch
@@ -32,7 +32,7 @@ class Command:
             return False
 
         if not ValidateArgument.is_domain(user_arguments[0]):
-            mcwrite(LM.get('errors.invalidDomain'))
+            mcwrite(Lm.get('errors.invalidDomain'))
             return False
 
         return True
@@ -53,11 +53,11 @@ class Command:
         ips: list = DomainIPHistory(domain=domain).get()
 
         if len(ips) == 0:
-            mcwrite(LM.get('commands.iphistory.noIpHistory'))
+            mcwrite(Lm.get('commands.iphistory.noIpHistory'))
             return
 
         cloudflare_ips: list = GetCloudflareIps().get(ips=ips)
-        mcwrite(LM.get('commands.iphistory.ipHistoryFound'))
+        mcwrite(Lm.get('commands.iphistory.ipHistoryFound'))
 
         # Print the IP history (cloudflare ips)
         for ip in ips:

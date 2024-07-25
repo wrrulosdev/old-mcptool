@@ -5,7 +5,7 @@ from mccolors import mcwrite
 
 from mcptool.minecraft.server import JavaServerData, BedrockServerData
 from mcptool.minecraft.server.mcstatusio_api import MCStatusIOAPI
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 
 
 class ServerData:
@@ -23,7 +23,7 @@ class ServerData:
 
         if get_config_value('serverDataApi') == 'serverDataApi' or get_config_value('serverDataApi') not in ['local', 'mcstatus.io']:  # :TODO: Replace with None after testing
             logger.error('The serverDataApi is not set in the configuration file')
-            mcwrite(LM.get('errors.serverDataApiNotSet'))
+            mcwrite(Lm.get('errors.serverDataApiNotSet'))
             return None
 
         #if get_config_value('serverDataApi') == 'local':

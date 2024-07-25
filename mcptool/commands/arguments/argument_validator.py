@@ -4,7 +4,7 @@ from mccolors import mcwrite
 from loguru import logger
 from ezjsonpy import get_languages
 
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 
 
 class ValidateArgument:
@@ -24,7 +24,7 @@ class ValidateArgument:
                 user_arguments[i]
 
             except IndexError:
-                error_message: str = LM.get('commands.missingArguments')
+                error_message: str = Lm.get('commands.missingArguments')
                 arguments_message: str = ''
 
                 for argument_valid in command_arguments[:i]:

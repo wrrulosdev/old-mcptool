@@ -12,7 +12,7 @@ from mcptool.constants import MCPToolStrings
 from mcptool.minecraft.server import JavaServerData, BedrockServerData
 from mcptool.minecraft.server.server_data import ServerData
 from mcptool.minecraft.server.show_server import ShowMinecraftServer
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 
 
 class ExternalScanner:
@@ -67,14 +67,14 @@ class ExternalScanner:
                         # Java not installed.
                         if 'not found' in output_line or '"java"' in output_line:
                             logger.warning('Cannot scan target. Java is not installed.')
-                            mcwrite(LM.get('errors.javaNotInstalled'))
+                            mcwrite(Lm.get('errors.javaNotInstalled'))
                             self.stopped = True
                             return None
 
                         # Qubo.jar not found.
                         if 'qubo.jar' in output_line:
                             logger.warning('Cannot scan target. Qubo.jar not found.')
-                            mcwrite(LM.get('errors.quboJarNotFound'))
+                            mcwrite(Lm.get('errors.quboJarNotFound'))
                             self.stopped = True
                             return None
 
@@ -86,14 +86,14 @@ class ExternalScanner:
                 # If the line that refers to the IP entered as invalid.
                 if any(text in output_line for text in invalid_ip_text):
                     logger.warning(f'Invalid IP address: {self.target}. Cannot scan target.')
-                    mcwrite(LM.get('errors.invalidIpRange'))
+                    mcwrite(Lm.get('errors.invalidIpRange'))
                     self.stopped = True
                     return None
 
                 # If the line that refers to the port range not being valid.
                 if any(text in output_line for text in invalid_ports_text):
                     logger.warning(f'Invalid port range: {self.port_range}. Cannot scan target.')
-                    mcwrite(LM.get('errors.invalidPortRange'))
+                    mcwrite(Lm.get('errors.invalidPortRange'))
                     self.stopped = True
                     return None
 

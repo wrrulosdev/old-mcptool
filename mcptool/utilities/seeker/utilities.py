@@ -14,7 +14,7 @@ from mcptool.inputcustom import Input
 from mcptool.minecraft.server import JavaServerData, BedrockServerData
 from mcptool.minecraft.server.server_data import ServerData
 from mcptool.minecraft.server.show_server import ShowMinecraftServer
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 
 
 # Token Handler
@@ -34,7 +34,7 @@ class TokenHandler(BaseHTTPRequestHandler):
         """Method to handle the GET request"""
         if '?api_key=' in self.path:
             TokenHandler.token = self.path.split('=')[1]
-            mcwrite(LM.get('commands.seeker.token.tokenObtained'))
+            mcwrite(Lm.get('commands.seeker.token.tokenObtained'))
             logger.info('Token obtained from the seeker')
             set_config_value('seekerToken', TokenHandler.token)
             TokenHandler.token_received_event.set()
@@ -68,7 +68,7 @@ class TokenHandler(BaseHTTPRequestHandler):
             return True
 
         except (requests.ConnectionError, requests.Timeout) as e:
-            mcwrite(LM.get('errors.endpointConnectionError'))
+            mcwrite(Lm.get('errors.endpointConnectionError'))
             logger.warning(f'Error connecting to the endpoint: {url} - {data} - {e}')
             return False
 
@@ -88,7 +88,7 @@ class ServerManager:
             server: http.server.HTTPServer = HTTPServer(('localhost', 7637), TokenHandler)
             server.serve_forever()
         except OSError:
-            mcwrite(LM.get('commands.seeker.token.restart'))
+            mcwrite(Lm.get('commands.seeker.token.restart'))
             logger.error('Server encountered an OSError and will restart.')
             token_event.set()
 
@@ -104,11 +104,11 @@ class SeekerServers:
         token: str = get_config_value('seekerToken')
 
         if token is None:
-            mcwrite(LM.get('commands.seeker.token.invalidToken'))
+            mcwrite(Lm.get('commands.seeker.token.invalidToken'))
             return []
 
         if not TokenHandler.valid_token(token):
-            mcwrite(LM.get('commands.seeker.token.invalidToken'))
+            mcwrite(Lm.get('commands.seeker.token.invalidToken'))
 
         # Get server data to send the request
         data: dict = SeekerServers.create_server_data()
@@ -148,7 +148,7 @@ class SeekerServers:
 
         # Ask the user if they want to filter the servers
         filter: Union[bool, None] = Input(
-            input_message=LM.get('commands.seeker.servers.filterByData'),
+            input_message=Lm.get('commands.seeker.servers.filterByData'),
             input_type='boolean'
         ).get_input()
 
@@ -156,18 +156,18 @@ class SeekerServers:
             return data
 
         filter_country_code: Union[bool, None] = Input(
-            input_message=LM.get('commands.seeker.servers.filterByCountryCode'),
+            input_message=Lm.get('commands.seeker.servers.filterByCountryCode'),
             input_type='boolean'
         ).get_input()
 
         if filter_country_code is not None:
             country_code = Input(
-                input_message=LM.get('commands.seeker.servers.filterByCountryCodeText'),
+                input_message=Lm.get('commands.seeker.servers.filterByCountryCodeText'),
                 input_type='country_code'
             ).get_input()
 
         filter_cracked: Union[bool, None] = Input(
-            input_message=LM.get('commands.seeker.servers.filterByCracked'),
+            input_message=Lm.get('commands.seeker.servers.filterByCracked'),
             input_type='boolean'
         ).get_input()
 
@@ -175,18 +175,18 @@ class SeekerServers:
             cracked = filter_cracked
 
         filter_description: Union[bool, None] = Input(
-            input_message=LM.get('commands.seeker.servers.filterByDescription'),
+            input_message=Lm.get('commands.seeker.servers.filterByDescription'),
             input_type='boolean'
         ).get_input()
 
         if filter_description is not None:
             description = Input(
-                input_message=LM.get('commands.seeker.servers.filterByDescriptionText'),
+                input_message=Lm.get('commands.seeker.servers.filterByDescriptionText'),
                 input_type='string'
             ).get_input()
 
         filter_only_bungee_spoofable: Union[bool, None] = Input(
-            input_message=LM.get('commands.seeker.servers.filterByOnlyBungeespoofable'),
+            input_message=Lm.get('commands.seeker.servers.filterByOnlyBungeespoofable'),
             input_type='boolean'
         ).get_input()
 
@@ -194,24 +194,24 @@ class SeekerServers:
             only_bungee_spoofable = filter_only_bungee_spoofable
 
         filter_protocol: Union[bool, None] = Input(
-            input_message=LM.get('commands.seeker.servers.filterByProtocol'),
+            input_message=Lm.get('commands.seeker.servers.filterByProtocol'),
             input_type='boolean'
         ).get_input()
 
         if filter_protocol is not None:
             protocol = Input(
-                input_message=LM.get('commands.seeker.servers.filterByProtocolText'),
+                input_message=Lm.get('commands.seeker.servers.filterByProtocolText'),
                 input_type='integer'
             ).get_input()
 
         filter_online_players: Union[bool, None] = Input(
-            input_message=LM.get('commands.seeker.servers.filterByOnlinePlayers'),
+            input_message=Lm.get('commands.seeker.servers.filterByOnlinePlayers'),
             input_type='boolean'
         ).get_input()
 
         if filter_online_players is not None:
             online_players = Input(
-                input_message=LM.get('commands.seeker.servers.filterByOnlinePlayersText'),
+                input_message=Lm.get('commands.seeker.servers.filterByOnlinePlayersText'),
                 input_type='integer'
             ).get_input()
 
@@ -253,7 +253,7 @@ Getting servers from the seeker API...
  ↪ Headers: {headers}
  ↪ Data: {data}''')
 
-            mcwrite(LM.get('commands.seeker.servers.sendingRequest'))
+            mcwrite(Lm.get('commands.seeker.servers.sendingRequest'))
             response = requests.post(url, headers=headers, json=data)
 
             if response.status_code != 200:
@@ -267,12 +267,12 @@ Getting servers from the seeker API...
             return response.json()['data']
 
         except (requests.ConnectionError, requests.Timeout, requests.exceptions.RequestException, UnicodeDecodeError) as e:
-            mcwrite(LM.get('errors.endpointConnectionError'))
+            mcwrite(Lm.get('errors.endpointConnectionError'))
             logger.warning(f'Error connecting to the endpoint: {url} - {data} - {e}')
             return None
 
         except Exception as e:
-            mcwrite(LM.get('errors.endpointConnectionError'))
+            mcwrite(Lm.get('errors.endpointConnectionError'))
             logger.error(f'Error getting the servers from the seeker API: {e}')
             return None
 
@@ -293,12 +293,12 @@ class SeekerUtilities:
 
         # Check if the endpoint is valid
         if get_config_value('endpoints.seeker') is None:
-            mcwrite(LM.get('errors.invalidEndpoint'))
+            mcwrite(Lm.get('errors.invalidEndpoint'))
             logger.error(f'Invalid endpoint for seeker: {get_config_value("endpoints.seeker")}')
 
         # Event to indicate that the token has been received
         token_received: threading.Event = threading.Event()
-        mcwrite(LM.get('commands.seeker.token.gettingToken'))
+        mcwrite(Lm.get('commands.seeker.token.gettingToken'))
         server_thread: threading.Thread = threading.Thread(target=ServerManager.start_server, args=(token_received,))
         server_thread.start()
         time.sleep(1)
@@ -316,21 +316,21 @@ class SeekerUtilities:
         token: str = get_config_value('seekerToken')
 
         if token is None:
-            mcwrite(LM.get('commands.seeker.token.invalidToken'))
+            mcwrite(Lm.get('commands.seeker.token.invalidToken'))
             return
 
         if not TokenHandler.valid_token(token):
-            mcwrite(LM.get('commands.seeker.token.invalidToken'))
+            mcwrite(Lm.get('commands.seeker.token.invalidToken'))
             return
 
         # Get the servers
         servers = SeekerServers.get_servers()
 
         if len(servers) == 0:
-            mcwrite(LM.get('commands.seeker.servers.noServers'))
+            mcwrite(Lm.get('commands.seeker.servers.noServers'))
             return
 
-        mcwrite(LM.get('commands.seeker.servers.gettingServers'))
+        mcwrite(Lm.get('commands.seeker.servers.gettingServers'))
 
         # Print the servers
         for server in servers:

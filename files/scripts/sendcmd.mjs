@@ -86,6 +86,9 @@ class SendCMD {
             if (index < commands.length) {
                 executeCommand(index)
                     .then(() => {
+                        if (bot._client.socket.readyState !== "open") {
+                            return;
+                        }
                         index += 1;
                         executeNextCommand();
                     });
@@ -103,7 +106,15 @@ class SendCMD {
         // Get the message from the JSON
         const message = Utilities.getTextFromJSON(reason);
 
-        if (message.length === 0) {
+        if (message === null) {
+          console.log(
+            mccolors.translateColors(
+              `\n${spaces}§f[§c#§f] §fThe bot was kicked from the server for the following reason: §c${reason.text}`
+            )
+          );
+        }
+
+        else if (message.length === 0) {
           const newReason = reason.replace(/"/g, "");
           console.log(
             mccolors.translateColors(
@@ -122,6 +133,7 @@ class SendCMD {
         this.bot.quit();
         setTimeout(() => {
           new SendCMD(host, port, username, version);
+          index -= 1;
         }, reconnectDelay);
       });
 
@@ -136,10 +148,11 @@ class SendCMD {
         this.bot.quit();
         setTimeout(() => {
           new SendCMD(host, port, username, version);
+          index -= 1;
         }, reconnectDelay);
       });
     } catch (error) {
-      Utilities.error_handler(error);
+      Utilities.error_handler(error, spaces, true);
       process.exit(0);
     }
   }

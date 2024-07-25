@@ -4,7 +4,7 @@ from loguru import logger
 from mccolors import mcreplace, mcwrite
 
 from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 
 
 class Input:
@@ -69,7 +69,7 @@ class Input:
         try:
             return int(self.user_input)
         except ValueError:
-            mcwrite(LM.get('errors.invalidIntgerInput'))
+            mcwrite(Lm.get('errors.invalidIntgerInput'))
             return None
 
     @logger.catch
@@ -81,7 +81,7 @@ class Input:
         if self.user_input.lower() in ['no', 'n', 'false', '0']:
             return False
 
-        mcwrite(LM.get('errors.invalidBooleanInput'))
+        mcwrite(Lm.get('errors.invalidBooleanInput'))
         return None
 
     @logger.catch
@@ -90,7 +90,7 @@ class Input:
         if len(self.user_input) == 2:
             return self.user_input
 
-        mcwrite(LM.get('errors.invalidCountryCodeInput'))
+        mcwrite(Lm.get('errors.invalidCountryCodeInput'))
         return None
 
     @logger.catch
@@ -99,5 +99,5 @@ class Input:
         if ValidateArgument.is_velocity_forwading_mode(self.user_input):
             return self.user_input
 
-        mcwrite(LM.get('errors.invalidVelocityForwardingModeInput'))
+        mcwrite(Lm.get('errors.invalidVelocityForwardingModeInput'))
         return None

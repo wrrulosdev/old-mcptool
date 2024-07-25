@@ -9,7 +9,7 @@ from mcptool.inputcustom import Input
 from mcptool.nbt.servers_dat import ServersDAT
 from mcptool.scanner.external_scanner import ExternalScanner
 from mcptool.scanner.py_scanner import PyScanner
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 from mcptool.utilities.scanner.utilities import ScannerUtilities
 
 
@@ -17,7 +17,7 @@ class Command:
     @logger.catch
     def __init__(self):
         self.name: str = 'scan'
-        self.command_arguments: list = [i for i in LM.get(f'commands.{self.name}.arguments')]
+        self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
     @logger.catch
@@ -36,22 +36,22 @@ class Command:
 
         if str(user_arguments[0]).endswith('.txt'):
             if not os.path.exists(user_arguments[0]):
-                mcwrite(LM.get('errors.invalidFile'))
+                mcwrite(Lm.get('errors.invalidFile'))
                 return False
 
         if not ValidateArgument.is_scan_method(user_arguments[2]):
-            mcwrite(LM.get('errors.invalidScanMethod'))
+            mcwrite(Lm.get('errors.invalidScanMethod'))
             return False
 
         # Validate the IP address and port range if the method is Python scanner
         if user_arguments[2] == 'py':
             if not str(user_arguments[0]).endswith('.txt'):
                 if not ValidateArgument.is_ip_address(user_arguments[0]):
-                    mcwrite(LM.get('errors.invalidIpFormat').replace('%ip%', user_arguments[0]))
+                    mcwrite(Lm.get('errors.invalidIpFormat').replace('%ip%', user_arguments[0]))
                     return False
 
             if not ValidateArgument.is_port_range_py_method(user_arguments[1]):
-                mcwrite(LM.get('errors.invalidPortRange'))
+                mcwrite(Lm.get('errors.invalidPortRange'))
                 return False
 
         return True
@@ -73,12 +73,12 @@ class Command:
         if method != 'py':
             if method == 'nmap':
                 if not ScannerUtilities.nmap_installed():
-                    mcwrite(LM.get('errors.nmapNotInstalled'))
+                    mcwrite(Lm.get('errors.nmapNotInstalled'))
                     return
 
             if method == 'masscan':
                 if not ScannerUtilities.masscan_installed():
-                    mcwrite(LM.get('errors.masscanNotInstalled'))
+                    mcwrite(Lm.get('errors.masscanNotInstalled'))
                     return
 
         # Execute the command
@@ -107,10 +107,10 @@ class Command:
         """
         if method == 'py':
             if not ValidateArgument.is_ip_address(target):
-                mcwrite(LM.get('errors.invalidIpFormat').replace('%ip%', target))
+                mcwrite(Lm.get('errors.invalidIpFormat').replace('%ip%', target))
                 return None
 
-        mcwrite(LM.get(f'commands.{self.name}.scanning')
+        mcwrite(Lm.get(f'commands.{self.name}.scanning')
                 .replace('%ip%', target)
                 .replace('%portRange%', port_range)
                 .replace('%method%', method)
@@ -136,17 +136,17 @@ class Command:
 
         # If there are no open ports
         if output['open_ports']['count'] == 0:
-            mcwrite(LM.get(f'commands.{self.name}.noOpenPorts').replace('%ip%', output['target']))
+            mcwrite(Lm.get(f'commands.{self.name}.noOpenPorts').replace('%ip%', output['target']))
             return
 
-        add_servers: bool = Input(LM.get(f'commands.addServersFoundToMinecraft'), 'boolean').get_input()
+        add_servers: bool = Input(Lm.get(f'commands.addServersFoundToMinecraft'), 'boolean').get_input()
 
         if add_servers is None:
             return
 
         if add_servers:
             add_vulnerable_servers_only: bool = Input(
-                input_message=LM.get(f'commands.addBungeeExploitVulnerableServersOnly'),
+                input_message=Lm.get(f'commands.addBungeeExploitVulnerableServersOnly'),
                 input_type='boolean'
             ).get_input()
 
@@ -159,4 +159,4 @@ class Command:
             else:
                 ServersDAT().add_servers_dat_file(servers=output['open_ports']['minecraft'])
 
-        mcwrite(LM.get(f'commands.{self.name}.openPorts').replace('%openPorts%', str(output['open_ports']['count'])))
+        mcwrite(Lm.get(f'commands.{self.name}.openPorts').replace('%openPorts%', str(output['open_ports']['count'])))

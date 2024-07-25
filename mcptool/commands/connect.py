@@ -6,17 +6,17 @@ from mccolors import mcwrite
 
 from mcptool import MCPToolPath
 from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.constants import MCPToolStrings
+from mcptool.constants import MCPToolStrings, CLI
 from mcptool.minecraft.server import JavaServerData, BedrockServerData
 from mcptool.minecraft.server.server_data import ServerData
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:
     @logger.catch
     def __init__(self):
         self.name: str = 'connect'
-        self.command_arguments: list = [i for i in LM.get(f'commands.{self.name}.arguments')]
+        self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
     @logger.catch
@@ -35,7 +35,7 @@ class Command:
 
         if not ValidateArgument.is_domain(domain=user_arguments[0]) and not ValidateArgument.is_ip_and_port(
                 ip=user_arguments[0]) and not ValidateArgument.is_domain_and_port(domain=user_arguments[0]):
-            mcwrite(LM.get('errors.invalidServerFormat'))
+            mcwrite(Lm.get('errors.invalidServerFormat'))
             return False
 
         return True
@@ -57,11 +57,11 @@ class Command:
                                                                                  bot=False).get_data()
 
         if server_data is None:
-            mcwrite(LM.get('errors.serverOffline'))
+            mcwrite(Lm.get('errors.serverOffline'))
             return
 
         if server_data.platform != 'Java':
-            mcwrite(LM.get('errors.notJavaServer'))
+            mcwrite(Lm.get('errors.notJavaServer'))
             return
 
         if ':' in user_arguments[0]:
@@ -75,13 +75,14 @@ class Command:
         version: str = user_arguments[1]
         username: str = user_arguments[2]
         path: str = MCPToolPath.get_path()
-        command: str = f'cd {path} && node scripts/connect.mjs {ip_address} {port} {username} {version} {MCPToolStrings.SPACES}'
+        spaces: str = '0' if CLI.value else MCPToolStrings.SPACES
+        command: str = f'cd {path} && node scripts/connect.mjs {ip_address} {port} {username} {version} {spaces}'
 
         if MCPToolStrings.OS_NAME == 'windows':
             command = f'C: && {command}'
 
         # Connecting to the server
-        mcwrite(LM.get(f'commands.{self.name}.connecting')
+        mcwrite(Lm.get(f'commands.{self.name}.connecting')
                 .replace('%ip%', ip_address)
                 .replace('%username%', username)
                 )

@@ -3,7 +3,7 @@ import re
 
 from mccolors import mcwrite
 
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 
 
 class DomainIPHistory:
@@ -24,16 +24,16 @@ class DomainIPHistory:
         """
 
         try:
-            mcwrite(LM.get('commands.iphistory.gettingIpHistory'))
+            mcwrite(Lm.get('commands.iphistory.gettingIpHistory'))
             response: requests.Response = requests.get(url=self.url, headers=self.headers)
 
             if response.status_code != 200:
-                mcwrite(LM.get('commands.iphistory.noIpHistory'))
+                mcwrite(Lm.get('commands.iphistory.noIpHistory'))
                 return []
 
             ips: list = re.findall(self.ip_pattern, response.text)
             return ips
 
         except requests.exceptions.RequestException:
-            mcwrite(LM.get('errors.endpointConnectionError'))
+            mcwrite(Lm.get('errors.endpointConnectionError'))
             return

@@ -12,7 +12,7 @@ from mcptool import MCPToolPath
 from mcptool.minecraft.server import JavaServerData, BedrockServerData
 from mcptool.minecraft.server.server_data import ServerData
 from mcptool.minecraft.server.show_server import ShowMinecraftServer
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 
 
 class MinecraftServerScrapper:
@@ -41,7 +41,7 @@ class MinecraftServerScrapper:
         Method to get the Minecraft server scrapper data
         :return: The Minecraft server scrapper data
         """
-        mcwrite(LM.get('commands.websearch.searchingInWebs'))
+        mcwrite(Lm.get('commands.websearch.searchingInWebs'))
 
         with ThreadPoolExecutor(max_workers=10) as executor:
             futures: list = []
@@ -49,7 +49,7 @@ class MinecraftServerScrapper:
             for server_page in self.servers:
                 url: str = server_page['url']
                 pages: int = int(server_page['pages'])
-                mcwrite(LM.get('commands.websearch.searchingInPage').replace('%page%', server_page['name']))
+                mcwrite(Lm.get('commands.websearch.searchingInPage').replace('%page%', server_page['name']))
 
                 for i in range(1, pages + 1):
                     if self.stop_event.is_set():

@@ -7,14 +7,14 @@ from mcptool.commands.arguments.argument_validator import ValidateArgument
 from mcptool.minecraft.server import JavaServerData, BedrockServerData
 from mcptool.minecraft.server.server_data import ServerData
 from mcptool.minecraft.server.show_server import ShowMinecraftServer
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:
     @logger.catch
     def __init__(self):
         self.name: str = 'server'
-        self.command_arguments: list = [i for i in LM.get(f'commands.{self.name}.arguments')]
+        self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
     @logger.catch
@@ -45,11 +45,11 @@ class Command:
         # Save user arguments
         server: str = user_arguments[0]
         # Execute the command
-        mcwrite(LM.get(f'commands.{self.name}.gettingServerData'))
+        mcwrite(Lm.get(f'commands.{self.name}.gettingServerData'))
         server_data: Union[JavaServerData, BedrockServerData, None] = ServerData(server).get_data()
 
         if server_data is None:
-            mcwrite(LM.get('errors.serverOffline'))
+            mcwrite(Lm.get('errors.serverOffline'))
             return
 
         ShowMinecraftServer.show(server_data=server_data)

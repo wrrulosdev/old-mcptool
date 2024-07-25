@@ -7,7 +7,7 @@ from ezjsonpy import get_config_value
 
 from mcptool.constants import MCPToolStrings
 from mcptool.path.mcptool_path import MCPToolPath
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 from mcptool.minecraft.proxy.proxy_jar import JarManager
 
 
@@ -25,7 +25,7 @@ class StartProxy:
 
     def _configure_proxy(self) -> None:
         """Method to configure the proxy"""
-        mcwrite(LM.get('commands.proxy.configuringProxy'))
+        mcwrite(Lm.get('commands.proxy.configuringProxy'))
         mcptool_path: str = MCPToolPath.get_path()
 
         if self.fakeproxy:
@@ -40,7 +40,7 @@ class StartProxy:
         proxy_settings_path: str = f'{self.proxy_path}/velocity.toml'
 
         if not os.path.exists(original_proxy_settings_path):
-            mcwrite(LM.get('errors.proxySettingsNotFound'))
+            mcwrite(Lm.get('errors.proxySettingsNotFound'))
             return
 
         # Read the original proxy settings file and replace the necessary values
@@ -60,7 +60,7 @@ class StartProxy:
             with open(forwarding_secret_path, 'w') as file:
                 file.write('CMsIjMYfQ27l')
 
-        mcwrite(LM.get('commands.proxy.proxyConfigured'))
+        mcwrite(Lm.get('commands.proxy.proxyConfigured'))
         process: subprocess.Popen = self._start_proxy()
 
         if process is None:
@@ -85,7 +85,7 @@ class StartProxy:
                 continue
 
             if ' INFO]: Listening on ' in output:
-                mcwrite(LM.get('commands.proxy.proxyStarted')
+                mcwrite(Lm.get('commands.proxy.proxyStarted')
                         .replace('%proxyIp%', '127.0.0.1')
                         .replace('%proxyPort%', str(self.proxy_port))
                         )
@@ -97,7 +97,7 @@ class StartProxy:
                     output_split: list = output.split(' ')
                     username: str = output_split[4]
                     ip_address: str = output_split[5]
-                    mcwrite(LM.get('commands.fakeproxy.connected')
+                    mcwrite(Lm.get('commands.fakeproxy.connected')
                             .replace('%username%', username)
                             .replace('%ipAddress%', ip_address)
                             .replace('%time%', current_time)
@@ -107,7 +107,7 @@ class StartProxy:
                     output_split: list = output.split(' ')
                     username: str = output_split[4]
                     ip_address: str = output_split[5]
-                    mcwrite(LM.get('commands.fakeproxy.disconnected')
+                    mcwrite(Lm.get('commands.fakeproxy.disconnected')
                             .replace('%username%', username)
                             .replace('%ipAddress%', ip_address)
                             .replace('%time%', current_time)
@@ -122,7 +122,7 @@ class StartProxy:
                     if message.startswith('#send') or message.startswith('#help'):
                         continue
 
-                    mcwrite(LM.get('commands.fakeproxy.chat')
+                    mcwrite(Lm.get('commands.fakeproxy.chat')
                             .replace('%username%', username)
                             .replace('%ipAddress%', ip_address)
                             .replace('%message%', message)
@@ -134,7 +134,7 @@ class StartProxy:
                     username: str = output_split[4]
                     ip_address: str = output_split[5]
                     command: str = ' '.join(output_split[6:])
-                    mcwrite(LM.get('commands.fakeproxy.command')
+                    mcwrite(Lm.get('commands.fakeproxy.command')
                             .replace('%username%', username)
                             .replace('%ipAddress%', ip_address)
                             .replace('%command%', f'/{command}')
@@ -142,10 +142,10 @@ class StartProxy:
                             )
 
                 if ' [RFakeProxy] [ADMINKEY] ' in output:
-                    mcwrite(LM.get('commands.fakeproxy.adminKeyHelp').replace('%time%', current_time))
+                    mcwrite(Lm.get('commands.fakeproxy.adminKeyHelp').replace('%time%', current_time))
                     output_split: list = output.split(' ')
                     admin_key: str = output_split[4]
-                    mcwrite(LM.get('commands.fakeproxy.adminKey')
+                    mcwrite(Lm.get('commands.fakeproxy.adminKey')
                             .replace('%adminKey%', admin_key)
                             .replace('%time%', current_time)
                             )
@@ -154,7 +154,7 @@ class StartProxy:
                     output_split: list = output.split(' ')
                     username: str = output_split[4]
                     ip_address: str = output_split[5]
-                    mcwrite(LM.get('commands.fakeproxy.adminKeyUsed')
+                    mcwrite(Lm.get('commands.fakeproxy.adminKeyUsed')
                             .replace('%username%', username)
                             .replace('%ipAddress%', ip_address)
                             .replace('%time%', current_time)
@@ -166,7 +166,7 @@ class StartProxy:
                     ip_address: str = output_split[5]
                     target: str = output_split[6]
                     message: str = ' '.join(output_split[7:])
-                    mcwrite(LM.get('commands.fakeproxy.messageSent')
+                    mcwrite(Lm.get('commands.fakeproxy.messageSent')
                             .replace('%sender%', sender)
                             .replace('%ipAddress%', ip_address)
                             .replace('%target%', target)
@@ -179,7 +179,7 @@ class StartProxy:
         Method to start the proxy
         :return: The proxy process
         """
-        mcwrite(LM.get('commands.proxy.startingProxy'))
+        mcwrite(Lm.get('commands.proxy.startingProxy'))
         proxy_jar: str = 'fakeproxy' if self.fakeproxy else 'velocity'
         JarManager(
             jar_name=proxy_jar,

@@ -7,7 +7,7 @@ from mccolors import mcwrite
 
 from mcptool.commands.arguments.argument_validator import ValidateArgument
 from mcptool.nordify.finder import NordifyFinder
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 from mcptool.constants import URLS
 
 
@@ -17,7 +17,7 @@ class Command:
         self.api_username: Union[str, None] = None
         self.api_password: Union[str, None] = None
         self.name: str = 'password'
-        self.command_arguments: list = [i for i in LM.get(f'commands.{self.name}.arguments')]
+        self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
     @logger.catch
@@ -53,8 +53,8 @@ class Command:
         self.api_password: str = get_config_value('nordifyAPI.password')
 
         if len(self.api_username) == 0 or len(self.api_password) == 0:
-            mcwrite(LM.get('commands.password.invalidCredentials'))
-            mcwrite(LM.get('commands.password.nordifyInfo').replace('%nordifyLink%', URLS.NORDIFY_DISCORD))
+            mcwrite(Lm.get('commands.password.invalidCredentials'))
+            mcwrite(Lm.get('commands.password.nordifyInfo').replace('%nordifyLink%', URLS.NORDIFY_DISCORD))
             return
 
         for username in user_arguments:
@@ -83,12 +83,12 @@ class Command:
             return True
 
         if len(data) == 0:
-            mcwrite(LM.get('commands.password.noResults').replace('%username%', username))
+            mcwrite(Lm.get('commands.password.noResults').replace('%username%', username))
             return False
 
         users_valid_passwords: list = []
         users_encrypted_passwords: list = []
-        mcwrite(LM.get('commands.password.searching').replace('%username%', username))
+        mcwrite(Lm.get('commands.password.searching').replace('%username%', username))
         time.sleep(0.5)
 
         for username_data in data:
@@ -115,10 +115,10 @@ class Command:
         passwords_found: int = len(users_valid_passwords) + len(users_encrypted_passwords)
 
         if passwords_found == 0:
-            mcwrite(LM.get('commands.password.noResults').replace('%username%', username))
+            mcwrite(Lm.get('commands.password.noResults').replace('%username%', username))
             return False
 
-        mcwrite(LM.get('commands.password.passwordsFound')
+        mcwrite(Lm.get('commands.password.passwordsFound')
                 .replace('%passwords%', str(passwords_found))
                 .replace('%username%', username)
                 )
@@ -134,15 +134,15 @@ class Command:
         """
         if 'name' in user_data:
             if user_data['name'] is not None:
-                mcwrite(LM.get('commands.password.data.username').replace('%username%', user_data['name']))
+                mcwrite(Lm.get('commands.password.data.username').replace('%username%', user_data['name']))
 
         if 'email' in user_data:
             if user_data['email'] is not None:
-                mcwrite(LM.get('commands.password.data.username').replace('%email%', user_data['email']))
+                mcwrite(Lm.get('commands.password.data.username').replace('%email%', user_data['email']))
 
         if 'server' in user_data:
             if user_data['server'] is not None:
-                server_text: str = LM.get('commands.password.data.server').replace('%server%', user_data['server'])
+                server_text: str = Lm.get('commands.password.data.server').replace('%server%', user_data['server'])
 
                 if 'serverip' in user_data:
                     if user_data['serverip'] is not None:
@@ -153,12 +153,12 @@ class Command:
         if 'ip' in user_data:
             if user_data['ip'] is not None:
                 if user_data['ip'].lower() != 'not found':
-                    mcwrite(LM.get('commands.password.data.ip').replace('%ip%', user_data['ip']))
+                    mcwrite(Lm.get('commands.password.data.ip').replace('%ip%', user_data['ip']))
 
         if user_data['password'] is not None:
             password_color = '&a' if len(user_data['password']) < 32 else '&c&l'
-            mcwrite(LM.get('commands.password.data.password').replace('%password%',
+            mcwrite(Lm.get('commands.password.data.password').replace('%password%',
                                                                           f"{password_color}{user_data['password']}"))
         if 'salt' in user_data:
             if user_data['salt'] is not None:
-                mcwrite(LM.get('commands.password.data.salt').replace('%salt%', user_data['salt']))
+                mcwrite(Lm.get('commands.password.data.salt').replace('%salt%', user_data['salt']))

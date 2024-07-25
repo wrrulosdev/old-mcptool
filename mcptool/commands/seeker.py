@@ -1,7 +1,7 @@
 from loguru import logger
 
 from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 from mcptool.utilities.seeker.utilities import SeekerUtilities
 
 
@@ -9,7 +9,7 @@ class Command:
     @logger.catch
     def __init__(self):
         self.name: str = 'seeker'
-        self.command_arguments: list = [i for i in LM.get(f'commands.{self.name}.arguments')]
+        self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
     @logger.catch

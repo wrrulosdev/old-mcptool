@@ -7,7 +7,7 @@ from mccolors import mcwrite
 from requests.auth import HTTPBasicAuth
 
 from mcptool.constants import URLS
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 
 
 class NordifyFinder:
@@ -45,7 +45,7 @@ class NordifyFinder:
             json_response: dict = response.json()
 
         except (requests.exceptions.JSONDecodeError, requests.exceptions.ConnectionError) as e:
-            mcwrite(LM.get('commands.password.requestError'))
+            mcwrite(Lm.get('commands.password.requestError'))
             logger.error(f'Error sending request to Nordify API: {e}')
             self.error = True
             return None
@@ -54,19 +54,19 @@ class NordifyFinder:
         if response.status_code != 200:
             if 'message' in json_response:
                 if self.username in json_response['message']:
-                    mcwrite(LM.get('commands.password.noResults').replace('%username%', self.username))
+                    mcwrite(Lm.get('commands.password.noResults').replace('%username%', self.username))
                     return None
 
             if 'error' in json_response:
                 self.error = True
 
                 if 'Authentication required' in json_response['error']:
-                    mcwrite(LM.get('commands.password.invalidCredentials'))
-                    mcwrite(LM.get('commands.password.nordifyInfo').replace('%nordifyLink%', URLS.NORDIFY_DISCORD))
+                    mcwrite(Lm.get('commands.password.invalidCredentials'))
+                    mcwrite(Lm.get('commands.password.nordifyInfo').replace('%nordifyLink%', URLS.NORDIFY_DISCORD))
                     return None
 
                 logger.error(f'Error sending request to Nordify API: {json_response["error"]}')
-                mcwrite(LM.get('commands.password.requestError'))
+                mcwrite(Lm.get('commands.password.requestError'))
                 return None
 
         return json_response

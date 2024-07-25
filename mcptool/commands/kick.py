@@ -1,22 +1,21 @@
-import os
-import subprocess
+import time
 from typing import Union
 
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool import MCPToolPath
 from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.constants import MCPToolStrings, CLI
+from mcptool.minecraft.bot.server_response import BotServerResponse
 from mcptool.minecraft.server import JavaServerData, BedrockServerData
 from mcptool.minecraft.server.server_data import ServerData
 from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from mcptool.utilities.minecraft.bot.utilities import BotUtilities
 
 
 class Command:
     @logger.catch
     def __init__(self):
-        self.name: str = 'sendcmd'
+        self.name: str = 'kick'
         self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
@@ -37,6 +36,10 @@ class Command:
         if not ValidateArgument.is_domain(domain=user_arguments[0]) and not ValidateArgument.is_ip_and_port(
                 ip=user_arguments[0]) and not ValidateArgument.is_domain_and_port(domain=user_arguments[0]):
             mcwrite(Lm.get('errors.invalidServerFormat'))
+            return False
+
+        if not ValidateArgument.is_yes_no(user_arguments[3]):
+            mcwrite(LM.get('errors.invalidYesNo'))
             return False
 
         return True
@@ -74,35 +77,34 @@ class Command:
 
         version: str = user_arguments[1]
         username: str = user_arguments[2]
-        commands_file: str = user_arguments[3]
+        loop: bool = user_arguments[3].lower() == 'y'
 
         # Execute the command
-        mcwrite(Lm.get(f'commands.{self.name}.gettingCommands').replace('%file%', commands_file))
-
-        # Get absolute path of the commands file
-        commands_file = os.path.abspath(commands_file)
-
-        # Check if the commands file is empty
-        with open(commands_file, 'r') as file:
-            commands = file.read().splitlines()
-
-        if len(commands) == 0:
-            mcwrite(Lm.get('errors.commandsFileEmpty'))
-            return
-
-        path: str = MCPToolPath.get_path()
-        spaces: str = '0' if CLI.value else MCPToolStrings.SPACES
-        command: str = f'cd {path} && node scripts/sendcmd.mjs {ip_address} {port} {username} {version} {commands_file} {spaces}'
-
-        if MCPToolStrings.OS_NAME == 'windows':
-            command = f'C: && {command}'
-
-        # Start sending the commands to the server
-        mcwrite(Lm.get(f'commands.{self.name}.sendingCommands')
-                .replace('%ip%', f'{ip_address}:{port}')
+        mcwrite(Lm.get(f'commands.{self.name}.kickingPlayer')
+                .replace('%ip%', original_target)
+                .replace('%version%', version)
                 .replace('%username%', username)
-                .replace('%commandsFile%', commands_file)
-                .replace('%commands%', str(len(commands)))
                 )
 
-        subprocess.run(command, shell=True)
+        # Kick the player
+        bot_response: str = BotServerResponse(ip_address=ip_address, port=int(port), version=version,
+                                              username=username).get_response()
+
+        # Check if the player was kicked
+        if bot_response == 'Connected':
+            mcwrite(Lm.get(f'commands.{self.name}.playerKicked')
+                    .replace('%username%', username)
+                    )
+
+        else:
+            # Get the bot color response
+            bot_response: str = BotUtilities.get_bot_color_response(bot_response)
+
+            mcwrite(Lm.get(f'commands.{self.name}.playerNotKicked')
+                    .replace('%username%', username)
+                    .replace('%reason%', bot_response)
+                    )
+
+        if loop:
+            time.sleep(BotUtilities.get_bot_reconnect_time())
+            self.execute(user_arguments)

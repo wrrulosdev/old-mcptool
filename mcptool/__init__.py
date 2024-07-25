@@ -33,7 +33,7 @@ set_language(get_config_value('language'))
 from mcptool.commands.loader.command_loader import CommandLoader
 from mcptool.banners.show_banner import ShowBanner
 from mcptool.constants.banners import MCPToolBanners, LoadingBanners, InputBanners
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 
 
 class MCPTool:
@@ -76,7 +76,7 @@ class MCPTool:
                     break
 
                 if command not in self.commands:
-                    mcwrite(LM.get('commands.invalidCommand'))
+                    mcwrite(Lm.get('commands.invalidCommand'))
                     continue
 
                 try:
@@ -91,7 +91,7 @@ class MCPTool:
                         command_instance.execute(arguments[1:])
 
                 except KeyboardInterrupt:
-                    mcwrite(LM.get('commands.ctrlC'))
+                    mcwrite(Lm.get('commands.ctrlC'))
 
             except (RuntimeError, EOFError):
                 pass

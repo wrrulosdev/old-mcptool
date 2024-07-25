@@ -6,7 +6,7 @@ from mccolors import mcwrite
 from ezjsonpy import get_config_value, set_config_value
 
 from mcptool.path.mcptool_path import MCPToolPath
-from mcptool.utilities.language.utilities import LanguageUtils as LM
+from mcptool.utilities.language.utilities import LanguageUtils as Lm
 
 
 class JarManager:
@@ -72,7 +72,7 @@ class JarManager:
         Method to download the jar file
         :return: True if the jar file was downloaded successfully, False otherwise
         """
-        mcwrite(LM.get('commands.proxy.downloadingJar').replace('%jarName%', self.jar_name))
+        mcwrite(Lm.get('commands.proxy.downloadingJar').replace('%jarName%', self.jar_name))
         mcptool_path: str = MCPToolPath.get_path()
         jar_path: str = f'{mcptool_path}/{self.jar_name}.jar'
 
@@ -84,7 +84,7 @@ class JarManager:
                 f.truncate(0)
                 response = requests.get(self.latest_version_url)
                 f.write(response.content)
-                mcwrite(LM.get('commands.proxy.jarDownloaded'))
+                mcwrite(Lm.get('commands.proxy.jarDownloaded'))
                 logger.info(f'Jar file downloaded successfully -> {jar_path}')
 
             except requests.exceptions.RequestException as e:
@@ -103,14 +103,14 @@ class JarManager:
         Method to replace the jar file
         :return: True if the jar file was replaced successfully, False otherwise
         """
-        mcwrite(LM.get('commands.proxy.replacingJar'))
+        mcwrite(Lm.get('commands.proxy.replacingJar'))
 
         try:
             os.replace(
                 src=f'{MCPToolPath.get_path()}/{self.jar_name}.jar',
                 dst=f'{self.jar_path}/{self.jar_name}.jar'
             )
-            mcwrite(LM.get('commands.proxy.jarReplaced'))
+            mcwrite(Lm.get('commands.proxy.jarReplaced'))
             logger.info(f'Jar file replaced successfully -> {self.jar_name}')
             set_config_value(f'{self.jar_name}Version', self.latest_version_url)
             return True

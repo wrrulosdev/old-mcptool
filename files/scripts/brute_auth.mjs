@@ -117,6 +117,9 @@ class BruteAuth {
         for (const word of wordsToLogin) {
           if (serverMessage.includes(word)) {
             // Send the login command
+            if (this.bot.bot._client.socket.readyState !== "open") {
+                return;
+            }
             this.bot.bot.chat(`${loginCommand} ${passwords[loginAttempts]}`);
 
             console.log(
@@ -125,7 +128,6 @@ class BruteAuth {
               )
             );
             loginAttempts += 1;
-
           }
         }
       });
@@ -134,7 +136,15 @@ class BruteAuth {
         // Get the message from the JSON
         const message = Utilities.getTextFromJSON(reason);
 
-        if (message.length === 0) {
+        if (message === null) {
+          console.log(
+            mccolors.translateColors(
+              `\n${spaces}§f[§c#§f] §fThe bot was kicked from the server for the following reason: §c${reason.text}`
+            )
+          );
+        }
+
+        else if (message.length === 0) {
           const newReason = reason.replace(/"/g, "");
           console.log(
             mccolors.translateColors(
@@ -153,6 +163,7 @@ class BruteAuth {
         this.bot.quit();
         setTimeout(() => {
           new BruteAuth(host, port, username, version);
+          loginAttempts -= 1;
         }, reconnectDelay);
       });
 
@@ -167,6 +178,7 @@ class BruteAuth {
         this.bot.quit();
         setTimeout(() => {
           new BruteAuth(host, port, username, version);
+          loginAttempts -= 1;
         }, reconnectDelay);
       });
     } catch (error) {
