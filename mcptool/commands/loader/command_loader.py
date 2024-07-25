@@ -18,6 +18,7 @@ from mcptool.commands.rcon import Command as RconCommand
 from mcptool.commands.brutercon import Command as BruteRconCommand
 from mcptool.commands.bruteauth import Command as BruteAuthCommand
 from mcptool.commands.kick import Command as KickCommand
+from mcptool.commands.kickall import Command as KickAllCommand
 from mcptool.commands.clearservers import Command as ClearServersCommand
 
 
@@ -45,6 +46,7 @@ class CommandLoader:
             'brutercon': BruteRconCommand(),
             'bruteauth': BruteAuthCommand(),
             'kick': KickCommand(),
+            'kickall': KickAllCommand(),
             'clearservers': ClearServersCommand(),
         }
         return commands

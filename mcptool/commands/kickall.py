@@ -15,7 +15,7 @@ from mcptool.utilities.minecraft.bot.utilities import BotUtilities
 class Command:
     @logger.catch
     def __init__(self):
-        self.name: str = 'kick'
+        self.name: str = 'kickall'
         self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
@@ -38,7 +38,7 @@ class Command:
             mcwrite(Lm.get('errors.invalidServerFormat'))
             return False
 
-        if not ValidateArgument.is_yes_no(user_arguments[3]):
+        if not ValidateArgument.is_yes_no(user_arguments[2]):
             mcwrite(Lm.get('errors.invalidYesNo'))
             return False
 
@@ -76,35 +76,43 @@ class Command:
             port: str = str(server_data.port)
 
         version: str = user_arguments[1]
-        username: str = user_arguments[2]
-        loop: bool = user_arguments[3].lower() == 'y'
+        loop: bool = user_arguments[2].lower() == 'y'
 
         # Execute the command
-        mcwrite(Lm.get(f'commands.{self.name}.kickingPlayer')
-                .replace('%ip%', original_target)
-                .replace('%version%', version)
-                .replace('%username%', username)
-                )
+        mcwrite(Lm.get(f'commands.{self.name}.gettingPlayers').replace('%ip%', original_target))
 
-        # Kick the player
-        bot_response: str = BotServerResponse(ip_address=ip_address, port=int(port), version=version,
-                                              username=username).get_response()
+        # Check if there are no players
+        if len(server_data.player_list) == 0:
+            mcwrite(Lm.get(f'commands.{self.name}.noPlayers').replace('%ip%', original_target))
+            return
 
-        # Check if the player was kicked
-        if bot_response == 'Connected':
-            mcwrite(Lm.get(f'commands.{self.name}.playerKicked')
-                    .replace('%username%', username)
-                    )
+        # Loop through the players and kick them
+        for player in server_data.player_list:
+            username: str = player['name']
 
-        else:
-            # Get the bot color response
-            bot_response: str = BotUtilities.get_bot_color_response(bot_response)
+            # Kick the player
+            bot_response: str = BotServerResponse(ip_address=ip_address, port=int(port), version=version,
+                                                  username=username).get_response()
 
-            mcwrite(Lm.get(f'commands.{self.name}.playerNotKicked')
-                    .replace('%username%', username)
-                    .replace('%reason%', bot_response)
-                    )
+            # Check if the player was kicked
+            if bot_response == 'Connected':
+                mcwrite(Lm.get('commands.kick.playerKicked')
+                        .replace('%username%', username)
+                        )
 
-        if loop:
+            else:
+                # Get the bot color response
+                bot_response: str = BotUtilities.get_bot_color_response(bot_response)
+
+                mcwrite(Lm.get('commands.kick.playerNotKicked')
+                        .replace('%username%', username)
+                        .replace('%reason%', bot_response)
+                        )
+
             time.sleep(BotUtilities.get_bot_reconnect_time())
+
+        mcwrite(Lm.get(f'commands.{self.name}.allPlayersKicked'))
+
+        # Check if the command should loop
+        if loop:
             self.execute(user_arguments)
