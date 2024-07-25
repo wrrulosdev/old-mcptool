@@ -35,9 +35,9 @@ class Utilities {
     let mcptool_path;
 
     if (process.platform === "win32") {
-      mcptool_path = path.join(os.homedir(), "AppData", "Roaming", "MCPToolData");
+      mcptool_path = path.join(os.homedir(), "AppData", "Roaming", "MCPToolFiles");
     } else {
-      mcptool_path = path.join(os.homedir(), ".config", "MCPToolData");
+      mcptool_path = path.join(os.homedir(), ".config", "MCPToolFiles");
     }
 
     try {

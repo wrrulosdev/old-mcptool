@@ -38,7 +38,7 @@ for (let i = 0; i < passwords.length; i++) {
 const mcptoolPath = Utilities.get_mcptool_path();
 
 // Read the configuration file
-const configPath = path.join(mcptoolPath, "bruteforce_settings.json");
+const configPath = path.join(mcptoolPath, "settings", "bruteforce_settings.json");
 const configContent = fs.readFileSync(configPath);
 
 // Parse the configuration file and get the settings

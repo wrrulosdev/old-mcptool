@@ -7,9 +7,14 @@ from mcptool.commands.checker import Command as CheckerCommand
 from mcptool.commands.password import Command as PasswordCommand
 from mcptool.commands.seeker import Command as SeekerCommand
 from mcptool.commands.websearch import Command as WebSearchCommand
+from mcptool.commands.subdomains import Command as SubdomainsCommand
 from mcptool.commands.scan import Command as ScanCommand
+from mcptool.commands.listening import Command as ListeningCommand
 from mcptool.commands.proxy import Command as ProxyCommand
 from mcptool.commands.fakeproxy import Command as FakeProxyCommand
+from mcptool.commands.connect import Command as ConnectCommand
+from mcptool.commands.sendcmd import Command as SendCMDCommand
+from mcptool.commands.clearservers import Command as ClearServersCommand
 
 
 class CommandLoader:
@@ -25,8 +30,13 @@ class CommandLoader:
             'password': PasswordCommand(),
             'seeker': SeekerCommand(),
             'websearch': WebSearchCommand(),
+            'subdomains': SubdomainsCommand(),
             'scan': ScanCommand(),
+            'listening': ListeningCommand(),
             'proxy': ProxyCommand(),
-            'fakeproxy': FakeProxyCommand()
+            'fakeproxy': FakeProxyCommand(),
+            'connect': ConnectCommand(),
+            'sendcmd': SendCMDCommand(),
+            'clearservers': ClearServersCommand(),
         }
         return commands

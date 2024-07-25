@@ -70,6 +70,7 @@
         },
         "dnslookup": {
             "arguments": ["domain"],
+            "arguments": ["domain"],
             "lookingUp": "\n%spaces%%prefix% &f&lLooking up the entered domain &8&l(&a&l%domain%&8&l)&f&l...",
             "noRecords": "\n%spaces%%prefix% &f&lNo records found in the entered domain.",
             "done": "\n%spaces%%prefix% &f&lFinished looking up the entered domain &8&l(&a&l%domain%&8&l)&f&l. Found &a&l%recordsAmount% &f&lrecords."

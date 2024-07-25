@@ -1,3 +1,5 @@
+import sys
+
 from mcptool.utilities.constants_utilities import ConstantsUtilities
 
 
@@ -27,3 +29,7 @@ class MCPToolStrings:
     SPACES: str = ' ' * 4
     OS_NAME: str = ConstantsUtilities.get_os_name()
     BUUNGE_EXPLOIT_VULNERABLE_MESSAGE: str = '§cVulnerable to Bungee Exploit'
+
+
+class CLI:
+    value: bool = True if len(sys.argv) > 1 else False

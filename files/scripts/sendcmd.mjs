@@ -38,7 +38,7 @@ for (let i = 0; i < commands.length; i++) {
 const mcptoolPath = Utilities.get_mcptool_path();
 
 // Read the configuration file
-const configPath = path.join(mcptoolPath, "sendcmd_settings.json");
+const configPath = path.join(mcptoolPath, "settings", "sendcmd_settings.json");
 const configContent = fs.readFileSync(configPath);
 
 // Parse the configuration file and get the settings

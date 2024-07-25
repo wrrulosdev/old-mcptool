@@ -51,7 +51,12 @@ class MCPToolPath:
             if MCPToolStrings.OS_NAME == 'windows':
                 command = f'C: && {command}'
 
-            subprocess.run(command, shell=True)
+            error: Union[bytes, None] = subprocess.run(command, shell=True, capture_output=True).stderr
+
+            if error:
+                error_str: str = error.decode('utf-8').strip()
+                mcwrite(f'&8&l[&c&lERROR&8&l] &f&lError installing node modules: {error_str}')
+                logger.error(f'Error installing node modules: {error_str}')
 
     @logger.catch
     def _get_mcptool_files(self) -> list:
@@ -73,6 +78,14 @@ class MCPToolPath:
             MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/mcserver-scrapper.json',
                 file_name='settings/mcserver-scrapper.json'
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/bruteforce_settings.json',
+                file_name='settings/bruteforce_settings.json'
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/sendcmd_settings.json',
+                file_name='settings/sendcmd_settings.json'
             ),
             MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/velocity.toml',
