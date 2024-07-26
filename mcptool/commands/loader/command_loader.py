@@ -25,6 +25,10 @@ from mcptool.commands.clearservers import Command as ClearServersCommand
 class CommandLoader:
     @staticmethod
     def load_commands() -> dict:
+        """
+        Load all commands
+        :return: Dict with all commands loaded
+        """
         commands: dict = {
             'server': ServerCommand(),
             'uuid': UUIDCommand(),

@@ -1,5 +1,6 @@
 from mcptool.utilities.language.utilities import LanguageUtils as Lm
 from . import MCPToolStrings, URLS
+from .update_available import UPDATE_AVAILABLE
 
 
 class LoadingBanners:
@@ -28,7 +29,7 @@ class MCPToolBanners:
 &f&l     dMP dMP dMP dMP.aMP dMP&c&l       dMP   dMP.aMP dMP.aMP dMP
 &f&l    dMP dMP dMP  VMMMP" dMP&c&l       dMP    VMMMP"  VMMMP" dMMMMMP
 
-{Lm.get('app.description').replace('%version%', MCPToolStrings.VERSION)}{Lm.get('app.newVersion') if True else ''}'''
+{Lm.get('app.description').replace('%version%', MCPToolStrings.VERSION)}{Lm.get('app.newVersion') if UPDATE_AVAILABLE else ''}'''
 
     BANNER_2: str = f'''
 &f&l    ███╗   ███╗ ██████╗██████╗ &c&l████████╗ ██████╗  ██████╗ ██╗
@@ -38,7 +39,7 @@ class MCPToolBanners:
 &f&l    ██║ ╚═╝ ██║╚██████╗██║     &c&l   ██║   ╚██████╔╝╚██████╔╝███████╗
 &f&l    ╚═╝     ╚═╝ ╚═════╝╚═╝     &c&l   ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝
 
-{Lm.get('app.description').replace('%version%', MCPToolStrings.VERSION)}{Lm.get('app.newVersion') if True else ''}'''
+{Lm.get('app.description').replace('%version%', MCPToolStrings.VERSION)}{Lm.get('app.newVersion') if UPDATE_AVAILABLE else ''}'''
 
     BANNER_3: str = f'''
 &f&l    8888ba.88ba   a88888b.  888888ba  &c&ld888888P                   dP
@@ -48,7 +49,7 @@ class MCPToolBanners:
 &f&l    88   88   88 Y8.   .88  88        &c&l   88    88.  .88 88.  .88 88
 &f&l    dP   dP   dP  Y88888P'  dP        &c&l   dP    `88888P' `88888P' dP
 
-{Lm.get('app.description').replace('%version%', MCPToolStrings.VERSION)}{Lm.get('app.newVersion') if True else ''}'''
+{Lm.get('app.description').replace('%version%', MCPToolStrings.VERSION)}{Lm.get('app.newVersion') if UPDATE_AVAILABLE else ''}'''
 
     BANNER_4: str = f'''
 &f&l    `7MMM.     ,MMF' .g8"""bgd `7MM"""Mq. &c&lMMP""MM""YMM              `7MM
@@ -59,7 +60,7 @@ class MCPToolBanners:
 &f&l      M  `YM'   MM `Mb.     ,'   MM       &c&l     MM YA.   ,A9 YA.   ,A9 MM
 &f&l    .JML. `'  .JMML. `"bmmmd'  .JMML.     &c&l   .JMML.`Ybmd9'   `Ybmd9'.JMML.
 
-{Lm.get('app.description').replace('%version%', MCPToolStrings.VERSION)}{Lm.get('app.newVersion') if True else ''}'''
+{Lm.get('app.description').replace('%version%', MCPToolStrings.VERSION)}{Lm.get('app.newVersion') if UPDATE_AVAILABLE else ''}'''
 
     BANNERS: list = [BANNER_1, BANNER_2, BANNER_3, BANNER_4]
 

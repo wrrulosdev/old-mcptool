@@ -34,13 +34,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Save user arguments
         server: str = user_arguments[0]
@@ -50,6 +50,7 @@ class Command:
 
         if server_data is None:
             mcwrite(Lm.get('errors.serverOffline'))
-            return
+            return True
 
         ShowMinecraftServer.show(server_data=server_data)
+        return True

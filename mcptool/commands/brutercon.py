@@ -41,13 +41,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Save user arguments
         ip_address: str = user_arguments[0].split(':')[0]
@@ -63,7 +63,7 @@ class Command:
         # Check if the password file is empty
         if len(self.passwords) == 0:
             mcwrite(Lm.get(f'errors.passwordFileEmpty'))
-            return
+            return False
 
         # Start brute forcing to the rcon
         mcwrite(Lm.get(f'commands.{self.name}.bruteForcing')
@@ -80,7 +80,7 @@ class Command:
                     mcwrite(Lm.get(f'commands.{self.name}.passwordFound')
                             .replace('%password%', rcon_password)
                             )
-                    return
+                    return True
 
             except TimeoutError:
                 mcwrite(Lm.get('errors.rconTimeout'))
@@ -96,3 +96,4 @@ class Command:
                 logger.error(f'Error in brutercon command: {e}')
 
         mcwrite(Lm.get(f'commands.{self.name}.passwordNotFound'))
+        return True

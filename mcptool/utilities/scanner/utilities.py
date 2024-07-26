@@ -4,8 +4,8 @@ from loguru import logger
 
 
 class ScannerUtilities:
-    @logger.catch
     @staticmethod
+    @logger.catch
     def nmap_installed() -> bool:
         """
         Check if Nmap is installed.
@@ -13,8 +13,8 @@ class ScannerUtilities:
         """
         return subprocess.call(f'nmap --version >nul 2>&1', shell=True) == 0
 
-    @logger.catch
     @staticmethod
+    @logger.catch
     def masscan_installed() -> bool:
         """
         Check if Masscan is installed.

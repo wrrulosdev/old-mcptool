@@ -16,15 +16,10 @@ class GetSubdomains:
     @logger.catch
     def get_subdomains(self, domain: str) -> list:
         """
-        Method to get the subdomains of a domain
-
-        Args:
-            domain (str): The domain to get the subdomains
-
-        Returns:
-            list: The subdomains of the domain
+        Get the subdomains of a domain using the VirusTotal API
+        :param domain: The domain to get the subdomains from
+        :return: A list of subdomains
         """
-
         self.params['domain'] = domain
         subdomains_found: list = []
 

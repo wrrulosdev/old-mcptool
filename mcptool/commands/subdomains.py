@@ -47,13 +47,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Save user arguments
         domain: str = user_arguments[0]
@@ -72,7 +72,7 @@ class Command:
 
         if len(subdomain_list) == 0:
             mcwrite(Lm.get('errors.subdomainsFileEmpty'))
-            return
+            return False
 
         mcwrite(Lm.get(f'commands.{self.name}.wordlist')
                 .replace('%file%', file_path)
@@ -116,6 +116,8 @@ class Command:
         except KeyboardInterrupt:
             # Kill all threads
             self.stopped = True
+
+        return True
 
     @logger.catch
     def _scan_subdomain(self, domain: str, subdomain: str) -> None:

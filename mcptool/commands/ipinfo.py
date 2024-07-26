@@ -36,13 +36,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Save user arguments
         ip_address: str = user_arguments[0]
@@ -53,7 +53,7 @@ class Command:
 
         if ip_info is None:
             mcwrite(Lm.get(f'commands.{self.name}.error'))
-            return
+            return True
 
         mcwrite(Lm.get(f'commands.{self.name}.continent').replace('%continent%', ip_info.continent).replace('%continentCode%', ip_info.continent_code))
         mcwrite(Lm.get(f'commands.{self.name}.country').replace('%country%', ip_info.country).replace('%countryCode%', ip_info.country_code))
@@ -62,3 +62,4 @@ class Command:
         mcwrite(Lm.get(f'commands.{self.name}.timezone').replace('%timezone%', ip_info.timezone))
         mcwrite(Lm.get(f'commands.{self.name}.isp').replace('%isp%', ip_info.isp))
         mcwrite(Lm.get(f'commands.{self.name}.organization').replace('%organization%', ip_info.org))
+        return True

@@ -44,13 +44,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Save user arguments
         server: str = user_arguments[0]
@@ -59,17 +59,18 @@ class Command:
         # Execute the command
         if not subprocess.run(['java', '-version'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).returncode == 0:
             mcwrite(Lm.get('errors.javaNotInstalled'))
-            return
+            return False
 
         mcwrite(Lm.get(f'commands.server.gettingServerData'))
         server_data: Union[JavaServerData, BedrockServerData, None] = ServerData(server).get_data()
 
         if server_data is None:
             mcwrite(Lm.get('errors.serverOffline'))
-            return
+            return False
 
         if server_data.platform != 'Java':
             mcwrite(Lm.get('errors.notJavaServer'))
-            return
+            return False
 
         StartProxy(server=server, forwarding_mode=forwarding_mode, fakeproxy=True).start()
+        return True

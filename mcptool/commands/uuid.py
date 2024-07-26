@@ -33,13 +33,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Save user arguments
         username: str = user_arguments[0]
@@ -56,10 +56,10 @@ class Command:
 
             if player_data is None:
                 mcwrite(f"{Lm.get(f'commands.{self.name}.playerNotFound')}")
-                return
+                return True
 
             mcwrite(Lm.get(f'commands.{self.name}.username').replace('%username%', f'&a&l{player_data}'))
-            return
+            return True
 
         # if the username is a simple username
         mcwrite(f"{Lm.get(f'commands.{self.name}.gettingPlayerUuid')}")
@@ -75,3 +75,4 @@ class Command:
                 .replace('%uuid%', f'&c&l{player_data.offline_uuid}')
                 .replace('%uuidVariant%', f'&c&l{uuid.UUID(player_data.offline_uuid)}')
                 )
+        return True

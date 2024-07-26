@@ -42,13 +42,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Save user arguments
         original_target: str = user_arguments[0]
@@ -58,11 +58,11 @@ class Command:
                                                                                  bot=False).get_data()
         if server_data is None:
             mcwrite(Lm.get('errors.serverOffline'))
-            return
+            return False
 
         if server_data.platform != 'Java':
             mcwrite(Lm.get('errors.notJavaServer'))
-            return
+            return False
 
         if ':' in user_arguments[0]:
             ip_address: str = original_target.split(':')[0]
@@ -88,7 +88,7 @@ class Command:
 
         if len(commands) == 0:
             mcwrite(Lm.get('errors.commandsFileEmpty'))
-            return
+            return False
 
         path: str = MCPToolPath.get_path()
         spaces: str = '0' if CLI.value else MCPToolStrings.SPACES
@@ -106,3 +106,4 @@ class Command:
                 )
 
         subprocess.run(command, shell=True)
+        return True

@@ -57,13 +57,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Save user arguments
         target: str = user_arguments[0]
@@ -74,12 +74,12 @@ class Command:
             if method == 'nmap':
                 if not ScannerUtilities.nmap_installed():
                     mcwrite(Lm.get('errors.nmapNotInstalled'))
-                    return
+                    return False
 
             if method == 'masscan':
                 if not ScannerUtilities.masscan_installed():
                     mcwrite(Lm.get('errors.masscanNotInstalled'))
-                    return
+                    return False
 
         # Execute the command
         if target.endswith('.txt'):
@@ -96,6 +96,8 @@ class Command:
         else:
             output: Union[dict, None] = self.scan(target=target, port_range=port_range, method=method)
             self.show_output(output)
+
+        return True
 
     @logger.catch
     def scan(self, target: str, port_range: str, method: str) -> Union[dict, None]:

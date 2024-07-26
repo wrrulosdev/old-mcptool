@@ -10,7 +10,7 @@ class Messages:
     def __init__(self) -> None:
         pass
 
-    @logger.catch
+
     @staticmethod
     def get_server_message(server_data: Union[JavaServerData, BedrockServerData]) -> str:
         """
@@ -59,8 +59,8 @@ class Messages:
 
 
 class ShowMinecraftServer:
-    @logger.catch
     @staticmethod
+    @logger.catch
     def show(server_data: Union[JavaServerData, BedrockServerData]) -> None:
         """
         Method to show the server data

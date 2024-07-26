@@ -38,13 +38,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Save user arguments
         domain: str = user_arguments[0]
@@ -54,7 +54,7 @@ class Command:
 
         if len(ips) == 0:
             mcwrite(Lm.get('commands.iphistory.noIpHistory'))
-            return
+            return False
 
         cloudflare_ips: list = GetCloudflareIps().get(ips=ips)
         mcwrite(Lm.get('commands.iphistory.ipHistoryFound'))
@@ -68,3 +68,5 @@ class Command:
         for ip in ips:
             if ip not in cloudflare_ips:
                 mcwrite(f'{MCPToolStrings.SPACES} &a&l• &f&l{ip}')
+
+        return True

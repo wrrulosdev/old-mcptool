@@ -45,13 +45,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Save user arguments
         original_target: str = user_arguments[0]
@@ -61,11 +61,11 @@ class Command:
                                                                                  bot=False).get_data()
         if server_data is None:
             mcwrite(Lm.get('errors.serverOffline'))
-            return
+            return False
 
         if server_data.platform != 'Java':
             mcwrite(Lm.get('errors.notJavaServer'))
-            return
+            return False
 
         if ':' in user_arguments[0]:
             ip_address: str = original_target.split(':')[0]
@@ -84,7 +84,7 @@ class Command:
         # Check if there are no players
         if len(server_data.player_list) == 0:
             mcwrite(Lm.get(f'commands.{self.name}.noPlayers').replace('%ip%', original_target))
-            return
+            return True
 
         # Loop through the players and kick them
         for player in server_data.player_list:
@@ -116,3 +116,5 @@ class Command:
         # Check if the command should loop
         if loop:
             self.execute(user_arguments)
+
+        return True

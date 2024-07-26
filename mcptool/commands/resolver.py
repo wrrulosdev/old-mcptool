@@ -39,13 +39,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Save user arguments
         domain: str = user_arguments[0]
@@ -76,7 +76,7 @@ class Command:
 
         if len(subdomains_list) == 0:
             mcwrite(Lm.get('errors.noSubdomainsFoundResolver'))
-            return
+            return False
 
         # Get ips from the subdomains
         ips = [subdomain[1] for subdomain in subdomains_list]
@@ -99,3 +99,4 @@ class Command:
                 .replace('%domain%', domain)
                 .replace('%subdomainsAmount%', str(len(subdomains_list))
                          ))
+        return True

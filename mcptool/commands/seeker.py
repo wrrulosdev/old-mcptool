@@ -33,13 +33,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Save user arguments
         sub_command: str = user_arguments[0]
@@ -50,3 +50,5 @@ class Command:
 
         if sub_command == 'servers':
             SeekerUtilities().get_servers()
+
+        return True

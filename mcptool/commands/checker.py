@@ -41,13 +41,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Save user arguments
         file: str = user_arguments[0]
@@ -78,9 +78,10 @@ class Command:
             mcwrite(Lm.get(f'commands.{self.name}.noServersFound')
                     .replace('%file%', file)
                     )
-            return
+            return True
 
         mcwrite(Lm.get(f'commands.{self.name}.serversFound')
                 .replace('%servers%', str(self.servers_found))
                 .replace('%file%', file)
                 )
+        return True

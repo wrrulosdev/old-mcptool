@@ -4,8 +4,8 @@ from loguru import logger
 
 
 class TextUtilities:
-    @logger.catch
     @staticmethod
+    @logger.catch
     def get_text_from_json(json_str) -> str:
         """
         Get text from json string
@@ -62,8 +62,8 @@ class TextUtilities:
         except AttributeError:
             return json_str
 
-    @logger.catch
     @staticmethod
+    @logger.catch
     def minimessage_colors(text: str):
         """
         Replace Minecraft color codes with MiniMessage colored characters.
@@ -103,8 +103,8 @@ class TextUtilities:
         text = text.replace('\n', '<newline>')
         return text
 
-    @logger.catch
     @staticmethod
+    @logger.catch
     def minecraft_colors(text: str) -> str:
         """
         Replace MiniMessage colored characters with Minecraft color codes.

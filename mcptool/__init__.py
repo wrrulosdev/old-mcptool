@@ -1,10 +1,16 @@
 import random
+import shutil
+import struct
+import threading
 import time
 import os
 
+import pypresence
 from loguru import logger
 from mccolors import mcwrite, mcreplace
 from ezjsonpy import load_languages, set_language, load_configurations, get_config_value
+
+from mcptool.constants import MCPToolStrings, URLS
 from mcptool.path.mcptool_path import MCPToolPath
 from mcptool.scrappers.minecraftservers import MinecraftServerScrapper
 
@@ -39,22 +45,22 @@ from mcptool.utilities.language.utilities import LanguageUtils as Lm
 class MCPTool:
     def __init__(self):
         self.commands: dict = {}
-        self.active_command: str = ''
-        self.version: str = '1.0.7'
+        self.active_command: str = 'In the main menu'
         self.mcptool_path: MCPToolPath = mcptool_path
         self.commands = CommandLoader.load_commands()
         self.minecraft_scrapper: MinecraftServerScrapper = MinecraftServerScrapper()
 
     @logger.catch
     def run(self):
-        logger.info(f'Starting MCPTool v{self.version}')
-        # Show the loading banner
+        logger.info(f'Starting MCPTool v{MCPToolStrings.VERSION}')
         ShowBanner(
             banner=LoadingBanners.LOADING_BANNER_1,
             clear_screen=True
         ).show()
+        rich_presence_thread = threading.Thread(target=self._update_rich_presence, args=([]))
+        rich_presence_thread.daemon = True
+        rich_presence_thread.start()
         time.sleep(0.5)
-        # Run the command loop
         self._command_loop()
 
     @logger.catch
@@ -85,10 +91,13 @@ class MCPTool:
                     command_instance = self.commands[command]
 
                     if command == 'websearch':
-                        command_instance.execute(arguments[1:], scrapper=self.minecraft_scrapper)
+                        output: bool = command_instance.execute(arguments[1:], scrapper=self.minecraft_scrapper)
 
                     else:
-                        command_instance.execute(arguments[1:])
+                        output: bool = command_instance.execute(arguments[1:])
+
+                    if output:
+                        self.active_command = f'Using the {command} command'
 
                 except KeyboardInterrupt:
                     mcwrite(Lm.get('commands.ctrlC'))
@@ -98,3 +107,58 @@ class MCPTool:
 
             except KeyboardInterrupt:
                 break
+
+    @logger.catch
+    def _update_rich_presence(self) -> None:
+        """Method to update the rich presence"""
+        rpc: pypresence.Presence = pypresence.Presence(MCPToolStrings.MCPTOOL_DISCORD_CLIENT_ID)
+        start_time: int = int(time.time())
+
+        try:
+            # Connect to the Discord client
+            rpc.connect()
+            logger.info('Connected to the Discord client')
+
+            while True:
+                rpc.update(
+                    state=self.active_command,
+                    details=f'Pentesting Tool for Minecraft (v{MCPToolStrings.VERSION})',
+                    start=start_time,
+                    large_image='logo',
+                    large_text='Pentesting Tool for Minecraft',
+                    small_image='small_logo',
+                    small_text=f'Version: {MCPToolStrings.VERSION}',
+                    buttons=[
+                        {'label': 'Website', 'url': URLS.MCPTOOL_WEBSITE},
+                        {'label': 'Discord', 'url': URLS.DISCORD_SERVER}
+                    ]
+                )
+
+                time.sleep(1)
+
+        except (pypresence.exceptions.DiscordNotFound, struct.error, pypresence.exceptions.ServerError,
+                pypresence.exceptions.ResponseTimeout) as e:
+            logger.error(f'Failed to connect to the Discord client. Error: {e}. Retrying in 30 seconds...')
+            time.sleep(30)
+            self._update_rich_presence()
+
+        except (KeyboardInterrupt, ValueError, RuntimeError, OSError):
+            logger.error('Failed to connect to the Discord client. Retrying in 30 seconds...')
+            pass
+
+    @logger.catch
+    def _remove_python_files(self) -> None:
+        """Remove the python files in the AppData directory after the update"""
+        appdata_path: str = os.getenv('APPDATA')  # %appdata%
+        lib_folder_path: str = os.path.abspath(os.path.join(appdata_path, 'lib'))  # %appdata%/lib
+
+        if os.path.exists(lib_folder_path):
+            shutil.rmtree(lib_folder_path)
+
+        for file in os.listdir(appdata_path):
+            if file == 'MCPToolUpdater.exe' or file == 'MCPTool-win64.msi':
+                os.remove(os.path.join(appdata_path, file))
+
+            if file.endswith('.dll'):
+                if 'python' in file:
+                    os.remove(os.path.join(os.getenv('APPDATA'), file))

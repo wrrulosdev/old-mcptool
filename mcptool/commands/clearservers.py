@@ -13,10 +13,11 @@ class Command:
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         mcwrite(Lm.get(f'commands.{self.name}.serversCleared'))
         ServersDAT().remove_servers_dat_file()
+        return True

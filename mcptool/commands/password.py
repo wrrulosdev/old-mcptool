@@ -37,13 +37,13 @@ class Command:
         return True
 
     @logger.catch
-    def execute(self, user_arguments: list) -> None:
+    def execute(self, user_arguments: list) -> bool:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
         """
         if not self.validate_arguments(user_arguments):
-            return
+            return False
 
         # Get the first 10 arguments
         user_arguments = user_arguments[:10]
@@ -55,13 +55,15 @@ class Command:
         if len(self.api_username) == 0 or len(self.api_password) == 0:
             mcwrite(Lm.get('commands.password.invalidCredentials'))
             mcwrite(Lm.get('commands.password.nordifyInfo').replace('%nordifyLink%', URLS.NORDIFY_DISCORD))
-            return
+            return False
 
         for username in user_arguments:
             error: bool = self.search_user(username)
 
             if error:
-                return
+                return True
+
+        return True
 
     def search_user(self, username: str) -> bool:
         """

@@ -17,7 +17,7 @@ class Command:
         self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
 
     @logger.catch
-    def execute(self, user_arguments: list, scrapper: MinecraftServerScrapper) -> None:
+    def execute(self, user_arguments: list, scrapper: MinecraftServerScrapper) -> bool:
         """
         Method to execute the command
         :param scrapper: The scrapper object
@@ -29,7 +29,7 @@ class Command:
         ).get_input()
 
         if filter_data is None:
-            return
+            return False
 
         if filter_data:
             filter_only_bot_join: Union[bool, None] = Input(
@@ -100,3 +100,5 @@ class Command:
             mcwrite(Lm.get('commands.ctrlC'))
             scrapper_thread.join()
             scrapper.restore()
+
+        return True
