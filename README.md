@@ -38,6 +38,7 @@
 - **EN**
 - **TR**
 - **ES**
+- **RU**
 - **FR** (Coming soon)
 - **SK** (Coming soon)
 - **DE** (Coming soon)
