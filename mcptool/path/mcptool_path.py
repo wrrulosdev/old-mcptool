@@ -148,6 +148,11 @@ class MCPToolPath:
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/package.json',
                 file_name='package.json'
             ),
+            # Images
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/img/icon.ico',
+                file_name='img/icon.ico'
+            ),
         ]
 
 
