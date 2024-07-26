@@ -38,9 +38,9 @@ class Updater:
             return
 
         # Remove the data from the old version if it exists
-        if os.path.exists(f'{appdata_path}/MCPToolData'):
+        if os.path.exists(f'{appdata_path}/MCPToolFiles'):
             mcwrite('&8&l[&a&lINFO&8&l] &f&lRemoving the data from the old version...')
-            shutil.rmtree(f'{appdata_path}/MCPToolData')
+            shutil.rmtree(f'{appdata_path}/MCPToolFiles')
             mcwrite('&8&l[&a&lINFO&8&l] &f&lThe data from the old version has been removed successfully!')
 
         # Remove the old version if it exists

@@ -18,8 +18,8 @@ class MCPToolPath:
     @logger.catch
     def get_path() -> str:
         """
-        Get the path to the MCPToolData folder
-        :return: str: The path to the MCPToolData folder
+        Get the path to the MCPToolFiles folder
+        :return: str: The path to the MCPToolFiles folder
         """
         folder_name: str = 'MCPToolFiles'
 

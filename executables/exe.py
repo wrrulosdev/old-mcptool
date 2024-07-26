@@ -35,14 +35,14 @@ class UpdateTool:
         if Input(
                 input_message='&8&l[&a&lINFO&8&l] &f&lAn update is available for MCPTool. Do you want to update it? [y/n]: ',
                 input_type='boolean'
-        ).get_input()[0] is False:
+        ).get_input() is False:
             mcwrite('&8&l[&a&lINFO&8&l] &f&lStarting the tool...')
             time.sleep(0.5)
             return
 
         input(mcreplace(
             "&8&l[&a&lINFO&8&l] &f&lThe update will delete the current "
-            "mcptool data folder (MCPToolData) located at %appdata%. "
+            "mcptool data folder (MCPToolFiles) located at %appdata%. "
             "If you don't need to backup, press any key to continue updating."
         ))
 

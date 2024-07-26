@@ -53,7 +53,11 @@ class MCPTool:
         self.mcptool_path: MCPToolPath = mcptool_path
         self.commands = CommandLoader.load_commands()
         self.minecraft_scrapper: MinecraftServerScrapper = MinecraftServerScrapper()
-        self.commands_with_time_available: list = ['seeker', 'scan', 'bruteauth', 'brutercon', 'rcon', 'sendcmd']
+        self.commands_with_time_available: list = [
+            'seeker', 'websearch', 'scan', 'bruteauth',
+            'brutercon', 'rcon', 'sendcmd', 'password',
+            'subdomains'
+        ]
 
     @logger.catch
     def run(self):
