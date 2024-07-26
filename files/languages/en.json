@@ -175,6 +175,7 @@
             "configuringProxy": "\n%spaces%%prefix% &f&lConfiguring the proxy server... ",
             "proxyConfigured": "\n%spaces%%prefix% &f&lProxy server configured successfully.",
             "velocityForwardingMode": "\n%spaces%%prefix% &f&lWrite the velocity mode you want to use. &8(&a&lnone legacy bungeeguard modern&8) &8&l▶ &f&l",
+            "newVelocityVersionAvailable": "\n%spaces%%prefix% &a&lA new version of Velocity is available!",
             "downloadingJar": "\n%spaces%%prefix% &f&lDownloading the proxy jar file (%jarName%)...",
             "jarDownloaded": "\n%spaces%%prefix% &f&lProxy jar file downloaded successfully.",
             "replacingJar": "\n%spaces%%prefix% &f&lReplacing the proxy jar file...",
@@ -232,7 +233,8 @@
             "languageChanged": "\n%spaces%%prefix% &f&lLanguage changed to &a&l%language%&f&l."
         },
         "settings": {
-            "restartNeeded": "\n%spaces%%prefix% &f&lYou have to restart the tool to apply the changes."
+            "arguments": ["settings_file_name"],
+            "settingsUpdated": "\n%spaces%%prefix% &a&lSettings updated successfully."
         },
         "clearservers": {
             "serversCleared": "\n%spaces%%prefix% &f&lMinecraft server list cleared successfully."
@@ -263,6 +265,7 @@
         "subdomainsFileEmpty": "\n%spaces%%prefix% &f&lThe subdomains file is empty. Add subdomains to the file and try again.",
         "passwordFileEmpty": "\n%spaces%%prefix% &f&lThe password file is empty. Add passwords to the file and try again.",
         "proxyPathNotFound": "\n%spaces%%prefix% &f&lThe proxy path entered is not valid. Check the logs and try again.",
+        "windowsOnly": "\n%spaces%%prefix% &f&lThe operating system is not supported. You have to use Windows to use this command.",
         "proxySettingsNotFound": "\n%spaces%%prefix% &f&lThe proxy settings were not found in the settings file. Check the logs and try again.",
         "proxyNotConfigured": "\n%spaces%%prefix% &f&lThe proxy server is not configured. Check the logs and try again.",
         "proxyJarNotFound": "\n%spaces%%prefix% &f&lThe proxy jar file was not found. See the logs for more information.",
@@ -279,6 +282,8 @@
         "invalidIntgerInput": "\n%spaces%%prefix% &f&lThe input entered is not a valid integer. Check the input and try again.",
         "invalidBooleanInput": "\n%spaces%%prefix% &f&lThe input entered is not a valid boolean. Check the input and try again.",
         "invalidCountryCodeInput": "\n%spaces%%prefix% &f&lThe input entered is not a valid country code. Check the code and try again.",
-        "invalidVelocityForwardingModeInput": "\n%spaces%%prefix% &f&lThe  input entered is not a valid velocity forwarding mode. Check the mode and try again."
+        "invalidVelocityForwardingModeInput": "\n%spaces%%prefix% &f&lThe  input entered is not a valid velocity forwarding mode. Check the mode and try again.",
+        "invalidSettingName": "\n%spaces%%prefix% &f&lThe settings file name entered is not valid. Check the settings file name and try again.",
+        "invalidNewSettingsFile": "\n%spaces%%prefix% &c&lThe new settings file entered is not valid. The old settings file will be used."
     }
 }

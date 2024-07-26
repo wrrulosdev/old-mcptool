@@ -33,8 +33,9 @@ class JarManager:
             logger.error(f'Error while getting the latest version of the jar file -> {self.jar_name}')
             return
 
-        if get_config_value(f'{self.jar_name}Version') != self.latest_version_url:
-            logger.info(f'Jar file already up to date -> {self.jar_name}')
+        if get_config_value(f'{self.jar_name}Version', 'proxy') != self.latest_version_url:
+            mcwrite(Lm.get('commands.proxy.newVelocityVersionAvailable'))
+            logger.info(f'New version of the jar file available -> {self.jar_name}')
             self._download()
             self._replace_jar()
 
@@ -112,7 +113,7 @@ class JarManager:
             )
             mcwrite(Lm.get('commands.proxy.jarReplaced'))
             logger.info(f'Jar file replaced successfully -> {self.jar_name}')
-            set_config_value(f'{self.jar_name}Version', self.latest_version_url)
+            set_config_value(f'{self.jar_name}Version', self.latest_version_url, 'proxy')
             return True
 
         except Exception as e:

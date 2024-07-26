@@ -284,3 +284,25 @@ class ValidateArgument:
             return False
 
         return True
+
+    @staticmethod
+    @logger.catch
+    def is_valid_settings_name(settings_name: str) -> bool:
+        """
+        Method to validate if a string is a valid settings name
+        :param settings_name: The settings name
+        :return: True if the settings name is valid, False otherwise
+        """
+        if settings_name not in [
+            'settings',
+            'nordify',
+            'scanner',
+            'proxy',
+            'mcserver-scrapper',
+            'bruteforce_settings',
+            'sendcmd_settings',
+            'velocity'
+        ]:
+            return False
+
+        return True

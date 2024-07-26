@@ -20,6 +20,7 @@ from mcptool.commands.bruteauth import Command as BruteAuthCommand
 from mcptool.commands.kick import Command as KickCommand
 from mcptool.commands.kickall import Command as KickAllCommand
 from mcptool.commands.clearservers import Command as ClearServersCommand
+from mcptool.commands.settings import Command as SettingsCommand
 
 
 class CommandLoader:
@@ -52,5 +53,6 @@ class CommandLoader:
             'kick': KickCommand(),
             'kickall': KickAllCommand(),
             'clearservers': ClearServersCommand(),
+            'settings': SettingsCommand()
         }
         return commands

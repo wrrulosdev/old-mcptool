@@ -190,8 +190,6 @@ class StartProxy:
         if MCPToolStrings.OS_NAME == 'windows':
             command = f'C: && {command}'
 
-        print(command)
-
         process: subprocess.Popen = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE,
                                                      stderr=subprocess.STDOUT)
         return process
