@@ -1,4 +1,3 @@
-# 1.0.6 (Jun 25, 2024)
 ## New Commands
 * **IPHistory** - Obtain the history of IPv4 addresses associated with a domain
 * **WebSearch** - Get Minecraft servers found on web pages

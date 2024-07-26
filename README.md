@@ -1,4 +1,4 @@
-<h1 align="center"> 🧨 MCPTool v1.0.6
+<h1 align="center"> 🧨 MCPTool v1.0.7
 <h3 align="center"> Pentesting tool for Minecraft </h2>
 <img align="center" src="https://i.imgur.com/GqkwN7v.png" alt="MCPTool" title="MCPTool" style="max-width: 100%; height: auto;">
 
@@ -21,6 +21,7 @@
 * Perform a brute force attack on the user of a non-premium/semi-premium server
 * Kick players with bots thanks to 'You are logged in from a different location'
 * Support for multiple languages.
+* Search the password of a user using the nordify api.
 
 ## 💻 Supported operating systems:
 
@@ -36,8 +37,8 @@
 ## Available languages
 
 - **EN**
-- **TR**
-- **ES**
+- **TR** (Coming soon)
+- **ES** (Coming soon)
 - **FR** (Coming soon)
 - **SK** (Coming soon)
 - **DE** (Coming soon)
@@ -58,6 +59,5 @@ Use the `mcptool` command in the terminal.
 Enter the discord server with this [link](https://discord.gg/TWKs6BWkR2)
 
 ## Minecraft Libraries Used
-* MCStatus [Github](https://github.com/py-mine/mcstatus)
 * Mineflayer [Github](https://github.com/PrismarineJS/mineflayer)
 * Mcrcon [Github](https://github.com/uncaught-exceptions/mcrcon)

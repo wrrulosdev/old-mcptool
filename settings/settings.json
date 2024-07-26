@@ -1,0 +1,16 @@
+{
+  "language": "en",
+  "serverDataApi": "mcstatus.io",
+  "discordPresence": true,
+  "seekerToken": "YOUR_SEEKER_TOKEN",
+  "bot_recconect_time": 4,
+  "subdomainsThreads": 500,
+  "virusTotalApiKey": "0a1f92cc877fb00875cf0fa6e856db8009fb322fce4b507a9ef40e22d63b7fa4",
+  "endpoints": {
+    "seeker": "https://discord.com/oauth2/authorize?client_id=1087083964432404590&response_type=code&redirect_uri=https%3A%2F%2Fapi.serverseeker.net%2Flocal_redirect&scope=identify&state=MCPtool:7637",
+    "seekerAPI": "https://api.serverseeker.net",
+    "nordifyAPI": "http://89.213.175.96:4434/"
+  },
+  "version": "1.0.7",
+  "debug": false
+}
