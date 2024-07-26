@@ -13,7 +13,7 @@ from mcptool.minecraft.server.show_server import ShowMinecraftServer
 # Try to get the number of threads for the scanner
 try:
     # Semaphore to limit the number of active threads
-    thread_semaphore = threading.Semaphore(get_config_value('scannerOptions.pyScanner.threads'))
+    thread_semaphore = threading.Semaphore(get_config_value('scannerOptions.pyScanner.threads', 'scanners'))
 
 except (TypeError, ValueError, KeyError):
     logger.warning('Invalid number of threads for the scanner. Using the default value of 10 threads.')
@@ -24,7 +24,7 @@ class PyScanner:
     def __init__(self, ip_address: str, port_range: str) -> None:
         self.ip_address: str = ip_address
         self.port_range: str = port_range
-        self.timeout: Union[int, float, None] = get_config_value('scannerOptions.pyScanner.timeout')
+        self.timeout: Union[int, float, None] = get_config_value('scannerOptions.pyScanner.timeout', 'scanners')
         self.stopped: bool = False
         self.threads: list = []
         self.output: dict = {

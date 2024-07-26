@@ -22,7 +22,7 @@ class ExternalScanner:
         self.scanner: str = scanner
         self.first_line: bool = True
         self.command_output: str = ''
-        self.show_output: bool = get_config_value('scannerOptions.showScanOutput')
+        self.show_output: bool = get_config_value('debug')
         self.output: dict = {
             "target": self.target,
             "open_ports": {
@@ -135,7 +135,7 @@ class ExternalScanner:
         Get the command to scan the target.
         :return: The command to scan the target.
         """
-        command: Union[str, None] = get_config_value(f'scannerOptions.externalScanners.{self.scanner}.command')
+        command: Union[str, None] = get_config_value(f'scannerOptions.externalScanners.{self.scanner}.command', 'scanners')
 
         if command is None:
             return None

@@ -49,8 +49,8 @@ class Command:
         user_arguments = user_arguments[:10]
 
         # Save user arguments
-        self.api_username: str = get_config_value('nordifyAPI.username')
-        self.api_password: str = get_config_value('nordifyAPI.password')
+        self.api_username: str = get_config_value('nordifyAPI.username', 'nordify')
+        self.api_password: str = get_config_value('nordifyAPI.password', 'nordify')
 
         if len(self.api_username) == 0 or len(self.api_password) == 0:
             mcwrite(Lm.get('commands.password.invalidCredentials'))

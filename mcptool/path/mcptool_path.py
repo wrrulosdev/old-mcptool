@@ -72,6 +72,10 @@ class MCPToolPath:
                 file_name='settings/settings.json'
             ),
             MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/nordify.json',
+                file_name='settings/nordify.json'
+            ),
+            MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/proxy.json',
                 file_name='settings/proxy.json'
             ),
