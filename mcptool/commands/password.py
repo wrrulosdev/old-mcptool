@@ -61,7 +61,7 @@ class Command:
             error: bool = self.search_user(username)
 
             if error:
-                return True
+                return False
 
         return True
 

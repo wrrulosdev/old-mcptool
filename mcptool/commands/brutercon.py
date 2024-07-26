@@ -89,7 +89,7 @@ class Command:
                 mcwrite(Lm.get('errors.rconConnectionRefused'))
 
             except MCRconException:
-                pass
+                mcwrite(Lm.get('errors.rconConnectionRefused'))
 
             except Exception as e:
                 mcwrite(Lm.get('errors.rconUnknownError'))
