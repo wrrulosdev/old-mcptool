@@ -37,18 +37,20 @@ class Command:
         """
         Method to execute the command
         :param user_arguments: list: The arguments to execute the command
+        :return: True if the command was executed successfully, False otherwise
         """
         if not self.validate_arguments(user_arguments):
             return False
 
         # Save user arguments
         sub_command: str = user_arguments[0]
+        output: bool = False
 
         # Execute the command
         if sub_command == 'token':
-            SeekerUtilities().get_token()
+            output = SeekerUtilities().get_token()
 
         if sub_command == 'servers':
-            SeekerUtilities().get_servers()
+            output = SeekerUtilities().get_servers()
 
-        return True
+        return output

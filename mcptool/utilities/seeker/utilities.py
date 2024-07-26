@@ -161,10 +161,11 @@ class SeekerServers:
         ).get_input()
 
         if filter_country_code is not None:
-            country_code = Input(
-                input_message=Lm.get('commands.seeker.servers.filterByCountryCodeText'),
-                input_type='country_code'
-            ).get_input()
+            if filter_country_code:
+                country_code = Input(
+                    input_message=Lm.get('commands.seeker.servers.filterByCountryCodeText'),
+                    input_type='country_code'
+                ).get_input()
 
         filter_cracked: Union[bool, None] = Input(
             input_message=Lm.get('commands.seeker.servers.filterByCracked'),
@@ -180,10 +181,11 @@ class SeekerServers:
         ).get_input()
 
         if filter_description is not None:
-            description = Input(
-                input_message=Lm.get('commands.seeker.servers.filterByDescriptionText'),
-                input_type='string'
-            ).get_input()
+            if filter_description:
+                description = Input(
+                    input_message=Lm.get('commands.seeker.servers.filterByDescriptionText'),
+                    input_type='string'
+                ).get_input()
 
         filter_only_bungee_spoofable: Union[bool, None] = Input(
             input_message=Lm.get('commands.seeker.servers.filterByOnlyBungeespoofable'),
@@ -199,10 +201,11 @@ class SeekerServers:
         ).get_input()
 
         if filter_protocol is not None:
-            protocol = Input(
-                input_message=Lm.get('commands.seeker.servers.filterByProtocolText'),
-                input_type='integer'
-            ).get_input()
+            if filter_protocol:
+                protocol = Input(
+                    input_message=Lm.get('commands.seeker.servers.filterByProtocolText'),
+                    input_type='integer'
+                ).get_input()
 
         filter_online_players: Union[bool, None] = Input(
             input_message=Lm.get('commands.seeker.servers.filterByOnlinePlayers'),
@@ -210,10 +213,11 @@ class SeekerServers:
         ).get_input()
 
         if filter_online_players is not None:
-            online_players = Input(
-                input_message=Lm.get('commands.seeker.servers.filterByOnlinePlayersText'),
-                input_type='integer'
-            ).get_input()
+            if filter_online_players:
+                online_players = Input(
+                    input_message=Lm.get('commands.seeker.servers.filterByOnlinePlayersText'),
+                    input_type='integer'
+                ).get_input()
 
         if country_code is not None:
             data['country_code'] = country_code
@@ -284,7 +288,7 @@ class SeekerUtilities:
         self.semaphore: threading.Semaphore = threading.Semaphore(10)
 
     @logger.catch
-    def get_token(self) -> None:
+    def get_token(self) -> bool:
         """
         Method to get the token from the user
         and save it in the settings.
@@ -307,9 +311,10 @@ class SeekerUtilities:
             webbrowser.open(get_config_value('endpoints.seeker'))
 
         token_received.wait()
+        return True
 
     @logger.catch
-    def get_servers(self) -> None:
+    def get_servers(self) -> bool:
         """
         Method to get the servers from the seeker API.
         """
@@ -317,18 +322,18 @@ class SeekerUtilities:
 
         if token is None:
             mcwrite(Lm.get('commands.seeker.token.invalidToken'))
-            return
+            return False
 
         if not TokenHandler.valid_token(token):
             mcwrite(Lm.get('commands.seeker.token.invalidToken'))
-            return
+            return False
 
         # Get the servers
         servers = SeekerServers.get_servers()
 
         if len(servers) == 0:
             mcwrite(Lm.get('commands.seeker.servers.noServers'))
-            return
+            return False
 
         mcwrite(Lm.get('commands.seeker.servers.gettingServers'))
 
@@ -343,6 +348,8 @@ class SeekerUtilities:
 
         for thread in self.threads:
             thread.join()
+
+        return True
 
     @logger.catch
     def get_server_data(self, server) -> None:
