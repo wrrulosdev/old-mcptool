@@ -1,4 +1,20 @@
-# 1.0.6 (Jun 25, 2024)
+# 1.0.7 (Jul 26, 2024)
+# New commands
+* **Password** - Get the password of a user using the username (Nordify API)
+* **ClearServers** - Clear your Minecraft client's server list
+* **Settings** - Open the configurations files (Windows only)
+
+# Changes
+* All code was rewritten for better maintainability.
+* Several commands now accept domain in addition to IP and port.
+* Fixed input questions.
+* Fake proxy renewed. An administrator key is now generated so that administrator commands can be executed and the target server information is updated in real time.
+* The language command was paused in this version.
+* Error getting data from server using mcsrvstat.us API. (Normally it happened during a scan)
+* GitHub repository updated.
+* MCStatus local library paused in this version.
+
+# 1.0.5 - 1.0.6 (Jun 25, 2024)
 ## New Commands
 * **IPHistory** - Obtain the history of IPv4 addresses associated with a domain
 * **WebSearch** - Get Minecraft servers found on web pages
