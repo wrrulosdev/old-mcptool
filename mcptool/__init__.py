@@ -63,7 +63,7 @@ class MCPTool:
     def run(self):
         """Method to run the MCPTool"""
         if os.name == 'nt':
-            subprocess.run([f'title MCPTool v{MCPToolStrings.VERSION}'], shell=True)
+            subprocess.run(f'title MCPTool v{MCPToolStrings.VERSION}', shell=True)
             self._remove_python_files()
 
         logger.info(f'Starting MCPTool v{MCPToolStrings.VERSION}')
