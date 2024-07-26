@@ -134,6 +134,10 @@ class MCPToolPath:
                 'url': f'{GITHUB_REPOSITORY}languages/es.json',
                 'path': os.path.abspath(os.path.join(self.get(), 'languages', 'es.json'))
             },
+            'language_ru': {
+                'url': f'{GITHUB_REPOSITORY}languages/ru.json',
+                'path': os.path.abspath(os.path.join(self.get(), 'languages', 'ru.json'))
+            },
             'language_tr': {
                 'url': f'{GITHUB_REPOSITORY}languages/tr.json',
                 'path': os.path.abspath(os.path.join(self.get(), 'languages', 'tr.json'))
