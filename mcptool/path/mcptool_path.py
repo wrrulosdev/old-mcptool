@@ -40,7 +40,8 @@ class MCPToolPath:
         """Check if the files exist and download them if they don't"""
         for file in self.files:
             if not os.path.exists(file.file_path):
-                logger.info(f'Downloading {file.file_path}')
+                mcwrite(f'&8&l[&a&lINFO&8&l] &f&lDownloading {str(file.file_path)}...')
+                logger.info(f'Downloading {str(file.file_path)}')
                 file.download()
 
         if not os.path.exists(os.path.join(self.get_path(), 'node_modules')):
@@ -74,6 +75,10 @@ class MCPToolPath:
             MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/nordify.json',
                 file_name='settings/nordify.json'
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/scanner.json',
+                file_name='settings/scanner.json'
             ),
             MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/settings/proxy.json',

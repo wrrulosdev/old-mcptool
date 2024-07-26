@@ -135,7 +135,7 @@ class ExternalScanner:
         Get the command to scan the target.
         :return: The command to scan the target.
         """
-        command: Union[str, None] = get_config_value(f'scannerOptions.externalScanners.{self.scanner}.command', 'scanners')
+        command: Union[str, None] = get_config_value(f'scannerOptions.externalScanners.{self.scanner}.command', 'scanner')
 
         if command is None:
             return None

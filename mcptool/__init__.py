@@ -33,7 +33,7 @@ load_languages([
 load_configurations([
     {'name': 'default', 'path': os.path.join(mcptool_path.get_path(), 'settings', 'settings.json')},
     {'name': 'nordify', 'path': os.path.join(mcptool_path.get_path(), 'settings', 'nordify.json')},
-    {'name': 'scanners', 'path': os.path.join(mcptool_path.get_path(), 'settings', 'scanners.json')},
+    {'name': 'scanner', 'path': os.path.join(mcptool_path.get_path(), 'settings', 'scanners.json')},
     {'name': 'proxy', 'path': os.path.join(mcptool_path.get_path(), 'settings', 'proxy.json')}
 ])
 set_language(get_config_value('language'))
