@@ -1,6 +1,7 @@
 import random
 import shutil
 import struct
+import subprocess
 import threading
 import time
 import os
@@ -56,6 +57,10 @@ class MCPTool:
 
     @logger.catch
     def run(self):
+        """Method to run the MCPTool"""
+        if os.name == 'nt':
+            subprocess.run(['title', f'MCPTool v{MCPToolStrings.VERSION}'], shell=True)
+
         logger.info(f'Starting MCPTool v{MCPToolStrings.VERSION}')
         ShowBanner(
             banner=LoadingBanners.LOADING_BANNER_1,
