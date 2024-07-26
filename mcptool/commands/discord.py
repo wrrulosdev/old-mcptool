@@ -3,13 +3,13 @@ import random
 from loguru import logger
 
 from mcptool.banners.show_banner import ShowBanner
-from mcptool.constants.banners import MCPToolBanners
+from mcptool.constants.banners import DiscordBanners
 
 
 class Command:
     @logger.catch
     def __init__(self):
-        self.name: str = 'clear'
+        self.name: str = 'help'
 
     @logger.catch
     def execute(self, user_arguments: list = []) -> bool:
@@ -17,6 +17,5 @@ class Command:
         Method to execute the command
         :param user_arguments: The arguments to execute the command
         """
-        banner: str = MCPToolBanners.BANNERS[random.randint(0, len(MCPToolBanners.BANNERS) - 1)]
-        ShowBanner(banner, clear_screen=True).show()
+        ShowBanner(DiscordBanners.DISCORD_BANNER_1).show()
         return True

@@ -2,6 +2,8 @@ import sys
 
 from loguru import logger
 
+from mcptool.utilities.termux.utilities import TermuxUtilities
+
 
 class ConstantsUtilities:
     @staticmethod
@@ -13,8 +15,7 @@ class ConstantsUtilities:
         Returns:
             int: The number of spaces in the current environment
         """
-        return 4
-        #return 2 if TermuxUtilities.is_termux() else 4
+        return 2 if TermuxUtilities.is_termux() else 4
 
     @staticmethod
     @logger.catch
@@ -26,8 +27,8 @@ class ConstantsUtilities:
             str: The OS name
         """
 
-        #if TermuxUtilities.is_termux():
-        #    return 'termux'
+        if TermuxUtilities.is_termux():
+            return 'termux'
 
         if sys.platform.startswith('linux'):
             return 'linux'

@@ -13,6 +13,7 @@ from ezjsonpy import load_languages, set_language, load_configurations, get_conf
 from mcptool.constants import MCPToolStrings, URLS
 from mcptool.path.mcptool_path import MCPToolPath
 from mcptool.scrappers.minecraftservers import MinecraftServerScrapper
+from mcptool.utilities.text.command_finished_message import CommandFinishedMessage
 
 # Remove the default logger
 logger.remove()
@@ -51,6 +52,7 @@ class MCPTool:
         self.mcptool_path: MCPToolPath = mcptool_path
         self.commands = CommandLoader.load_commands()
         self.minecraft_scrapper: MinecraftServerScrapper = MinecraftServerScrapper()
+        self.commands_with_time_available: list = ['seeker', 'scan', 'bruteauth', 'brutercon', 'rcon', 'sendcmd']
 
     @logger.catch
     def run(self):
@@ -59,10 +61,13 @@ class MCPTool:
             banner=LoadingBanners.LOADING_BANNER_1,
             clear_screen=True
         ).show()
-        rich_presence_thread = threading.Thread(target=self._update_rich_presence, args=([]))
-        rich_presence_thread.daemon = True
-        rich_presence_thread.start()
-        time.sleep(0.5)
+
+        if get_config_value('discordPresence'):
+            rich_presence_thread = threading.Thread(target=self._update_rich_presence, args=([]))
+            rich_presence_thread.daemon = True
+            rich_presence_thread.start()
+
+        time.sleep(1.5)
         self._command_loop()
 
     @logger.catch
@@ -74,6 +79,7 @@ class MCPTool:
         while True:
             try:
                 arguments: list = input(mcreplace(InputBanners.INPUT_1)).split()
+                start_time: float = time.time()
 
                 if len(arguments) == 0:
                     continue
@@ -89,7 +95,6 @@ class MCPTool:
 
                 try:
                     # Start the command timer
-                    start_time: float = time.time()
                     command_instance = self.commands[command]
 
                     if command == 'websearch':
@@ -100,6 +105,14 @@ class MCPTool:
 
                     if output:
                         self.active_command = f'Using the {command} command'
+
+                        if command not in self.commands_with_time_available:
+                            continue
+
+                        stop_time: float = time.time()
+                        command_time: float = stop_time - start_time
+                        command_finished_message: str = CommandFinishedMessage(command_time=command_time).get_message()
+                        mcwrite(command_finished_message)
 
                 except KeyboardInterrupt:
                     mcwrite(Lm.get('commands.ctrlC'))

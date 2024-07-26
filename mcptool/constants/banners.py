@@ -84,20 +84,54 @@ class HelpBanners:
       &d► &f&lseeker [token/servers]                                           &d   ⡇&f&l⢀⡇           ⠠ &d⡇        ⢸⠃
       &d► &f&lwebsearch                                                        &d  ⢸⠃&f&l⠘⡇            &d⢸⠁  ⢀     ⣾
       &d► &f&lsubdomains [domain] [wordlist]                                   &d  ⣸  &f&l⠹⡄  ⠈⠁       &d⡞   ⠸     ⡇
-      &d► &f&lpassword [username]                                              &d  ⡏   &f&l⠙⣆       ⢀⣠⢶&d⡇  ⢰⡀     ⡇
       &d► &f&lscan [ip_address/ip_range] [port/port_range] [method]            &d  ⡏   &f&l⠙⣆       ⢀⣠⢶&d⡇  ⢰⡀     ⡇
-      &d► &f&llistening [ip:port]                                              &d ⢰⠇⡄    &f&l⢣⣀⣀⣀⡤⠴⡞⠉ &d⢸   ⣿⡇     ⣧
+      &d► &f&llistening [ip:port/domain]                                       &d ⢰⠇⡄    &f&l⢣⣀⣀⣀⡤⠴⡞⠉ &d⢸   ⣿⡇     ⣧
       &d► &f&lproxy [ip:port/domain] [velocity_forwading_mode]                 &d ⣸ ⡇       &f&l   ⢹  &d⢸  ⢀⣿⠇   ⠁ ⢸
       &d► &f&lfakeproxy [ip:port/domain] [velocity_forwading_mode]             &d ⣿ ⡇    &f&l ⢀⡤⠤⠶⠶⠾⠤⠄&d⢸ ⡀⠸⣿⣀     ⠈⣇
-      &d► &f&lconnect [ip:port] [version] [username]                           &d ⡇ ⡇    &f&l⡴⠋       &d⠸⡌⣵⡀⢳⡇      ⢹⡀
-      &d► &f&lsendcmd [ip:port] [version] [username] [commands_file]           &d ⡇ ⠇   &f&l⡸⠁         &d⠙⠮⢧⣀⣻⢂      ⢧
+      &d► &f&lconnect [ip:port/domain] [version] [username]                    &d ⡇ ⡇    &f&l⡴⠋       &d⠸⡌⣵⡀⢳⡇      ⢹⡀
+      &d► &f&lsendcmd [ip:port/domain] [version] [username] [commands_file]    &d ⡇ ⠇   &f&l⡸⠁         &d⠙⠮⢧⣀⣻⢂      ⢧
       &d► &f&lrcon [ip:port] [password]                                        &d ⣇ ⢠   &f&l⠇            &d  ⠈⡎⣆     ⠘
       &d► &f&lbrutercon [ip:port] [passwords_file]                             &d ⢻ ⠈⠰ &f&l⢸             &d  ⠰⠘⢮⣧⡀
-      &d► &f&lbruteauth [ip:port] [version] [username] [passwords_file]        &d ⠸⡆  ⠇&f&l⣾             &d     ⠙⠳⣄⡀⡀
-      &d► &f&lkick [ip:port] [version] [username] [loop]                       &d ⠸⡆  ⠇&f&l⣾             &d         ⠙⡀⢢
-      &d► &f&lkickall [ip:port] [version] [loop]                               &d ⠸⡆  ⠇&f&l⣾             &d          ⠙⡀⢢
-
+      &d► &f&lbruteauth [ip:port/domain] [version] [username] [passwords_file] &d ⠸⡆  ⠇&f&l⣾             &d     ⠙⠳⣄⡀⡀
+      &d► &f&lkick [ip:port/domain] [version] [username] [loop]                &d ⠸⡆  ⠇&f&l⣾             &d         ⠙⡀⢢
+      &d► &f&lkickall [ip:port/domain] [version] [loop]                        &d ⠸⡆  ⠇&f&l⣾             &d          ⠙⡀⢢
+      &d► &f&lpassword [username/s]                                            &d  ⡏   &f&l⠙⣆       ⢀⣠⢶⡇  ⢰⡀     ⡇
+      
     &b• &f&lOther commands: &f&ldiscord settings clearservers clear'''
+
+    CLI_BANNER: str = f'''
+&f&lUsage: &a&lmcptool [command]
+
+&f&lCommands:
+
+  &b&lhelp &8- &f&lShow the help message
+  &b&lversion &8- &f&lShow the version of the tool
+  &b&lserver &8- &f&lCheck the status of a Minecraft server
+  &b&luuid &8- &f&lGet the UUID of a Minecraft player
+  &b&lipinfo &8- &f&lGet information about an IP address
+  &b&liphistory &8- &f&lGet the history of an IP address
+  &b&ldnslookup &8- &f&lLookup the DNS of a domain
+  &b&lchecker &8- &f&lCheck the status of a list of servers in a text file
+  &b&lresolver &8- &f&lResolve a domain to an IP address
+  &b&lseeker &8- &f&lGet minecraft servers using the seeker api
+  &b&lwebsearch &8- &f&lGet minecraft servers from the multiple websites
+  &b&lsubdomains &8- &f&lGet the subdomains of a domain using a wordlist
+  &b&lscan &8- &f&lScan a Minecraft server or a range of IP addresses
+  &b&llistening &8- &f&lGet the players of a Minecraft server
+  &b&lproxy &8- &f&lStart a proxy server using Velocity
+  &b&lfakeproxy &8- &f&lStart a fake proxy server with RFakeProxy plugin
+  &b&lconnect &8- &f&lConnect to a Minecraft server using Mineflayer
+  &b&lsendcmd &8- &f&lSend mineflayer bot to a Minecraft server and execute commands from a file
+  &b&lrcon &8- &f&lConnect to a Minecraft server using RCON
+  &b&lbrutercon &8- &f&lBrute force the RCON password of a Minecraft server
+  &b&lbruteauth &8- &f&lBrute force the authentication of a Minecraft server
+  &b&lkick &8- &f&lKick a player from a Minecraft server
+  &b&lkickall &8- &f&lKick all players from a Minecraft server
+  &b&lpassword &8- &f&lGet the password of a Minecraft player using the Nordify API
+  &b&ldiscord &8- &f&lOpen the discord server
+  &b&lsettings &8- &f&lChange the settings of the tool
+  &b&lclearservers &8- &f&lClear the minecraft server list (servers.dat)
+  &b&lclear &8- &f&lClear the console'''
 
     BANNERS: list = [HELP_BANNER_1]
 

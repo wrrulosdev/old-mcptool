@@ -9,7 +9,8 @@ import sys
 from mccolors import mcwrite
 from mcptool import MCPTool
 
-from mcptool.constants import MCPToolStrings
+from mcptool.constants import MCPToolStrings, URLS
+from mcptool.constants.banners import HelpBanners
 
 
 def main():
@@ -17,14 +18,6 @@ def main():
     Main function to run the MCPTool
     """
 
-    help_message: str = """
-&f&lUsage: &a&lmcptool [command]
-
-&f&lCommands:
-
-&f&l  help &8- &f&lShow the help message
-&f&l  version &8- &f&lShow the version of the tool
-"""
     mcptool_obj: MCPTool = MCPTool()
 
     if len(sys.argv) == 1:
@@ -35,15 +28,19 @@ def main():
     command: str = sys.argv[1].lower()
 
     if command == 'help':
-        mcwrite(help_message)
+        mcwrite(HelpBanners.CLI_BANNER)
         return
 
     if command == 'version':
         print(MCPToolStrings.VERSION)
         return
 
+    if command == 'discord':
+        print(URLS.DISCORD_SERVER)
+        return
+
     if command not in mcptool_obj.commands:
-        mcwrite(help_message)
+        mcwrite(HelpBanners.CLI_BANNER)
         return
 
     arguments: list = sys.argv[2:]

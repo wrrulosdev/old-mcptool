@@ -14,7 +14,7 @@ from mcptool.virustotal.get_subdomains import GetSubdomains as GetSubdomainsViru
 class Command:
     @logger.catch
     def __init__(self):
-        self.name: str = 'ipinfo'
+        self.name: str = 'resolver'
         self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
         logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
@@ -32,7 +32,7 @@ class Command:
         ):
             return False
 
-        if not ValidateArgument.is_ip_address(user_arguments[0]):
+        if not ValidateArgument.is_domain(user_arguments[0]):
             mcwrite(Lm.get('errors.invalidIpFormat').replace('%ip%', user_arguments[0]))
             return False
 

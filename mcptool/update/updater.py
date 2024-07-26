@@ -13,7 +13,6 @@ class Updater:
         Check if an update is available
         :return: True if an update is available, False otherwise
         """
-
         try:
             response: requests.Response = requests.get(f'{URLS.RAW_GITHUB_REPOSITORY}/settings/settings.json')
 

@@ -13,7 +13,7 @@ from mcptool.inputcustom import Input
 class Command:
     @logger.catch
     def __init__(self):
-        self.name: str = 'ipinfo'
+        self.name: str = 'websearch'
         self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
 
     @logger.catch

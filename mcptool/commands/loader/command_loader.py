@@ -1,10 +1,12 @@
+from mcptool.commands.help import Command as HelpCommand
+from mcptool.commands.clear import Command as ClearCommand
 from mcptool.commands.server import Command as ServerCommand
 from mcptool.commands.uuid import Command as UUIDCommand
 from mcptool.commands.ipinfo import Command as IPInfoCommand
 from mcptool.commands.iphistory import Command as IPHistoryCommand
 from mcptool.commands.dnslookup import Command as DNSLookupCommand
 from mcptool.commands.checker import Command as CheckerCommand
-from mcptool.commands.password import Command as PasswordCommand
+from mcptool.commands.resolver import Command as ResolverCommand
 from mcptool.commands.seeker import Command as SeekerCommand
 from mcptool.commands.websearch import Command as WebSearchCommand
 from mcptool.commands.subdomains import Command as SubdomainsCommand
@@ -19,8 +21,10 @@ from mcptool.commands.brutercon import Command as BruteRconCommand
 from mcptool.commands.bruteauth import Command as BruteAuthCommand
 from mcptool.commands.kick import Command as KickCommand
 from mcptool.commands.kickall import Command as KickAllCommand
+from mcptool.commands.password import Command as PasswordCommand
 from mcptool.commands.clearservers import Command as ClearServersCommand
 from mcptool.commands.settings import Command as SettingsCommand
+from mcptool.commands.discord import Command as DiscordCommand
 
 
 class CommandLoader:
@@ -31,12 +35,15 @@ class CommandLoader:
         :return: Dict with all commands loaded
         """
         commands: dict = {
+            'help': HelpCommand(),
+            'clear': ClearCommand(),
             'server': ServerCommand(),
             'uuid': UUIDCommand(),
             'ipinfo': IPInfoCommand(),
             'iphistory': IPHistoryCommand(),
             'dnslookup': DNSLookupCommand(),
             'checker': CheckerCommand(),
+            'resolver': ResolverCommand(),
             'password': PasswordCommand(),
             'seeker': SeekerCommand(),
             'websearch': WebSearchCommand(),
@@ -53,6 +60,7 @@ class CommandLoader:
             'kick': KickCommand(),
             'kickall': KickAllCommand(),
             'clearservers': ClearServersCommand(),
-            'settings': SettingsCommand()
+            'settings': SettingsCommand(),
+            'discord': DiscordCommand()
         }
         return commands
