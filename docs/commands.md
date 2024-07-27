@@ -2,6 +2,7 @@
 
 List of current MCPTool commands.
 
+- [Help](#help)
 - [Server](#server)
 - [Uuid](#uuid)
 - [IPInfo](#ipinfo)
@@ -26,6 +27,11 @@ List of current MCPTool commands.
 - [Settings](#settings)
 - [ClearServers](#clearservers)
 - [Clear](#clear)
+
+## Help
+The **help** command allows you to get information about the commands available in the tool.
+
+![Help](https://imgur.com/xcrXlYn.png)
 
 ## Server
 The **server** command allows you to obtain information about a Minecraft server. Works on Java and Bedrock servers.
@@ -141,30 +147,32 @@ To use this command you must enter:
 </br>
 `resolver <domain>`
 
+## Seeker
+The **seeker** command allows you to get random servers using the Seeker API.
+
+![Seeker](../img/commands/seeker.png)
+
+To use this command you must enter:
+</br>
+`seeker <type>`
+
+## WebSearch
+The **websearch** command allows you to search for minecraft servers on the webs.
+
+![WebSearch](../img/commands/websearch.png)
+
+To use this command you must enter:
+</br>
+`websearch`
+
 ## Proxy
 The **proxy** command creates a proxy server that redirects to the specified server.
-
-### Waterfall Mode:
-The proxy server comes with my *RBungeeExploit* plugin by default. This plugin allows you to run the following commands:
-
-- /set-uuid -> Change your uuid.
-- /connect -> Connects you to the specified server.
-
-![Waterfall](../img/commands/waterfall_1.png)
-</br>
-![Waterfall2](../img/commands/waterfall_2.png)
-</br>
-![Waterfall3](../img/commands/waterfall_3.png)
-
-### Velocity Mode:
 The proxy server comes with my *MCPTool* plugin by default. This plugin allows you to run the following commands:
 
 - /username -> Change your username.
 - /uuid -> Change your uuid.
 - /connect -> Connects you to the specified server.
 
-![Velocity1](../img/commands/velocity_1.png)
-</br>
 ![Velocity2](../img/commands/velocity_2.png)
 </br>
 ![Velocity3](../img/commands/velocity_3.png)
@@ -174,7 +182,7 @@ The proxy server comes with my *MCPTool* plugin by default. This plugin allows y
 
 To use this command you must enter:
 </br>
-`proxy <ip:port> <proxy-type>`
+`proxy <ip:port> <forwarding-mode>`
 
 ## Fake proxy
 The **fakeproxy** command creates a speed proxy server that redirects to the specified server and captures all data. The data it saves is:
@@ -258,13 +266,31 @@ To use this command you must enter:
 </br>
 `sendcmd <ip:port> <version> <username> <file>`
 
-## Language
+## Password
+The **password** command allows you to search for the password of a user using the nordify api.
+
+To use this command you must enter:
+</br>
+`password <username>`
+
+## Settings
+The **settings** command allows you to change the settings of the tool.
+
+List of available settings:
+- settings
+- scanner
+- proxy
+- bruteforce_settings
+- sendcmd_settings
+- mcserver-scrapper
+- nordify
+
+## Language (Coming soon)
 The **language** command allows you to change the language of the tool.
 
 List of available languages:
 
 - English (**en**)
-- Turkish (**tr**)
 
 You must specify the language abbreviation, for example **es**.
 
