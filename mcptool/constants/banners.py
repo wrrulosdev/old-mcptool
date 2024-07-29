@@ -1,4 +1,4 @@
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ..utilities.language.utilities import LanguageUtils as Lm
 from . import MCPToolStrings, URLS
 from .update_available import UPDATE_AVAILABLE
 

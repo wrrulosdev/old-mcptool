@@ -4,12 +4,12 @@ from typing import Union
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.minecraft.bot.server_response import BotServerResponse
-from mcptool.minecraft.server import JavaServerData, BedrockServerData
-from mcptool.minecraft.server.server_data import ServerData
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
-from mcptool.utilities.minecraft.bot.utilities import BotUtilities
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..minecraft.bot.server_response import BotServerResponse
+from ..minecraft.server import JavaServerData, BedrockServerData
+from ..minecraft.server.server_data import ServerData
+from ..utilities.language.utilities import LanguageUtils as Lm
+from ..utilities.minecraft.bot.utilities import BotUtilities
 
 
 class Command:

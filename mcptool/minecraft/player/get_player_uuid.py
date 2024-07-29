@@ -1,9 +1,9 @@
-import requests
 import hashlib
 import uuid
-
-from typing import Union
 from json import JSONDecodeError
+from typing import Union
+
+import requests
 from loguru import logger
 
 
@@ -24,7 +24,8 @@ class PlayerUUID:
         :return: The UUID of the player
         """
         try:
-            response: requests.Response = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{self.username}")
+            response: requests.Response = requests.get(
+                f"https://api.mojang.com/users/profiles/minecraft/{self.username}")
             response.raise_for_status()
             return PlayerUUIDFormat(response.json()['id'], self._get_offline_uuid())
 
@@ -60,4 +61,5 @@ class PlayerUUID:
         Method to get the offline UUID of the player
         :return: The offline UUID of the player
         """
-        return str(uuid.UUID(bytes=hashlib.md5(bytes(f'OfflinePlayer:{self.username}', 'utf-8')).digest()[:16], version=3)).replace('-', '')
+        return str(uuid.UUID(bytes=hashlib.md5(bytes(f'OfflinePlayer:{self.username}', 'utf-8')).digest()[:16],
+                             version=3)).replace('-', '')

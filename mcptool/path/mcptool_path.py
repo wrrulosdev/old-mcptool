@@ -6,7 +6,7 @@ import requests
 from loguru import logger
 from mccolors import mcwrite, mcreplace
 
-from mcptool.constants import URLS, MCPToolStrings
+from ..constants import URLS, MCPToolStrings
 
 
 class MCPToolPath:

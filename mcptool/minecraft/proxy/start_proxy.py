@@ -2,13 +2,13 @@ import datetime
 import os
 import subprocess
 
-from mccolors import mcwrite
 from ezjsonpy import get_config_value
+from mccolors import mcwrite
 
-from mcptool.constants import MCPToolStrings
-from mcptool.path.mcptool_path import MCPToolPath
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
-from mcptool.minecraft.proxy.proxy_jar import JarManager
+from ...constants import MCPToolStrings
+from ...minecraft.proxy.proxy_jar import JarManager
+from ...path.mcptool_path import MCPToolPath
+from ...utilities.language.utilities import LanguageUtils as Lm
 
 
 class StartProxy:

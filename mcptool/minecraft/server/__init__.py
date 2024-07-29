@@ -1,11 +1,13 @@
 import re
-
 from typing import Union
+
 from loguru import logger
 
 
 class JavaServerData:
-    def __init__(self, ip_address: str, port: int, motd: str, original_motd: str, version: str, original_version: str, protocol: str, connected_players: str, max_players: str, players: str, player_list: list, mod: str, mods: list, favicon: Union[str, None], ping: int, bot_output: str) -> None:
+    def __init__(self, ip_address: str, port: int, motd: str, original_motd: str, version: str, original_version: str,
+                 protocol: str, connected_players: str, max_players: str, players: str, player_list: list, mod: str,
+                 mods: list, favicon: Union[str, None], ping: int, bot_output: str) -> None:
         self.platform = 'Java'
         self.ip_address = ip_address
         self.port = port
@@ -26,7 +28,8 @@ class JavaServerData:
 
 
 class BedrockServerData:
-    def __init__(self, ip_address: str, port: int, motd: str, version: str, protocol: str, connected_players: str, max_players: str, brand: str, map: str, gamemode: str, ping: int, bot_output: str) -> None:
+    def __init__(self, ip_address: str, port: int, motd: str, version: str, protocol: str, connected_players: str,
+                 max_players: str, brand: str, map: str, gamemode: str, ping: int, bot_output: str) -> None:
         self.platform = 'Bedrock'
         self.ip_address = ip_address
         self.port = port
@@ -61,5 +64,5 @@ def clean_output(output: str) -> str:
     output = re.sub(' +', ' ', output)
 
     # Replace Minecraft color codes with MiniMessage colored characters.
-    #output = TextUtilities.minecraft_colors(output)
+    # output = TextUtilities.minecraft_colors(output)
     return output

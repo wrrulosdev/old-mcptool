@@ -5,10 +5,10 @@ from ezjsonpy import get_config_value
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.nordify.finder import NordifyFinder
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
-from mcptool.constants import URLS
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..constants import URLS
+from ..nordify.finder import NordifyFinder
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:
@@ -160,7 +160,7 @@ class Command:
         if user_data['password'] is not None:
             password_color = '&a' if len(user_data['password']) < 32 else '&c&l'
             mcwrite(Lm.get('commands.password.data.password').replace('%password%',
-                                                                          f"{password_color}{user_data['password']}"))
+                                                                      f"{password_color}{user_data['password']}"))
         if 'salt' in user_data:
             if user_data['salt'] is not None:
                 mcwrite(Lm.get('commands.password.data.salt').replace('%salt%', user_data['salt']))

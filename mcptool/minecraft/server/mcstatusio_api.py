@@ -1,11 +1,11 @@
-import requests
-
 from typing import Union
+
+import requests
 from loguru import logger
 
-from mcptool.minecraft.server import JavaServerData, BedrockServerData, clean_output
-from mcptool.minecraft.bot.server_response import BotServerResponse
-from mcptool.utilities.minecraft.bot.utilities import BotUtilities
+from ...minecraft.bot.server_response import BotServerResponse
+from ...minecraft.server import JavaServerData, BedrockServerData, clean_output
+from ...utilities.minecraft.bot.utilities import BotUtilities
 
 
 class MCStatusIOAPI:
@@ -86,7 +86,8 @@ class MCStatusIOAPI:
 
         if server_type == 'java':
             if data['players']['list'] is not None:
-                player_list: list = [{'name_raw': player['name_raw'], 'uuid': player['uuid']} for player in data['players']['list']]
+                player_list: list = [{'name_raw': player['name_raw'], 'uuid': player['uuid']} for player in
+                                     data['players']['list']]
 
                 # Replace 'name_raw' for 'name' and 'uuid for 'id
                 for player in player_list:

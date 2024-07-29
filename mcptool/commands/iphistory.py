@@ -1,13 +1,11 @@
-from typing import Union
-
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.scrappers.iphistory import DomainIPHistory
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
-from mcptool.constants import MCPToolStrings
-from mcptool.ipv4.get_cloudflare_ip import GetCloudflareIps
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..constants import MCPToolStrings
+from ..ipv4.get_cloudflare_ip import GetCloudflareIps
+from ..scrappers.iphistory import DomainIPHistory
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:

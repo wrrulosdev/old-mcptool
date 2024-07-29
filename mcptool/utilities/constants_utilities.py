@@ -2,7 +2,7 @@ import sys
 
 from loguru import logger
 
-from mcptool.utilities.termux.utilities import TermuxUtilities
+from ..utilities.termux.utilities import TermuxUtilities
 
 
 class ConstantsUtilities:

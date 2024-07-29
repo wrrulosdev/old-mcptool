@@ -1,18 +1,18 @@
+import re
 import subprocess
 import threading
-import re
-
-from loguru import logger
 from typing import Union
-from mccolors import mcwrite
-from ezjsonpy import get_config_value
 
-from mcptool import MCPToolPath
-from mcptool.constants import MCPToolStrings
-from mcptool.minecraft.server import JavaServerData, BedrockServerData
-from mcptool.minecraft.server.server_data import ServerData
-from mcptool.minecraft.server.show_server import ShowMinecraftServer
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ezjsonpy import get_config_value
+from loguru import logger
+from mccolors import mcwrite
+
+from .. import MCPToolPath
+from ..constants import MCPToolStrings
+from ..minecraft.server import JavaServerData, BedrockServerData
+from ..minecraft.server.server_data import ServerData
+from ..minecraft.server.show_server import ShowMinecraftServer
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class ExternalScanner:
@@ -55,7 +55,8 @@ class ExternalScanner:
             return None
 
         try:
-            process: subprocess.Popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+            process: subprocess.Popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                                         shell=True)
 
             # Review each line of the process output.
             for line in process.stdout:
@@ -112,7 +113,8 @@ class ExternalScanner:
             process.wait()
 
             if process.returncode != 0:
-                logger.warning(f'Cannot scan target. Error occurred. {process.returncode} Command output: {self.command_output}')
+                logger.warning(
+                    f'Cannot scan target. Error occurred. {process.returncode} Command output: {self.command_output}')
                 return None
 
         except (KeyboardInterrupt, ValueError):
@@ -135,7 +137,8 @@ class ExternalScanner:
         Get the command to scan the target.
         :return: The command to scan the target.
         """
-        command: Union[str, None] = get_config_value(f'scannerOptions.externalScanners.{self.scanner}.command', 'scanner')
+        command: Union[str, None] = get_config_value(f'scannerOptions.externalScanners.{self.scanner}.command',
+                                                     'scanner')
 
         if command is None:
             return None
@@ -158,9 +161,12 @@ class ExternalScanner:
         :return: The scan parameters.
         """
         scan_params = {
-            'nmap': ('Discovered open port', r'open port (\d+)/\w+ on (\d+\.\d+\.\d+\.\d+)', ['Failed to resolve "'], ['Your port specifications are illegal.', 'Your port range']),
-            'masscan': ('Discovered open port', r'open port (\d+)/\w+ on (\d+\.\d+\.\d+\.\d+)', ['ERROR: bad IP address/range:', 'unknown command-line parameter'], ['bad target port:']),
-            'qubo': (')(', r'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+\b', ['Invalid IP range.'], ['port is out of range', 'For input string:'])
+            'nmap': ('Discovered open port', r'open port (\d+)/\w+ on (\d+\.\d+\.\d+\.\d+)', ['Failed to resolve "'],
+                     ['Your port specifications are illegal.', 'Your port range']),
+            'masscan': ('Discovered open port', r'open port (\d+)/\w+ on (\d+\.\d+\.\d+\.\d+)',
+                        ['ERROR: bad IP address/range:', 'unknown command-line parameter'], ['bad target port:']),
+            'qubo': (')(', r'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+\b', ['Invalid IP range.'],
+                     ['port is out of range', 'For input string:'])
         }
 
         return scan_params.get(self.scanner, ('', '', [], []))

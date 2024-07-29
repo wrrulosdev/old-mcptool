@@ -1,14 +1,14 @@
+import json
 import os
 import subprocess
-import json
 
+from ezjsonpy import remove_configuration, load_configuration
 from loguru import logger
 from mccolors import mcwrite
-from ezjsonpy import remove_configuration, load_configuration, get_configuration
 
-from mcptool import MCPToolPath
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from .. import MCPToolPath
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:

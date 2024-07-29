@@ -1,8 +1,8 @@
-import requests
 import socket
 
-from loguru import logger
+import requests
 from ezjsonpy import get_config_value
+from loguru import logger
 
 
 class GetSubdomains:

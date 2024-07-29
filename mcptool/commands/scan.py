@@ -4,13 +4,13 @@ from typing import Union
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.inputcustom import Input
-from mcptool.nbt.servers_dat import ServersDAT
-from mcptool.scanner.external_scanner import ExternalScanner
-from mcptool.scanner.py_scanner import PyScanner
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
-from mcptool.utilities.scanner.utilities import ScannerUtilities
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..inputcustom import Input
+from ..nbt.servers_dat import ServersDAT
+from ..scanner.external_scanner import ExternalScanner
+from ..scanner.py_scanner import PyScanner
+from ..utilities.language.utilities import LanguageUtils as Lm
+from ..utilities.scanner.utilities import ScannerUtilities
 
 
 class Command:
@@ -156,7 +156,8 @@ class Command:
                 return
 
             if add_vulnerable_servers_only:
-                ServersDAT().add_servers_dat_file(servers=output['open_ports']['bungeeExploitVulnerable'], vulnerable=True)
+                ServersDAT().add_servers_dat_file(servers=output['open_ports']['bungeeExploitVulnerable'],
+                                                  vulnerable=True)
 
             else:
                 ServersDAT().add_servers_dat_file(servers=output['open_ports']['minecraft'])

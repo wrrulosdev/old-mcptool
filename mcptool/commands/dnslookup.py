@@ -3,10 +3,10 @@ import time
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.dns.get_dns_records import GetDNSRecords
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
-from mcptool.constants import MCPToolStrings
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..constants import MCPToolStrings
+from ..dns.get_dns_records import GetDNSRecords
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:

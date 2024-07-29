@@ -1,12 +1,12 @@
-import requests
 import os
 
+import requests
+from ezjsonpy import get_config_value, set_config_value
 from loguru import logger
 from mccolors import mcwrite
-from ezjsonpy import get_config_value, set_config_value
 
-from mcptool.path.mcptool_path import MCPToolPath
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ...path.mcptool_path import MCPToolPath
+from ...utilities.language.utilities import LanguageUtils as Lm
 
 
 class JarManager:

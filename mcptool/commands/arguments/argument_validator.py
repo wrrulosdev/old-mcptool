@@ -1,10 +1,10 @@
 import socket
 
-from mccolors import mcwrite
-from loguru import logger
 from ezjsonpy import get_languages
+from loguru import logger
+from mccolors import mcwrite
 
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ...utilities.language.utilities import LanguageUtils as Lm
 
 
 class ValidateArgument:

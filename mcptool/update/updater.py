@@ -1,8 +1,7 @@
 import requests
-
 from loguru import logger
 
-from mcptool import URLS, MCPToolStrings
+from .. import URLS, MCPToolStrings
 
 
 class Updater:

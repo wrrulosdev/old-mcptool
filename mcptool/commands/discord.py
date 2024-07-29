@@ -1,9 +1,7 @@
-import random
-
 from loguru import logger
 
-from mcptool.banners.show_banner import ShowBanner
-from mcptool.constants.banners import DiscordBanners
+from ..banners.show_banner import ShowBanner
+from ..constants.banners import DiscordBanners
 
 
 class Command:

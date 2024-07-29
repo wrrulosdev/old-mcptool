@@ -1,11 +1,12 @@
 from typing import Union
+
 from ezjsonpy import get_config_value
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.minecraft.server import JavaServerData, BedrockServerData
-from mcptool.minecraft.server.mcstatusio_api import MCStatusIOAPI
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ...minecraft.server import JavaServerData, BedrockServerData
+from ...minecraft.server.mcstatusio_api import MCStatusIOAPI
+from ...utilities.language.utilities import LanguageUtils as Lm
 
 
 class ServerData:
@@ -21,12 +22,13 @@ class ServerData:
         """
         data: Union[JavaServerData, BedrockServerData, None] = None
 
-        if get_config_value('serverDataApi') == 'serverDataApi' or get_config_value('serverDataApi') not in ['local', 'mcstatus.io']:  # :TODO: Replace with None after testing
+        if get_config_value('serverDataApi') == 'serverDataApi' or get_config_value('serverDataApi') not in ['local',
+                                                                                                             'mcstatus.io']:  # :TODO: Replace with None after testing
             logger.error('The serverDataApi is not set in the configuration file')
             mcwrite(Lm.get('errors.serverDataApiNotSet'))
             return None
 
-        #if get_config_value('serverDataApi') == 'local':
+        # if get_config_value('serverDataApi') == 'local':
         #    data: Union[JavaServerData, BedrockServerData, None] = MCServerData(target=self.target, bot=self.bot).get()
 
         if get_config_value('serverDataApi') == 'mcstatus.io':

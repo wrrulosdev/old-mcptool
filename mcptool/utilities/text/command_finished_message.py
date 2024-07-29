@@ -1,4 +1,4 @@
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ...utilities.language.utilities import LanguageUtils as Lm
 
 
 class CommandFinishedMessage:
@@ -16,16 +16,21 @@ class CommandFinishedMessage:
         if self.time < 3600:
             minutes = round(self.time / 60)
             seconds = round(self.time % 60)
-            return Lm.get('commands.commandFinishedIn.minutes').replace('%minutes%', str(minutes)).replace('%seconds%', str(seconds))
+            return Lm.get('commands.commandFinishedIn.minutes').replace('%minutes%', str(minutes)).replace('%seconds%',
+                                                                                                           str(seconds))
 
         if self.time < 86400:
             hours = round(self.time / 3600)
             minutes = round((self.time % 3600) / 60)
             seconds = round((self.time % 3600) % 60)
-            return Lm.get('commands.commandFinishedIn.hours').replace('%hours%', str(hours)).replace('%minutes%', str(minutes)).replace('%seconds%', str(seconds))
+            return Lm.get('commands.commandFinishedIn.hours').replace('%hours%', str(hours)).replace('%minutes%',
+                                                                                                     str(minutes)).replace(
+                '%seconds%', str(seconds))
 
         days = round(self.time / 86400)
         hours = round((self.time % 86400) / 3600)
         minutes = round(((self.time % 86400) % 3600) / 60)
         seconds = round(((self.time % 86400) % 3600) % 60)
-        return Lm.get('commands.commandFinishedIn.days').replace('%days%', str(days)).replace('%hours%', str(hours)).replace('%minutes%', str(minutes)).replace('%seconds%', str(seconds))
+        return Lm.get('commands.commandFinishedIn.days').replace('%days%', str(days)).replace('%hours%',
+                                                                                              str(hours)).replace(
+            '%minutes%', str(minutes)).replace('%seconds%', str(seconds))

@@ -1,11 +1,9 @@
-from typing import Union
-
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.minecraft.proxy.start_proxy import StartProxy
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..minecraft.proxy.start_proxy import StartProxy
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:

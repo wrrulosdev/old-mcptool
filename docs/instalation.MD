@@ -1,9 +1,11 @@
 # MCPTool Installation Guide
 
 ## Install using the pip command
+
 `pip install mcptool-py`
 
 ## Install using the .msi installer (Windows only)
+
 You can install it from the [official website](https://www.mcptool.net/)
 
 ### ⚠️ The tool has several options that depend on other languages or programs to function, those are:

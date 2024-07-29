@@ -5,11 +5,11 @@ from typing import Union
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.minecraft.server import JavaServerData, BedrockServerData
-from mcptool.minecraft.server.server_data import ServerData
-from mcptool.minecraft.server.show_server import ShowMinecraftServer
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..minecraft.server import JavaServerData, BedrockServerData
+from ..minecraft.server.server_data import ServerData
+from ..minecraft.server.show_server import ShowMinecraftServer
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:

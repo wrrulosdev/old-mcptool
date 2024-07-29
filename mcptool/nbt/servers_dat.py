@@ -1,7 +1,7 @@
 import os
+
 import nbtlib
 from loguru import logger
-
 from nbtlib import File, Compound, String, List
 
 

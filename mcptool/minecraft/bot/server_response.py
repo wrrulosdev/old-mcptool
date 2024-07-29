@@ -1,16 +1,17 @@
 import subprocess
-
 from subprocess import CompletedProcess
+
 from loguru import logger
 
-from mcptool.constants import MCPToolStrings
-from mcptool.utilities.minecraft.bot.utilities import BotUtilities
-from mcptool.utilities.text.utilities import TextUtilities
-from mcptool.path.mcptool_path import MCPToolPath
+from ...constants import MCPToolStrings
+from ...path.mcptool_path import MCPToolPath
+from ...utilities.minecraft.bot.utilities import BotUtilities
+from ...utilities.text.utilities import TextUtilities
 
 
 class BotServerResponse:
-    def __init__(self, ip_address: str, port: int, version: str, username: str = BotUtilities.get_bot_username()) -> None:
+    def __init__(self, ip_address: str, port: int, version: str,
+                 username: str = BotUtilities.get_bot_username()) -> None:
         self.ip_address = ip_address
         self.port = port
         self.version = version
@@ -33,7 +34,8 @@ class BotServerResponse:
     @logger.catch
     def _send_command(self) -> None:
         """Send the command to the server"""
-        response: CompletedProcess = subprocess.run(self._get_command(), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        response: CompletedProcess = subprocess.run(self._get_command(), shell=True, stdout=subprocess.PIPE,
+                                                    stderr=subprocess.PIPE)
 
         # Check if there is an error
         if response.stderr:

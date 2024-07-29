@@ -10,11 +10,11 @@ from ezjsonpy import get_config_value, set_config_value
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.inputcustom import Input
-from mcptool.minecraft.server import JavaServerData, BedrockServerData
-from mcptool.minecraft.server.server_data import ServerData
-from mcptool.minecraft.server.show_server import ShowMinecraftServer
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ...inputcustom import Input
+from ...minecraft.server import JavaServerData, BedrockServerData
+from ...minecraft.server.server_data import ServerData
+from ...minecraft.server.show_server import ShowMinecraftServer
+from ...utilities.language.utilities import LanguageUtils as Lm
 
 
 # Token Handler
@@ -270,7 +270,8 @@ Getting servers from the seeker API...
 
             return response.json()['data']
 
-        except (requests.ConnectionError, requests.Timeout, requests.exceptions.RequestException, UnicodeDecodeError) as e:
+        except (
+        requests.ConnectionError, requests.Timeout, requests.exceptions.RequestException, UnicodeDecodeError) as e:
             mcwrite(Lm.get('errors.endpointConnectionError'))
             logger.warning(f'Error connecting to the endpoint: {url} - {data} - {e}')
             return None
@@ -372,4 +373,3 @@ class SeekerUtilities:
             except KeyboardInterrupt:
                 self.stopped = True
                 return
-

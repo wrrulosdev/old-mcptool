@@ -1,9 +1,9 @@
-import requests
 import re
 
+import requests
 from mccolors import mcwrite
 
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class DomainIPHistory:

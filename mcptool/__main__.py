@@ -7,10 +7,10 @@ This module contains the main entry point for running the MCPTool.
 import sys
 
 from mccolors import mcwrite
-from mcptool import MCPTool
 
-from mcptool.constants import MCPToolStrings, URLS
-from mcptool.constants.banners import HelpBanners
+from . import MCPTool
+from .constants import MCPToolStrings, URLS
+from .constants.banners import HelpBanners
 
 
 def main():

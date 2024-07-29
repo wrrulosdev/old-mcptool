@@ -1,7 +1,7 @@
-import requests
-
 from json import JSONDecodeError
 from typing import Union
+
+import requests
 from loguru import logger
 
 
@@ -16,7 +16,8 @@ class PlayerUsername:
         :return: The username of the player
         """
         try:
-            response: requests.Response = requests.get(f"https://sessionserver.mojang.com/session/minecraft/profile/{self.uuid}")
+            response: requests.Response = requests.get(
+                f"https://sessionserver.mojang.com/session/minecraft/profile/{self.uuid}")
 
             if response.status_code != 200:
                 return None

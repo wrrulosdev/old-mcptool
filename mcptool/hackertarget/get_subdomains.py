@@ -1,5 +1,4 @@
 import requests
-import socket
 
 from loguru import logger
 
@@ -37,7 +36,8 @@ class GetSubdomains:
             ip: str = line[1].strip("'b")
 
             if value == self.api_rate_limit_text:
-                logger.warning(f'Error getting the subdomains of the domain {domain}. Hackertarget API rate limit exceeded')
+                logger.warning(
+                    f'Error getting the subdomains of the domain {domain}. Hackertarget API rate limit exceeded')
                 break
 
             if [value, ip] not in subdomains_found:

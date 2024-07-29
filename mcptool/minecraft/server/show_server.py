@@ -1,15 +1,15 @@
 from typing import Union
-from mccolors import mcwrite
-from loguru import logger
 
-from mcptool.minecraft.server import JavaServerData, BedrockServerData
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from loguru import logger
+from mccolors import mcwrite
+
+from ...minecraft.server import JavaServerData, BedrockServerData
+from ...utilities.language.utilities import LanguageUtils as Lm
 
 
 class Messages:
     def __init__(self) -> None:
         pass
-
 
     @staticmethod
     def get_server_message(server_data: Union[JavaServerData, BedrockServerData]) -> str:

@@ -4,11 +4,11 @@ from typing import Union
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.minecraft.server import JavaServerData, BedrockServerData
-from mcptool.minecraft.server.server_data import ServerData
-from mcptool.minecraft.proxy.start_proxy import StartProxy
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..minecraft.proxy.start_proxy import StartProxy
+from ..minecraft.server import JavaServerData, BedrockServerData
+from ..minecraft.server.server_data import ServerData
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:
@@ -57,7 +57,8 @@ class Command:
         forwarding_mode: str = user_arguments[1]
 
         # Execute the command
-        if not subprocess.run(['java', '-version'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).returncode == 0:
+        if not subprocess.run(['java', '-version'], shell=True, stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE).returncode == 0:
             mcwrite(Lm.get('errors.javaNotInstalled'))
             return False
 

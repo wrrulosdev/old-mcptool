@@ -3,10 +3,10 @@ import uuid
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.minecraft.player.get_player_uuid import PlayerUUID
-from mcptool.minecraft.player.get_player_username import PlayerUsername
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..minecraft.player.get_player_username import PlayerUsername
+from ..minecraft.player.get_player_uuid import PlayerUUID
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:

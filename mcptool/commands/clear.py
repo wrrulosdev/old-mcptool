@@ -2,8 +2,8 @@ import random
 
 from loguru import logger
 
-from mcptool.banners.show_banner import ShowBanner
-from mcptool.constants.banners import MCPToolBanners
+from ..banners.show_banner import ShowBanner
+from ..constants.banners import MCPToolBanners
 
 
 class Command:

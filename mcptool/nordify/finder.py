@@ -1,13 +1,13 @@
 from typing import Union
 
 import requests
-from ezjsonpy import get_config_value, translate_message
+from ezjsonpy import get_config_value
 from loguru import logger
 from mccolors import mcwrite
 from requests.auth import HTTPBasicAuth
 
-from mcptool.constants import URLS
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ..constants import URLS
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class NordifyFinder:
@@ -18,6 +18,10 @@ class NordifyFinder:
         self.error: bool = False
 
     def get_user_data(self) -> Union[dict, str, None]:
+        """
+        Method to get the user data from the Nordify API
+        :return: dict: The user data
+        """
         response: Union[dict, None] = self.send_request()
 
         if self.error:

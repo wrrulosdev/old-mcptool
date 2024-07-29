@@ -7,8 +7,8 @@ from ezjsonpy import get_config_value
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:

@@ -1,8 +1,8 @@
 from loguru import logger
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
-from mcptool.utilities.seeker.utilities import SeekerUtilities
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..utilities.language.utilities import LanguageUtils as Lm
+from ..utilities.seeker.utilities import SeekerUtilities
 
 
 class Command:

@@ -1,14 +1,14 @@
-import threading
 import socket
-
-from loguru import logger
+import threading
 from typing import Union
-from ezjsonpy import get_config_value
 
-from mcptool.constants import MCPToolStrings
-from mcptool.minecraft.server import JavaServerData, BedrockServerData
-from mcptool.minecraft.server.server_data import ServerData
-from mcptool.minecraft.server.show_server import ShowMinecraftServer
+from ezjsonpy import get_config_value
+from loguru import logger
+
+from ..constants import MCPToolStrings
+from ..minecraft.server import JavaServerData, BedrockServerData
+from ..minecraft.server.server_data import ServerData
+from ..minecraft.server.show_server import ShowMinecraftServer
 
 # Try to get the number of threads for the scanner
 try:
@@ -98,7 +98,8 @@ class PyScanner:
                 server: str = f'{self.ip_address}:{port}'
 
                 # Check if the port is a Minecraft server
-                server_data: Union[JavaServerData, BedrockServerData, None] = ServerData(f'{self.ip_address}:{port}').get_data()
+                server_data: Union[JavaServerData, BedrockServerData, None] = ServerData(
+                    f'{self.ip_address}:{port}').get_data()
 
                 if server_data is not None:
                     ShowMinecraftServer.show(server_data)

@@ -3,9 +3,9 @@ from typing import Union
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
-from mcptool.ipv4.get_ip_info import IPInfo, IPInfoFormat
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..ipv4.get_ip_info import IPInfo, IPInfoFormat
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:
@@ -55,9 +55,12 @@ class Command:
             mcwrite(Lm.get(f'commands.{self.name}.error'))
             return True
 
-        mcwrite(Lm.get(f'commands.{self.name}.continent').replace('%continent%', ip_info.continent).replace('%continentCode%', ip_info.continent_code))
-        mcwrite(Lm.get(f'commands.{self.name}.country').replace('%country%', ip_info.country).replace('%countryCode%', ip_info.country_code))
-        mcwrite(Lm.get(f'commands.{self.name}.region').replace('%region%', ip_info.region).replace('%regionName%', ip_info.region_name))
+        mcwrite(Lm.get(f'commands.{self.name}.continent').replace('%continent%', ip_info.continent).replace(
+            '%continentCode%', ip_info.continent_code))
+        mcwrite(Lm.get(f'commands.{self.name}.country').replace('%country%', ip_info.country).replace('%countryCode%',
+                                                                                                      ip_info.country_code))
+        mcwrite(Lm.get(f'commands.{self.name}.region').replace('%region%', ip_info.region).replace('%regionName%',
+                                                                                                   ip_info.region_name))
         mcwrite(Lm.get(f'commands.{self.name}.city').replace('%city%', ip_info.city))
         mcwrite(Lm.get(f'commands.{self.name}.timezone').replace('%timezone%', ip_info.timezone))
         mcwrite(Lm.get(f'commands.{self.name}.isp').replace('%isp%', ip_info.isp))

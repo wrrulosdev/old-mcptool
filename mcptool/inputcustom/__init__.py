@@ -3,8 +3,8 @@ from typing import Union
 from loguru import logger
 from mccolors import mcreplace, mcwrite
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Input:

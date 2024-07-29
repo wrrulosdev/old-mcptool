@@ -3,12 +3,12 @@ import time
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.commands.arguments.argument_validator import ValidateArgument
-from mcptool.constants import MCPToolStrings
-from mcptool.ipv4.get_cloudflare_ip import GetCloudflareIps
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
-from mcptool.hackertarget.get_subdomains import GetSubdomains as GetSubdomainsHackerTarget
-from mcptool.virustotal.get_subdomains import GetSubdomains as GetSubdomainsVirustotal
+from ..commands.arguments.argument_validator import ValidateArgument
+from ..constants import MCPToolStrings
+from ..hackertarget.get_subdomains import GetSubdomains as GetSubdomainsHackerTarget
+from ..ipv4.get_cloudflare_ip import GetCloudflareIps
+from ..utilities.language.utilities import LanguageUtils as Lm
+from ..virustotal.get_subdomains import GetSubdomains as GetSubdomainsVirustotal
 
 
 class Command:

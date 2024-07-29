@@ -1,18 +1,18 @@
 import json
-import requests
 import threading
-
-from typing import Union
-from bs4 import BeautifulSoup, element
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from typing import Union
+
+import requests
+from bs4 import BeautifulSoup, element
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool import MCPToolPath
-from mcptool.minecraft.server import JavaServerData, BedrockServerData
-from mcptool.minecraft.server.server_data import ServerData
-from mcptool.minecraft.server.show_server import ShowMinecraftServer
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from .. import MCPToolPath
+from ..minecraft.server import JavaServerData, BedrockServerData
+from ..minecraft.server.server_data import ServerData
+from ..minecraft.server.show_server import ShowMinecraftServer
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class MinecraftServerScrapper:
@@ -20,7 +20,8 @@ class MinecraftServerScrapper:
     def __init__(self) -> None:
         mcptool_path: str = MCPToolPath.get_path()
         self.file: str = open(f'{mcptool_path}/settings/mcserver-scrapper.json', 'r').read()
-        self.headers: dict = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+        self.headers: dict = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
         self.cookies: dict = {'cookie_name': 'cookie_value'}
         self.servers: dict = json.loads(self.file)
         self.filters: dict = {
@@ -107,7 +108,8 @@ class MinecraftServerScrapper:
         :param server_page: The server page
         :param method: The method to extract the server
         """
-        html_tags: element.ResultSet = page.find_all(server_page['find_all']['tag'], class_=server_page['find_all']['class'])
+        html_tags: element.ResultSet = page.find_all(server_page['find_all']['tag'],
+                                                     class_=server_page['find_all']['class'])
         ip: Union[str, None] = None
 
         for server in html_tags:

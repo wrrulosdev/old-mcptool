@@ -1,8 +1,8 @@
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.nbt.servers_dat import ServersDAT
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from ..nbt.servers_dat import ServersDAT
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:

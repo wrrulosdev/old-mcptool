@@ -5,9 +5,9 @@ from typing import Union
 from loguru import logger
 from mccolors import mcwrite
 
-from mcptool.scrappers.minecraftservers import MinecraftServerScrapper
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
-from mcptool.inputcustom import Input
+from ..inputcustom import Input
+from ..scrappers.minecraftservers import MinecraftServerScrapper
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:
@@ -80,11 +80,14 @@ class Command:
                     ).get_input()
 
             mcwrite(Lm.get('commands.websearch.filterDataShow')
-                .replace('%onlyBotCanJoin%', '✔️' if scrapper.filters['onlyBotCanJoin'] else '❌')
-                .replace('%description%', scrapper.filters['description'] if scrapper.filters['filterByDescription'] else '❌')
-                .replace('%onlinePlayers%', str(scrapper.filters['onlinePlayers']) if scrapper.filters['filterByOnlinePlayers'] else '❌')
-                .replace('%protocol%', str(scrapper.filters['protocol']) if scrapper.filters['filterByProtocol'] else '❌')
-            )
+                    .replace('%onlyBotCanJoin%', '✔️' if scrapper.filters['onlyBotCanJoin'] else '❌')
+                    .replace('%description%',
+                             scrapper.filters['description'] if scrapper.filters['filterByDescription'] else '❌')
+                    .replace('%onlinePlayers%', str(scrapper.filters['onlinePlayers']) if scrapper.filters[
+                'filterByOnlinePlayers'] else '❌')
+                    .replace('%protocol%',
+                             str(scrapper.filters['protocol']) if scrapper.filters['filterByProtocol'] else '❌')
+                    )
 
         # It seems strange, but it's the only way I found to control thread closing the way I want.
         # If you're reading this and think you know better, let me know or make a pull request! :D

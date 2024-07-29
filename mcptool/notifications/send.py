@@ -1,7 +1,7 @@
 from plyer import notification
 
-from mcptool import MCPToolPath
-from mcptool.utilities.termux.utilities import TermuxUtilities
+from .. import MCPToolPath
+from ..utilities.termux.utilities import TermuxUtilities
 
 
 class SendNotification:

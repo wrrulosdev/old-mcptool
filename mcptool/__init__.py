@@ -1,20 +1,20 @@
+import os
 import random
 import shutil
 import struct
 import subprocess
 import threading
 import time
-import os
 
 import pypresence
+from ezjsonpy import load_languages, set_language, load_configurations, get_config_value
 from loguru import logger
 from mccolors import mcwrite, mcreplace
-from ezjsonpy import load_languages, set_language, load_configurations, get_config_value
 
-from mcptool.constants import MCPToolStrings, URLS
-from mcptool.path.mcptool_path import MCPToolPath
-from mcptool.scrappers.minecraftservers import MinecraftServerScrapper
-from mcptool.utilities.text.command_finished_message import CommandFinishedMessage
+from .constants import MCPToolStrings, URLS
+from .path.mcptool_path import MCPToolPath
+from .scrappers.minecraftservers import MinecraftServerScrapper
+from .utilities.text.command_finished_message import CommandFinishedMessage
 
 # Remove the default logger
 logger.remove()
