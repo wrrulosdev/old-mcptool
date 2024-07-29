@@ -1,3 +1,7 @@
+# 1.0.8 (Jul 29, 2024
+## Changes
+* All imports were updated to the new version of the library.
+
 # 1.0.7 (Jul 26, 2024)
 # New commands
 * **Password** - Get the password of a user using the username (Nordify API)

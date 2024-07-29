@@ -67,9 +67,10 @@ class BotUtilities:
 
     @staticmethod
     @logger.catch
-    def get_bot_reconnect_time():
+    def get_bot_reconnect_time() -> int:
         """
         Method to get the bot reconnect time
+        :return: The bot reconnect time
         """
         # Get the reconnect time from the settings
         time: int = get_config_value('bot_reconnect_time')

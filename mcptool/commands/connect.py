@@ -1,6 +1,7 @@
 import subprocess
 from typing import Union
 
+from ezjsonpy import get_config_value
 from loguru import logger
 from mccolors import mcwrite
 
@@ -17,7 +18,6 @@ class Command:
     def __init__(self):
         self.name: str = 'connect'
         self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
-        logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
     @logger.catch
     def validate_arguments(self, user_arguments: list) -> bool:
@@ -80,6 +80,9 @@ class Command:
 
         if MCPToolStrings.OS_NAME == 'windows':
             command = f'C: && {command}'
+
+        if get_config_value('debug'):
+            logger.debug(f'Connect command: {command}')
 
         # Connecting to the server
         mcwrite(Lm.get(f'commands.{self.name}.connecting')

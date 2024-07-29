@@ -2,6 +2,8 @@ import subprocess
 from subprocess import CompletedProcess
 
 from loguru import logger
+from ezjsonpy import get_config_value
+from mccolors import mcwrite
 
 from ...constants import MCPToolStrings
 from ...path.mcptool_path import MCPToolPath
@@ -34,6 +36,9 @@ class BotServerResponse:
     @logger.catch
     def _send_command(self) -> None:
         """Send the command to the server"""
+        if get_config_value('debug'):
+            logger.debug(f'Sending command: {self._get_command()}')
+
         response: CompletedProcess = subprocess.run(self._get_command(), shell=True, stdout=subprocess.PIPE,
                                                     stderr=subprocess.PIPE)
 

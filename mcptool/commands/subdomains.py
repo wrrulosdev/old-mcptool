@@ -20,7 +20,6 @@ class Command:
         self.subdomains_found: int = 0
         self.first_subdomain_found: bool = False
         self.stopped: bool = False
-        logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
     @logger.catch
     def validate_arguments(self, user_arguments: list) -> bool:

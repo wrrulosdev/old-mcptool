@@ -42,7 +42,7 @@ class Command:
 
             filter_description: Union[str, None] = Input(
                 input_message=Lm.get('commands.websearch.filterByDescription'),
-                input_type='string'
+                input_type='boolean'
             ).get_input()
 
             if filter_description is not None:
@@ -55,7 +55,7 @@ class Command:
 
             filter_online_players: Union[int, None] = Input(
                 input_message=Lm.get('commands.websearch.filterByOnlinePlayers'),
-                input_type='integer'
+                input_type='boolean'
             ).get_input()
 
             if filter_online_players is not None:
@@ -68,7 +68,7 @@ class Command:
 
             filter_protocol: Union[int, None] = Input(
                 input_message=Lm.get('commands.websearch.filterByProtocol'),
-                input_type='integer'
+                input_type='boolean'
             ).get_input()
 
             if filter_protocol is not None:

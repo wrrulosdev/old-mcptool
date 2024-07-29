@@ -238,6 +238,10 @@
         },
         "clearservers": {
             "serversCleared": "\n%spaces%%prefix% &f&lMinecraft server list cleared successfully."
+        },
+        "debug": {
+            "enabled": "\n%spaces%%prefix% &f&lDebug mode enabled.",
+            "disabled": "\n%spaces%%prefix% &f&lDebug mode disabled."
         }
     },
     "errors": {

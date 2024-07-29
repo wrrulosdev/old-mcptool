@@ -25,6 +25,7 @@ from ...commands.settings import Command as SettingsCommand
 from ...commands.subdomains import Command as SubdomainsCommand
 from ...commands.uuid import Command as UUIDCommand
 from ...commands.websearch import Command as WebSearchCommand
+from ...commands.debug import Command as DebugCommand
 
 
 class CommandLoader:
@@ -61,6 +62,7 @@ class CommandLoader:
             'kickall': KickAllCommand(),
             'clearservers': ClearServersCommand(),
             'settings': SettingsCommand(),
-            'discord': DiscordCommand()
+            'discord': DiscordCommand(),
+            'debug': DebugCommand()
         }
         return commands

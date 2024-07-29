@@ -21,7 +21,7 @@ logger.remove()
 
 # Set the logging configuration
 logger.add(os.path.join(MCPToolPath.get_path(), 'logs.log'),
-           level='INFO',
+           level='DEBUG',
            format='[{time} {level} - {file}, {line}] ⮞ <level>{message}</level>',
            rotation="30 MB"
            )

@@ -18,7 +18,6 @@ class Command:
         self.name: str = 'checker'
         self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
         self.servers_found: int = 0
-        logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
     @logger.catch
     def validate_arguments(self, user_arguments: list) -> bool:

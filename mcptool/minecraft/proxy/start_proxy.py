@@ -87,6 +87,9 @@ class StartProxy:
             if output == '':
                 continue
 
+            if get_config_value('debug'):
+                logger.debug(f'Proxy console output: {output}')
+
             if ' INFO]: Listening on ' in output:
                 mcwrite(Lm.get('commands.proxy.proxyStarted')
                         .replace('%proxyIp%', '127.0.0.1')
@@ -193,6 +196,9 @@ class StartProxy:
 
         if MCPToolStrings.OS_NAME == 'windows':
             command = f'C: && {command}'
+
+        if get_config_value('debug'):
+            logger.debug(f'Proxy command: {command}')
 
         process: subprocess.Popen = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE,
                                                      stderr=subprocess.STDOUT)

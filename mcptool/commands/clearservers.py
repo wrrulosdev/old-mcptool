@@ -10,7 +10,6 @@ class Command:
     def __init__(self):
         self.name: str = 'clearservers'
         self.command_arguments: list = [i for i in Lm.get(f'commands.{self.name}.arguments')]
-        logger.debug(f"Command initialized: {self.name}, arguments: {self.command_arguments}")
 
     @logger.catch
     def execute(self, user_arguments: list) -> bool:
