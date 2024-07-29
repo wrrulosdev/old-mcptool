@@ -16,6 +16,7 @@ class Command:
         """
         Method to execute the command
         :param user_arguments: The arguments to execute the command
+        :return: bool: True if the command was executed successfully, False otherwise
         """
         banner: str = HelpBanners.BANNERS[random.randint(0, len(HelpBanners.BANNERS) - 1)]
         ShowBanner(banner).show()
