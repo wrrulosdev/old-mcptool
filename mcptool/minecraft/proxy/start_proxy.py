@@ -3,6 +3,7 @@ import os
 import subprocess
 
 from ezjsonpy import get_config_value
+from loguru import logger
 from mccolors import mcwrite
 
 from ...constants import MCPToolStrings
@@ -19,10 +20,12 @@ class StartProxy:
         self.proxy_path: str = ''
         self.proxy_port: int = 0
 
+    @logger.catch
     def start(self) -> None:
         """Method to start the proxy"""
         self._configure_proxy()
 
+    @logger.catch
     def _configure_proxy(self) -> None:
         """Method to configure the proxy"""
         mcwrite(Lm.get('commands.proxy.configuringProxy'))
@@ -68,12 +71,12 @@ class StartProxy:
 
         self._read_output(process)
 
+    @logger.catch
     def _read_output(self, process: subprocess.Popen) -> None:
         """
         Method to read the output of the proxy
         :param process: The proxy process
         """
-
         for line in process.stdout:
             try:
                 output: str = line.decode('utf-8').strip()
@@ -174,6 +177,7 @@ class StartProxy:
                             .replace('%time%', current_time)
                             )
 
+    @logger.catch
     def _start_proxy(self) -> subprocess.Popen:
         """
         Method to start the proxy
