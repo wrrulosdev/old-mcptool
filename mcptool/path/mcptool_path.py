@@ -65,7 +65,6 @@ class MCPToolPath:
         Get the URL files
         :return: list: The MCPTool files
         """
-
         return [
             # Settings
             MCPToolFile(
@@ -104,6 +103,10 @@ class MCPToolPath:
             MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/files/languages/en.json',
                 file_name='languages/en.json'
+            ),
+            MCPToolFile(
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/files/languages/es.json',
+                file_name='languages/es.json'
             ),
             # Jars
             MCPToolFile(
@@ -151,7 +154,7 @@ class MCPToolPath:
             # Images
             MCPToolFile(
                 download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/img/icon.ico',
-                file_name='img/icon.ico'
+                file_name='files/img/icon.ico'
             ),
         ]
 
