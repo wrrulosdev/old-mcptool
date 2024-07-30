@@ -18,6 +18,6 @@ class SendNotification:
             title=self.title,
             message=self.message,
             app_name='MCPTool',
-            app_icon=f'{MCPToolPath.get_path()}/img/icon.ico',
+            app_icon=f'{MCPToolPath.get_path()}/files/img/icon.ico',
             timeout=1
         )
