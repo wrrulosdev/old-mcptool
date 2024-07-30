@@ -1,6 +1,6 @@
 {
   "language": "en",
-  "serverDataApi": "mcstatus.io",
+  "serverDataApi": "local",
   "discordPresence": true,
   "seekerToken": "YOUR_SEEKER_TOKEN",
   "bot_recconect_time": 4,
@@ -11,6 +11,6 @@
     "seekerAPI": "https://api.serverseeker.net",
     "nordifyAPI": "http://89.213.175.96:4434/"
   },
-  "version": "1.0.8",
+  "version": "1.0.9",
   "debug": false
 }

@@ -5,7 +5,7 @@ class AppSettings:
     PYTHON_SCRIPT = './executables/exe.py'
     UPDATER_SCRIPT = './executables/updater.py'
     PRODUCT_NAME = 'MCPTool'
-    PRODUCT_VERSION = '1.0.8'
+    PRODUCT_VERSION = '1.0.9'
     COMPANY_NAME = 'MCPTool'
     PRODUCT_DESCRIPTION = 'A tool for Minecraft pentesting'
     UPGRADE_CODE = '{2d2b8940-8bc9-41e6-b5d4-c4a51174c313}'

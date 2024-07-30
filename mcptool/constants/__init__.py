@@ -24,7 +24,7 @@ class Emojis:
 
 
 class MCPToolStrings:
-    VERSION: str = '1.0.8'
+    VERSION: str = '1.0.9'
     PREFIX: str = f'&c&l«{Emojis.PREFIX_EMOJI}&c&l»&r'
     SPACES: str = ' ' * 4
     MCPTOOL_DISCORD_CLIENT_ID: str = '1127920414383943801'
