@@ -18,10 +18,7 @@ class UpdateTool:
         pass
 
     def check_for_update(self) -> None:
-        """
-        Check if there is an update available for the tool
-        """
-
+        """Check if there is an update available for the tool"""
         from mcptool.constants.update_available import UPDATE_AVAILABLE
         from mcptool.notifications.send import SendNotification
         from mcptool.inputcustom import Input

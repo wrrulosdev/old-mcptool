@@ -5,13 +5,13 @@ class AppSettings:
     PYTHON_SCRIPT = './executables/exe.py'
     UPDATER_SCRIPT = './executables/updater.py'
     PRODUCT_NAME = 'MCPTool'
-    PRODUCT_VERSION = '1.0.7'
+    PRODUCT_VERSION = '1.0.8'
     COMPANY_NAME = 'MCPTool'
     PRODUCT_DESCRIPTION = 'A tool for Minecraft pentesting'
     UPGRADE_CODE = '{2d2b8940-8bc9-41e6-b5d4-c4a51174c313}'
     AUTHOR_EMAIL = 'pedroagustinvega04@gmail.com'
     COPYRIGHT = 'Copyright (C) 2024 cx_Freeze'
-    ICON = './img/icon.ico'
+    ICON = './files/img/icon.ico'
 
 
 # Executable settings
@@ -51,6 +51,12 @@ setup(
             'add_to_path': True,
             'all_users': True,
             'initial_target_dir': r'[AppDataFolder]\%s' % AppSettings.COMPANY_NAME,
+            'install_icon': AppSettings.ICON,
+            'summary_data': {
+                'author': AppSettings.COMPANY_NAME,
+                'comments': AppSettings.PRODUCT_DESCRIPTION,
+                'keywords': 'MCPTool',
+            },
             'data': {
                 'Shortcut': [
                     ('DesktopShortcut', 'DesktopFolder', AppSettings.PRODUCT_NAME, 'TARGETDIR', '[TARGETDIR]MCPTool.exe', None, None, None, None, None, None, 'TARGETDIR'),

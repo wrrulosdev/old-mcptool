@@ -89,6 +89,14 @@ class Connect {
         // Get the message from the JSON
         const message = Utilities.getTextFromJSON(reason);
 
+        if (message === null) {
+          console.log(
+            mccolors.translateColors(
+              `\n${spaces}§f[§c#§f] §fThe bot was kicked from the server for the following reason: §c${reason.text}`
+            )
+          );
+        }
+
         if (message.length === 0) {
           const newReason = reason.replace(/"/g, "");
 

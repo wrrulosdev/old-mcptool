@@ -75,10 +75,10 @@ class Input:
     @logger.catch
     def _boolean_input(self) -> Union[bool, None]:
         """Get the boolean inputcustom"""
-        if self.user_input.lower() in ['yes', 'y', 'true', '1']:
+        if self.user_input.lower() in ['yes', 'y', 'true', 'si', 's']:
             return True
 
-        if self.user_input.lower() in ['no', 'n', 'false', '0']:
+        if self.user_input.lower() in ['no', 'n', 'false', 'no', 'n']:
             return False
 
         mcwrite(Lm.get('errors.invalidBooleanInput'))

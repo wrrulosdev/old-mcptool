@@ -171,7 +171,7 @@
             "bruteForcing": "\n%spaces%%prefix% &f&lInitiating a brute force attack on the authentication plugin on server &a&l%ip% &f&lwith the user &b&l%username% &f&land the password list &6&l%passwordFile% &f&l(&6&l%numberOfPasswords% passwords&f&l)."
         },
         "proxy": {
-            "arguments": ["ip:port", "proxy_type"],
+            "arguments": ["ip:port", "velocity_forwading_mode"],
             "configuringProxy": "\n%spaces%%prefix% &f&lConfiguring the proxy server... ",
             "proxyConfigured": "\n%spaces%%prefix% &f&lProxy server configured successfully.",
             "velocityForwardingMode": "\n%spaces%%prefix% &f&lWrite the velocity mode you want to use. &8(&a&lnone legacy bungeeguard modern&8) &8&l▶ &f&l",

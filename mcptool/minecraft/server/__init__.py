@@ -3,6 +3,8 @@ from typing import Union
 
 from loguru import logger
 
+from ...utilities.text.utilities import TextUtilities
+
 
 class JavaServerData:
     def __init__(self, ip_address: str, port: int, motd: str, original_motd: str, version: str, original_version: str,
@@ -48,13 +50,9 @@ class BedrockServerData:
 @logger.catch
 def clean_output(output: str) -> str:
     """
-    Method to clean the output
-
-    Args:
-        output (str): The output
-
-    Returns:
-        str: The cleaned output
+    Method to clean the output.
+    :param output: The output to clean.
+    :return: The cleaned output.
     """
 
     # Remove newline characters.
@@ -64,5 +62,5 @@ def clean_output(output: str) -> str:
     output = re.sub(' +', ' ', output)
 
     # Replace Minecraft color codes with MiniMessage colored characters.
-    # output = TextUtilities.minecraft_colors(output)
+    output = TextUtilities.minecraft_colors(output)
     return output

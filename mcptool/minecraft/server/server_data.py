@@ -5,6 +5,7 @@ from loguru import logger
 from mccolors import mcwrite
 
 from ...minecraft.server import JavaServerData, BedrockServerData
+from ...minecraft.server.mcstatus_local import MCServerData
 from ...minecraft.server.mcstatusio_api import MCStatusIOAPI
 from ...utilities.language.utilities import LanguageUtils as Lm
 
@@ -28,8 +29,8 @@ class ServerData:
             mcwrite(Lm.get('errors.serverDataApiNotSet'))
             return None
 
-        # if get_config_value('serverDataApi') == 'local':
-        #    data: Union[JavaServerData, BedrockServerData, None] = MCServerData(target=self.target, bot=self.bot).get()
+        if get_config_value('serverDataApi') == 'local':
+            data: Union[JavaServerData, BedrockServerData, None] = MCServerData(server=self.target, bot=self.bot).get()
 
         if get_config_value('serverDataApi') == 'mcstatus.io':
             data: Union[JavaServerData, BedrockServerData, None] = MCStatusIOAPI(target=self.target, bot=self.bot).get()

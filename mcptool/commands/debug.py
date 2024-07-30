@@ -1,6 +1,8 @@
+from ezjsonpy import get_config_value, set_config_value
 from loguru import logger
 from mccolors import mcwrite
-from ezjsonpy import get_config_value, set_config_value
+
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class Command:
@@ -18,12 +20,12 @@ class Command:
         debug_value: bool = get_config_value('debug')
 
         if debug_value:
-            mcwrite(f'commands.debug.disabled')
+            mcwrite(Lm.get('commands.debug.disabled'))
             set_config_value('debug', False)
             logger.info('Debug mode disabled')
 
         else:
-            mcwrite(f'commands.debug.enabled')
+            mcwrite(Lm.get('commands.debug.enabled'))
             set_config_value('debug', True)
             logger.info('Debug mode enabled')
 

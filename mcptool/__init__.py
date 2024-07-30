@@ -29,7 +29,8 @@ logger.add(os.path.join(MCPToolPath.get_path(), 'logs.log'),
 mcptool_path: MCPToolPath = MCPToolPath()
 
 load_languages([
-    {'name': 'en', 'path': os.path.join(mcptool_path.get_path(), 'languages', 'en.json')}
+    {'name': 'en', 'path': os.path.join(mcptool_path.get_path(), 'languages', 'en.json')},
+    {'name': 'es', 'path': os.path.join(mcptool_path.get_path(), 'languages', 'es.json')}
 ])
 
 load_configurations([

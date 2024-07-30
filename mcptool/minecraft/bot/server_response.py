@@ -1,9 +1,8 @@
 import subprocess
 from subprocess import CompletedProcess
 
-from loguru import logger
 from ezjsonpy import get_config_value
-from mccolors import mcwrite
+from loguru import logger
 
 from ...constants import MCPToolStrings
 from ...path.mcptool_path import MCPToolPath

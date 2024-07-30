@@ -1,6 +1,6 @@
-from ..utilities.language.utilities import LanguageUtils as Lm
 from . import MCPToolStrings, URLS
 from .update_available import UPDATE_AVAILABLE
+from ..utilities.language.utilities import LanguageUtils as Lm
 
 
 class LoadingBanners:
@@ -70,8 +70,7 @@ class InputBanners:
 
 
 class HelpBanners:
-    HELP_BANNER_1 = f'''
-                                                                             &d      ⣠⠤⠖⠚⢉⣩⣭⡭⠛⠓⠲⠦⣄⡀
+    HELP_BANNER_1 = f'''                                                                             &d      ⣠⠤⠖⠚⢉⣩⣭⡭⠛⠓⠲⠦⣄⡀
     &c• &f&lCommands:                                                          &d       ⢀⡴⠋⠁  ⠊         ⠉⠳⢦⡀
                                                                          &d     ⢀⡴⠃⢀⡴⢳               ⠙⣆
       &d► &f&lserver [ip:port/domain]                                          &d     ⡾⠁⣠⠋ ⠈⢧               ⠈⢧
@@ -97,7 +96,7 @@ class HelpBanners:
       &d► &f&lkickall [ip:port/domain] [version] [loop]                        &d ⠸⡆  ⠇&f&l⣾             &d          ⠙⡀⢢
       &d► &f&lpassword [username/s]                                            &d  ⡏   &f&l⠙⣆       ⢀⣠⢶⡇  ⢰⡀     ⡇
       
-    &b• &f&lOther commands: &f&ldiscord settings clearservers clear'''
+    &b• &f&lOther commands: &f&ldiscord settings clearservers debug clear'''
 
     CLI_BANNER: str = f'''
 &f&lUsage: &a&lmcptool [command]

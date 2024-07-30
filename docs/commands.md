@@ -15,6 +15,7 @@ List of current MCPTool commands.
 - [Subdomains](#subdomains)
 - [Scan](#scan)
 - [Listening](#listening)
+- [Proxy](#proxy)
 - [FakeProxy](#fakeproxy)
 - [Connect](#connect)
 - [SendCMD](#sendcmd)
@@ -23,22 +24,25 @@ List of current MCPTool commands.
 - [BruteAuth](#bruteauth)
 - [Kick](#kick)
 - [KickAll](#kickall)
+- [Password](#password)
 - [Discord](#discord)
+- [Language](#language)
 - [Settings](#settings)
 - [ClearServers](#clearservers)
+- [Debug](#debug)
 - [Clear](#clear)
 
 ## Help
 
 The **help** command allows you to get information about the commands available in the tool.
 
-![Help](https://imgur.com/xcrXlYn.png)
+![Help](../files/img/commands/help.png)
 
 ## Server
 
 The **server** command allows you to obtain information about a Minecraft server. Works on Java and Bedrock servers.
 
-![Server](../img/commands/server.png)
+![Server](../files/img/commands/server.png)
 
 To use this command you must enter:
 </br>
@@ -48,44 +52,98 @@ To use this command you must enter:
 
 The **uuid** command allows you to get the uuids of a Minecraft user or premium user using their uuid
 
-![Uuid1](../img/commands/uuid_1.png)
-![Uuid2](../img/commands/uuid_2.png)
+![Uuid](../files/img/commands/uuid.png)
 
 To use this command you must enter:
 </br>
 `uuid <username>`
 
 ## IPInfo
+The **ipinfo** command allows you to get information about an IP address.
 
-The **ipinfo** command allows you to obtain information about an IP address.
-
-![IPInfo](../img/commands/ipinfo.png)
+![IPInfo](../files/img/commands/ipinfo.png)
 
 To use this command you must enter:
 </br>
 `ipinfo <ip>`
 
 ## IPHistory
+The **iphistory** command allows you to obtain the IP address history of a domain.
 
-The **iphistory** command allows you to obtain the history of ipv4 addresses associated with a domain.
+![IPHistory](../files/img/commands/iphistory.png)
 
-![IPHistory1](../img/commands/iphistory.png)
+To use this command you must enter:
+</br>
+`iphistory <domain>`
 
 ## DNSLookup
+The **dnslookup** command allows you to obtain the DNS information of a domain.
 
-The **dnslookup** command allows you to obtain the DNS records for a specific domain.
-
-![DnsLookup](../img/commands/dnslookup.png)
+![DNSLookup](../files/img/commands/dnslookup.png)
 
 To use this command you must enter:
 </br>
 `dnslookup <domain>`
 
-## Scan
+## Checker
+The **checker** command allows you to check the status of a Minecraft server from a list of servers in a file.
 
+![Checker](../files/img/commands/checker.png)
+
+To use this command you must enter:
+</br>
+`checker <file>`
+
+## Resolver
+The **resolver** command allows you to get the subdomains of a domain.
+
+![Resolver](../files/img/commands/resolver.png)
+
+To use this command you must enter:
+</br>
+`resolver <domain>`
+
+## Seeker [token]
+The **seeker token** command allows you to get a token to use the seeker API.
+
+![Seeker](../files/img/commands/seeker_token.png)
+
+To use this command you must enter:
+</br>
+`seeker token`
+
+
+## Seeker [servers]
+The **seeker servers** command allows you to search for a minecraft servers using the seeker API.
+
+![Seeker](../files/img/commands/seeker_servers.png)
+
+To use this command you must enter:
+</br>
+`seeker servers`
+
+## WebSearch
+The **websearch** command allows you to search for minecraft servers on the multiple websites.
+
+![WebSearch](../files/img/commands/websearch.png)
+
+To use this command you must enter:
+</br>
+`websearch`
+
+## Subdomains
+The **subdomains** command allows you to get the subdomains of a domain using a wordlist.
+
+![Subdomains](../files/img/commands/subdomains.png)
+
+To use this command you must enter:
+</br>
+`subdomains <domain> <wordlist>`
+
+## Scan
 The **scan** command allows you to perform a scan to look for open ports hosting Minecraft servers.
 
-### **IP Range**
+#### **IP Range**
 
 You can enter a normal IP like **127.0.0.1**.
 
@@ -93,7 +151,7 @@ But you can also enter an IP range, such as: **127.0.0.1-255**
 
 Valid formats for IP ranges vary depending on the type of scanner you select.
 
-### **Port Range**
+#### **Port Range**
 
 You can enter a normal port like **25565**.
 
@@ -101,7 +159,7 @@ But you can also enter a variety of ports, such as: **25560-25570**
 
 Valid formats for port ranges vary depending on the type of scanner you select.
 
-### **Scanner**.
+#### **Scanner**.
 
 You can perform the scan using different scanners, this is specified in the **method** argument
 
@@ -114,231 +172,167 @@ List of methods:
 
 In the **method** argument you can enter the name of the scanner or its respective number.
 
-![Scan](../img/commands/scan.png)
+![Scan](../files/img/commands/scan.png)
 
 To use this command you must enter:
 </br>
 `scan <ip> <ports> <method>`
 
-## Subdomains
-
-The **subdomains** command allows you to get the subdomains of a domain.
-
-![Subdomains](../img/commands/subdomains.png)
-
-To use this command you must enter:
-</br>
-`subdomains <domain> <subdomainsFile>`
-
-## Checker
-
-The **checker** command allows you to obtain the current data from the servers located in a specific text file.
-
-![Checker](../img/commands/checker.png)
-
-To use this command you must enter:
-</b>
-`checker <file>`
-
 ## Listening
+The **listening** command allows you to listen to the connections of a Minecraft server.
 
-The **listening** command allows you to get the list of players connecting to the server, along with their uuids.
-
-![Listening](../img/commands/listening.png)
-
-To use this command you must enter:
-</br>
-`listening <ip:port>`
-
-## Resolver
-
-The **resolver** command allows you to obtain IP addresses and subdomains linked to the specified domain.
-
-![Resolver](../img/commands/resolver.png)
+![Listening](../files/img/commands/listening.png)
 
 To use this command you must enter:
 </br>
-`resolver <domain>`
-
-## Seeker
-
-The **seeker** command allows you to get random servers using the Seeker API.
-
-![Seeker](../img/commands/seeker.png)
-
-To use this command you must enter:
-</br>
-`seeker <type>`
-
-## WebSearch
-
-The **websearch** command allows you to search for minecraft servers on the webs.
-
-![WebSearch](../img/commands/websearch.png)
-
-To use this command you must enter:
-</br>
-`websearch`
+`listening <ip:port/domain>`
 
 ## Proxy
+The **proxy** command allows you to create a proxy server to connect to a Minecraft server.
 
-The **proxy** command creates a proxy server that redirects to the specified server.
-The proxy server comes with my *MCPTool* plugin by default. This plugin allows you to run the following commands:
-
-- /username -> Change your username.
-- /uuid -> Change your uuid.
-- /connect -> Connects you to the specified server.
-
-![Velocity2](../img/commands/velocity_2.png)
-</br>
-![Velocity3](../img/commands/velocity_3.png)
-</br>
-![Velocity4](../img/commands/velocity_4.png)
+![Proxy](../files/img/commands/proxy.png)
+![Proxy](../files/img/commands/proxy2.png)
 
 To use this command you must enter:
 </br>
-`proxy <ip:port> <forwarding-mode>`
+`proxy <ip:port/domain> <forwarding_mode>`
 
-## Fake proxy
+# FakeProxy
+The **fakeproxy** command allows you to create a fake proxy server.
+More information about this command can be found [here](./fakeproxy.md).
 
-The **fakeproxy** command creates a speed proxy server that redirects to the specified server and captures all data. The
-data it saves is:
-
-- Date and time of entry and exit of users.
-- Username and IP address.
-- Commands and messages sent.
-
-In addition to saving data, it also allows you to interact with proxy users using commands.
-
-![FakeProxy](../img/commands/fakeproxy.png)
-![FakeProxyServers](../img/commands/fakeproxy_server.png)
-![FakeProxyPlugin](../img/commands/fakeproxy_commands.png)
+![FakeProxy](../files/img/commands/fakeproxy.png)
+![FakeProxy](../files/img/commands/fakeproxy2.png)
 
 To use this command you must enter:
 </br>
-`fakeproxy <ip:port> <forwarding-mode>`
-
-### **IMPORTANT
-** - By default, it only creates a local proxy; to expose your port you can use services like [ngrok](https://ngrok.com/).
+`fakeproxy <ip:port/domain> <forwarding_mode>`
 
 ## Connect
+The **connect** command allows you to connect to a Minecraft server.
 
-The **connect** command allows you to connect to a Minecraft server using the terminal.
-
-![Connect](../img/commands/connect.png)
-
-To use this command you must enter:
-</br>
-`connect <ip:port> <version> <user>`
-
-## Rcon
-
-The **rcon** command allows you to connect to a Minecraft server using rcon (only if enabled).
-
-![Rcon](../img/commands/rcon.png)
+![Connect](../files/img/commands/connect.png)
 
 To use this command you must enter:
 </br>
-`rcon <ip:rconPort> <rconPassword>`
-
-## BruteRcon
-
-The **brutercon ** command allows you to perform a brute force attack on the rcon port of the specified server to
-attempt to guess the password.
-
-To use this command you must enter:
-</br>
-`rconbrute <ip:rconPort> <passwordFile>`
-
-## Bruteauth
-
-The **Bruteauth** command allows you to perform a brute force attack on a Minecraft user within a non-premium server to
-try to guess their password. (/login)
-
-**IMPORTANT!** I will give you a brief summary of how the bot works:
-
-* When the bot connects to the server, it listens for any of the messages found in the **bruteforce_config** (
-  *wordsToLogin*) configuration file. </br></br> After reading any of the words in that list, the bot runs the command
-  to authenticate itself and then listens again, until it reads some of the words in (*wordsAtLogin*)
-
-[!] If the bot doesn't try any passwords or if after trying one it doesn't do anything else, it's because you need to
-add more words to the corresponding lists.
-
-To use this command you must enter:
-</br>
-`bruteauth <ip:port> <version> <username> <passwordFile>`
-
-## Kick
-
-The **kick** command allows you to connect a bot with a specific name. This is to disconnect you in case the server
-kicks players who log in from another location.
-
-To use this command you must enter:
-</br>
-`kick <ip:port> <version> <username> <loop>`
-
-**NOTE** In loop you must enter *y* or *n*.
-
-## KickAll
-
-The **kickall** command allows you to connect bots with the name of each player found on the server. This is to
-disconnect them in case the server kicks players who log in from another location.
-
-To use this command you must enter:
-</br>
-`kickall <ip:port> <version> <loop>`
-
-**NOTE** In loop you must enter *y* or *n*.
+`connect <ip:port/domain> <version> <username>`
 
 ## SendCMD
+The **sendcmd** command allows you to send a bot to a Minecraft server to send messages or commands.
 
-The **sendcmd** command allows you to connect a bot that will send a list of messages or commands found in the specified
-text file.
+![SendCMD](../files/img/commands/sendcmd.png)
 
 To use this command you must enter:
 </br>
-`sendcmd <ip:port> <version> <username> <file>`
+`sendcmd <ip:port/domain> <version> <username> <commandsFile>`
+
+## Rcon
+The **rcon** command allows you to connect to a Minecraft server using the RCON protocol.
+
+![Rcon](../files/img/commands/rcon.png)
+
+To use this command you must enter:
+</br>
+`rcon <ip:rconPort> <password>`
+
+## BruteRcon
+The **brutercon** command allows you to perform a brute force attack on the RCON protocol of a Minecraft server.
+
+![BruteRcon](../files/img/commands/brutercon.png)
+
+To use this command you must enter:
+</br>
+`brutercon <ip:rconPort> <passwordsFile>`
+
+## BruteAuth
+The **bruteauth** command allows you to perform a brute force attack on the authentication plugin of a Minecraft server.
+
+![BruteAuth](../files/img/commands/bruteauth.png)
+
+To use this command you must enter:
+</br>
+`bruteauth <ip:port/domain> <version> <username> <passwordsFile>`
+
+## Kick
+The **kick** command allows you to kick a player from a Minecraft server.
+
+![Kick](../files/img/commands/kick.png)
+
+To use this command you must enter:
+</br>
+`kick <ip:port/domain> <version> <username> <loop>`
+
+## KickAll
+The **kickall** command allows you to kick all players from a Minecraft server.
+
+![KickAll](../files/img/commands/kickall.png)
+
+To use this command you must enter:
+</br>
+`kickall <ip:port/domain> <version> <loop>`
 
 ## Password
+The **password** command allows get the password of a username using the Nordify API.
 
-The **password** command allows you to search for the password of a user using the nordify api.
+![Password](../files/img/commands/password.png)
 
 To use this command you must enter:
 </br>
 `password <username>`
 
-## Settings
+## Discord
+The **discord** command allows you to get my discord server invite link.
 
+![Discord](../files/img/commands/discord.png)
+
+To use this command you must enter:
+</br>
+`discord`
+
+## Settings (Windows only)
 The **settings** command allows you to change the settings of the tool.
 
-List of available settings:
+Settings available:
+- **settings** - MCPTool main settings
+- **proxy** - Proxy settings
+- **scanner** - Scanner settings
+- **bruteforce_settings** - Brute force settings
+- **sendcmd_settings** - SendCMD settings
+- **mcserver-scrapper** - McServer Scrapper settings (websearch)
+- **nordify** - Nordify account settings
 
-- settings
-- scanner
-- proxy
-- bruteforce_settings
-- sendcmd_settings
-- mcserver-scrapper
-- nordify
-
-## Language (Coming soon)
-
+## Language
 The **language** command allows you to change the language of the tool.
 
-List of available languages:
-
-- English (**en**)
-
-You must specify the language abbreviation, for example **es**.
+![Language](../files/img/commands/language.png)
 
 To use this command you must enter:
 </br>
 `language <language>`
 
-## Discord
-
-The **discord** command shows the link for my discord server.
+![Settings](../files/img/commands/settings.png)
 
 To use this command you must enter:
 </br>
-`discord`
+`settings <setting>`
+
+## ClearServers
+The **clearservers** command allows you to clear the list of servers saved in the multiplayer server list.
+
+![ClearServers](../files/img/commands/clearservers.png)
+
+To use this command you must enter:
+</br>
+`clearservers`
+
+## Debug
+The **debug** command allows you to enable or disable the debug mode.
+
+![Debug](../files/img/commands/debug.png)
+
+To use this command you must enter:
+</br>
+`debug`
+
+## Clear
+The **clear** command allows you to clear the console.

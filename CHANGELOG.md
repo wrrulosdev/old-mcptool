@@ -1,6 +1,10 @@
-# 1.0.8 (Jul 29, 2024
+# 1.0.8 (Jul 29, 2024)
 ## Changes
 * All imports were updated to the new version of the library.
+* .MD files were updated to the new version of the library (and better documentation).
+* The MCStatus local library is now available again.
+* The language command is now available again.
+* New language were added: **ES**
 
 # 1.0.7 (Jul 26, 2024)
 # New commands

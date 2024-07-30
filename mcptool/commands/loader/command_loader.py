@@ -4,6 +4,7 @@ from ...commands.checker import Command as CheckerCommand
 from ...commands.clear import Command as ClearCommand
 from ...commands.clearservers import Command as ClearServersCommand
 from ...commands.connect import Command as ConnectCommand
+from ...commands.debug import Command as DebugCommand
 from ...commands.discord import Command as DiscordCommand
 from ...commands.dnslookup import Command as DNSLookupCommand
 from ...commands.fakeproxy import Command as FakeProxyCommand
@@ -12,6 +13,7 @@ from ...commands.iphistory import Command as IPHistoryCommand
 from ...commands.ipinfo import Command as IPInfoCommand
 from ...commands.kick import Command as KickCommand
 from ...commands.kickall import Command as KickAllCommand
+from ...commands.language import Command as LanguageCommand
 from ...commands.listening import Command as ListeningCommand
 from ...commands.password import Command as PasswordCommand
 from ...commands.proxy import Command as ProxyCommand
@@ -25,7 +27,6 @@ from ...commands.settings import Command as SettingsCommand
 from ...commands.subdomains import Command as SubdomainsCommand
 from ...commands.uuid import Command as UUIDCommand
 from ...commands.websearch import Command as WebSearchCommand
-from ...commands.debug import Command as DebugCommand
 
 
 class CommandLoader:
@@ -61,6 +62,7 @@ class CommandLoader:
             'kick': KickCommand(),
             'kickall': KickAllCommand(),
             'clearservers': ClearServersCommand(),
+            'language': LanguageCommand(),
             'settings': SettingsCommand(),
             'discord': DiscordCommand(),
             'debug': DebugCommand()

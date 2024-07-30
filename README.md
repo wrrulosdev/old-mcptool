@@ -1,4 +1,4 @@
-<h1 align="center"> 🧨 MCPTool v1.0.7
+<h1 align="center"> 🧨 MCPTool v1.0.8
 <h3 align="center"> Pentesting tool for Minecraft </h2>
 <img align="center" src="https://i.imgur.com/GqkwN7v.png" alt="MCPTool" title="MCPTool" style="max-width: 100%; height: auto;">
 
@@ -37,8 +37,8 @@
 ## Available languages
 
 - **EN**
+- **ES**
 - **TR** (Coming soon)
-- **ES** (Coming soon)
 - **FR** (Coming soon)
 - **SK** (Coming soon)
 - **DE** (Coming soon)
@@ -50,7 +50,7 @@
 You can find the MCPTool documentation in the [docs' folder](./docs).
 
 ## Download
-All the information about the installation is [here](./docs/instalation.MD)
+All the information about the installation is [here](./docs/instalation)
 
 ## 🕹 Usage
 Use the `mcptool` command in the terminal.

@@ -271,7 +271,8 @@ Getting servers from the seeker API...
             return response.json()['data']
 
         except (
-        requests.ConnectionError, requests.Timeout, requests.exceptions.RequestException, UnicodeDecodeError) as e:
+                requests.ConnectionError, requests.Timeout, requests.exceptions.RequestException,
+                UnicodeDecodeError) as e:
             mcwrite(Lm.get('errors.endpointConnectionError'))
             logger.warning(f'Error connecting to the endpoint: {url} - {data} - {e}')
             return None
