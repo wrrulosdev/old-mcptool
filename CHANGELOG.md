@@ -1,3 +1,7 @@
+# 1.0.9 (Jul 29, 2024)
+## Hotfix
+* Fixed mcptool file path error when launching the tool after update.
+
 # 1.0.8 (Jul 29, 2024)
 ## Changes
 * All imports were updated to the new version of the library.
