@@ -41,10 +41,10 @@ load_configurations([
 ])
 set_language(get_config_value('language'))
 
-from mcptool.commands.loader.command_loader import CommandLoader
-from mcptool.banners.show_banner import ShowBanner
-from mcptool.constants.banners import MCPToolBanners, LoadingBanners, InputBanners
-from mcptool.utilities.language.utilities import LanguageUtils as Lm
+from .commands.loader.command_loader import CommandLoader
+from .banners.show_banner import ShowBanner
+from .constants.banners import MCPToolBanners, LoadingBanners, InputBanners
+from .utilities.language.utilities import LanguageUtils as Lm
 
 
 class MCPTool:

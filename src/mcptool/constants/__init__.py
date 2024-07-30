@@ -1,6 +1,6 @@
 import sys
 
-from mcptool.utilities.constants_utilities import ConstantsUtilities
+from ..utilities.constants_utilities import ConstantsUtilities
 
 
 class URLS:
@@ -24,7 +24,7 @@ class Emojis:
 
 
 class MCPToolStrings:
-    VERSION: str = '1.0.9'
+    VERSION: str = '1.1.0'
     PREFIX: str = f'&c&l«{Emojis.PREFIX_EMOJI}&c&l»&r'
     SPACES: str = ' ' * 4
     MCPTOOL_DISCORD_CLIENT_ID: str = '1127920414383943801'

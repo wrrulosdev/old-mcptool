@@ -11,6 +11,6 @@
     "seekerAPI": "https://api.serverseeker.net",
     "nordifyAPI": "http://89.213.175.96:4434/"
   },
-  "version": "1.0.9",
+  "version": "1.1.0",
   "debug": false
 }

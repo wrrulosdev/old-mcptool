@@ -1,3 +1,7 @@
+# 1.1.0 (Jul 30, 2024)
+## Changes
+* MCPTool installed from pip is fixed.
+
 # 1.0.9 (Jul 29, 2024)
 ## Hotfix
 * Fixed mcptool file path error when launching the tool after update.
