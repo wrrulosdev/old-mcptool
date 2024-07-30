@@ -153,7 +153,7 @@ class MCPToolPath:
             ),
             # Images
             MCPToolFile(
-                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/img/icon.ico',
+                download_url=f'{URLS.RAW_GITHUB_REPOSITORY}/files/img/icon.ico',
                 file_name='files/img/icon.ico'
             ),
         ]
