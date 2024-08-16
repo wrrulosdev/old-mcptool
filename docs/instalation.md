@@ -1,4 +1,4 @@
-# MCPTool Installation Guide
+# MCPTool Installation Guide (DISCONTINUED)!!!
 
 ## Install using the pip command
 
